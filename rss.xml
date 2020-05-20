@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[https://johnny-mh.github.io RSS Feed]]></title><description><![CDATA[Developer who want to write good codes]]></description><link>https://johnny-mh.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 20 May 2020 18:49:00 GMT</lastBuildDate><item><title><![CDATA[FrontEnd 개발을 위한 Jenkins CI서버 세팅하기]]></title><description><![CDATA[CentOS 7.7 기준으로 작성 Master, Slave 공통 패키지 업데이트, JDK설치 사내망일 경우 프록시 설정 필요 Master 설정 Jenkins 설치 및 포트 설정 https://linuxize.com/post/how-to-install…]]></description><link>https://johnny-mh.github.io/post/frontend-개발을-위한-jenkins설치</link><guid isPermaLink="false">https://johnny-mh.github.io/post/frontend-개발을-위한-jenkins설치</guid><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;CentOS 7.7 기준으로 작성&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;master-slave-공통&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#master-slave-%EA%B3%B5%ED%86%B5&quot; aria-label=&quot;master slave 공통 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Master, Slave 공통&lt;/h1&gt;
+&lt;p&gt;패키지 업데이트, JDK설치&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; yum update
+&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; yum &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; -y java-1.8.0-openjdk-devel &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;사내망일 경우 프록시 설정 필요&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;vim&lt;/span&gt; .bash_profile
+
+&lt;span class=&quot;token comment&quot;&gt;# 맨밑에 아래 내용 추가&lt;/span&gt;
+&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;http_proxy&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;프록시 서버 주소&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;HTTP_PROXY&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$http_proxy&lt;/span&gt;
+&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;https_proxy&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$http_proxy&lt;/span&gt;
+&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;HTTPS_PROXY&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$http_proxy&lt;/span&gt;
+&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;no_proxy&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;localhost,127.0.0.1&quot;&lt;/span&gt;
+&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;NO_PROXY&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$no_proxy&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1 id=&quot;master-설정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#master-%EC%84%A4%EC%A0%95&quot; aria-label=&quot;master 설정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Master 설정&lt;/h1&gt;
+&lt;h2 id=&quot;jenkins-설치-및-포트-설정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#jenkins-%EC%84%A4%EC%B9%98-%EB%B0%8F-%ED%8F%AC%ED%8A%B8-%EC%84%A4%EC%A0%95&quot; aria-label=&quot;jenkins 설치 및 포트 설정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Jenkins 설치 및 포트 설정&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://linuxize.com/post/how-to-install-jenkins-on-centos-7&quot;&gt;https://linuxize.com/post/how-to-install-jenkins-on-centos-7&lt;/a&gt; 참고.&lt;/p&gt;
+&lt;p&gt;80포트로 사용할 수 있도록 설정&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; -i
+iptables -A PREROUTING -t nat -i eth0 -p tcp --dport &lt;span class=&quot;token number&quot;&gt;80&lt;/span&gt; -j REDIRECT --to-port &lt;span class=&quot;token number&quot;&gt;8080&lt;/span&gt;
+iptables-save&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;jenkins계정 패스워드 삭제 및 로그인 가능하게 하기&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; -i
+&lt;span class=&quot;token function&quot;&gt;passwd&lt;/span&gt; -d jenkins
+&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;vim&lt;/span&gt; /etc/passwd
+
+&lt;span class=&quot;token comment&quot;&gt;# jenkins 라인 마지막 /bin/false를 /bin/bash로 변경&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&quot;인증-키-설정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%9D%B8%EC%A6%9D-%ED%82%A4-%EC%84%A4%EC%A0%95&quot; aria-label=&quot;인증 키 설정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;인증 키 설정&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;su&lt;/span&gt; - jenkins
+&lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; .ssh
+&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; .ssh
+ssh-keygen
+
+&lt;span class=&quot;token comment&quot;&gt;# id_rsa, id_rsa.pub생성됨&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;github.com 로그인 후 &lt;code class=&quot;language-text&quot;&gt;Settings &amp;gt; Developer settings &amp;gt; Personal access tokens&lt;/code&gt; 에서 새 토큰을 등록하고 이 값을 Jenkins 의 Crediential 에 Secret text 로 등록해둔다&lt;/p&gt;
+&lt;h2 id=&quot;플러그인-설치-및-설정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%94%8C%EB%9F%AC%EA%B7%B8%EC%9D%B8-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%84%A4%EC%A0%95&quot; aria-label=&quot;플러그인 설치 및 설정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;플러그인 설치 및 설정&lt;/h2&gt;
+&lt;p&gt;아래 플러그인들 설치&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;NodeJS, AnsiColor, GitHub Pull Request Builder, Publish Over SSH&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;Jenkins 관리 &amp;gt; Global Tool Configuration &amp;gt; NodeJS&lt;/code&gt; 항목 추가&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Name: NodeJS 10.15.3
+Version: NodeJS 10.15.3
+Global npm packages to install: typescript@3.5.3 ts-node@8.8.2 @angular/cli@8.2.0 @sentry/cli@1.52.1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;각 전역 패키지들의 버전을 명시해 두는게 좋음&lt;/p&gt;
+&lt;p&gt;사내 npm을 사용중이라면 &lt;code class=&quot;language-text&quot;&gt;Jenkins 관리 &amp;gt; Managed Files &amp;gt; Npm config file&lt;/code&gt; 을 추가하여 설정.&lt;/p&gt;
+&lt;h2 id=&quot;환경변수-설정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%99%98%EA%B2%BD%EB%B3%80%EC%88%98-%EC%84%A4%EC%A0%95&quot; aria-label=&quot;환경변수 설정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;환경변수 설정&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;Jenkins 관리 &amp;gt; 시스템 설정 &amp;gt; Global properties &amp;gt; Environment variables&lt;/code&gt; 에 아래 값들 추가&lt;/p&gt;
+&lt;p&gt;위의 두 값은 언어 설정때문에 필요하고. 아래 프록시 설정은 해당할때만 추가한다&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;이름: JAVA_TOOLS_OPTIONS
+값: -Dfile.encoding=UTF-8
+
+이름: LANG
+값: ko_KR.UTF-8
+
+이름: HTTP_PROXY
+값: 프록시 주소
+
+이름: HTTPS_PROXY
+값: 프록시 주소
+
+이름: NO_PROXY
+값: 프록시 타면 안되는 도메인들&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1 id=&quot;slave-설정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#slave-%EC%84%A4%EC%A0%95&quot; aria-label=&quot;slave 설정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Slave 설정&lt;/h1&gt;
+&lt;p&gt;jenkins 계성 생성 및 패스워드 삭제&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; i
+&lt;span class=&quot;token function&quot;&gt;useradd&lt;/span&gt; -d /var/lib/jenkins jenkins
+&lt;span class=&quot;token function&quot;&gt;passwd&lt;/span&gt; -d jenkins
+&lt;span class=&quot;token builtin class-name&quot;&gt;exit&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;jenkins 계정에 ssh 키 추가후 Master 노드가 접근할 수 있도록 등록&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;su&lt;/span&gt; - jenkins
+&lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; .ssh
+&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; .ssh
+&lt;span class=&quot;token function&quot;&gt;vim&lt;/span&gt; authorized_keys
+
+&lt;span class=&quot;token comment&quot;&gt;# Master 노드의 인증서 설정에서 만든 id_rsa.pub의 컨텐츠를 붙여넣고 저장&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[좋은 코드를 작성하기 위한 생각들]]></title><description><![CDATA[신입땐 명세를 만족하는 코드를 빠르게 작성하는게 최고인 줄만 알았다. 하지만…]]></description><link>https://johnny-mh.github.io/post/좋은-코드를-위한-생각들</link><guid isPermaLink="false">https://johnny-mh.github.io/post/좋은-코드를-위한-생각들</guid><content:encoded>&lt;p&gt;신입땐 명세를 만족하는 코드를 빠르게 작성하는게 최고인 줄만 알았다.&lt;/p&gt;
+&lt;p&gt;하지만 5년차쯤 되었을 때 이 생각에 문제가 있다는 것을 깨달았다.&lt;/p&gt;
+&lt;p&gt;복잡한 요구사항을 만족하는 코드도 보기 좋게 작성할 수 있다.&lt;/p&gt;
+&lt;p&gt;이 글에서 코드를 어떻게 작성해야 하는지에 대한 여러 생각들과 자료들을 정리해 본다.&lt;/p&gt;
+&lt;h2 id=&quot;불필요한-것들을-빼자&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%B6%88%ED%95%84%EC%9A%94%ED%95%9C-%EA%B2%83%EB%93%A4%EC%9D%84-%EB%B9%BC%EC%9E%90&quot; aria-label=&quot;불필요한 것들을 빼자 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;불필요한 것들을 빼자&lt;/h2&gt;
+&lt;p&gt;좋은 코드는 딱 필요한 만큼의 텍스트로만 작성되어 있다.&lt;/p&gt;
+&lt;p&gt;한 파일 안에 함수만 있다고 우습게 볼 것이 아닌데, 그렇게 생각하는 개발자를 본 적이 있다.&lt;/p&gt;
+&lt;p&gt;오히려 함수 하나면 되는데 클래스 이상을 동원하는 개발자가 이상한 것이다.&lt;/p&gt;
+&lt;p&gt;함수 하나면 순수함수가 되는 경향이 있고. 테스트도 쉬워진다.&lt;/p&gt;
+&lt;p&gt;이와 관련해서는 Kyle Simpson의 &lt;a href=&quot;https://youtu.be/wJEX2FgNYLg&quot;&gt;The Economy of Keystrokes&lt;/a&gt;를 보면 좋은데.&lt;/p&gt;
+&lt;p&gt;키 스트로크는 돈과 같아서 가성비를 따져야 하고.&lt;/p&gt;
+&lt;p&gt;사용한다면 가독성과 기능을 위해서만 사용해야 한다는 내용이다. 꼭 보길 바란다.&lt;/p&gt;
+&lt;h2 id=&quot;완성된-것들을-조합하자&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%99%84%EC%84%B1%EB%90%9C-%EA%B2%83%EB%93%A4%EC%9D%84-%EC%A1%B0%ED%95%A9%ED%95%98%EC%9E%90&quot; aria-label=&quot;완성된 것들을 조합하자 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;완성된 것들을 조합하자&lt;/h2&gt;
+&lt;p&gt;리눅스의 쉘은 수 많은 완성된 명령 행 도구를 조합 사용하여 목적을 달성하게 되어 있다.&lt;/p&gt;
+&lt;p&gt;특정 파일들을 백업하는 경우 tar 명령어로 대상 파일들을 묶은 다음 ftp 명령어를 통해 업로드 한다.&lt;/p&gt;
+&lt;p&gt;압축파일이 생성되어 있지 않다면? tar명령어의 문제일 것이다.&lt;/p&gt;
+&lt;p&gt;압축파일은 있는데 업로드가 되지 않았다면? ftp를 포함한 네트워크의 문제일 것이다.&lt;/p&gt;
+&lt;p&gt;각 도구들의 역할이 명확하기 때문에 현상만으로 대략적인 문제를 파악할 수 있다.&lt;/p&gt;
+&lt;p&gt;이는 단위테스트가 추구하는 바 와도 일맥상통한다.&lt;/p&gt;
+&lt;p&gt;만약 모든 기능을 한번에 수행하는 함수를 작성했다면 함수 전체를 라인단위로 디버깅해야 하는데.&lt;/p&gt;
+&lt;p&gt;이런 코드가 많아질수록 유지보수하기 어렵게 된다. 아래 예제를 보자.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/**
+ * path의 노드 중 pattern에 일치하는 노드들을 삭제함
+ */&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;deleteNodes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;path&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; pattern&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; dirent &lt;span class=&quot;token keyword&quot;&gt;of&lt;/span&gt; fs&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;opendirSync&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;path&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;dirent&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;match&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;pattern&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      fs&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;unlinkSync&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;dirent&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;위의 코드는 아래처럼 리펙토링 할 수 있다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/**
+ * path의 하위 노드들을 조회함
+ */&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;getNodes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; fs&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;opendirSync&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;path&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;/**
+ * pattern일치 노드를 제거함
+ */&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;deleteIfMatched&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;node&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; pattern&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;node&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;match&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;pattern&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    fs&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;unlinkSync&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;node&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;/**
+ * path의 노드 중 pattern에 일치하는 노드들을 삭제함
+ */&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;deleteNodes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;path&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; pattern&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; node &lt;span class=&quot;token keyword&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;getNodes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;path&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;deleteIfMatched&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;node&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; pattern&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;위와 같은 방식의 리펙토링을 하면 다음과 같은 장점이 있다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;가독성&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;리펙토링 이전:&lt;/em&gt; 표현식과 문이 섞여 코드가 한 눈에 들어오지 않는다.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;리펙토링 이후:&lt;/em&gt; 복잡한 식들이 적절한 이름의 메서드로 표현되어 마치 책을 읽는 것 처럼 코드가 읽힌다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;테스트 용이성&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;리펙토링 이전:&lt;/em&gt; &lt;code class=&quot;language-text&quot;&gt;deleteNodes&lt;/code&gt;를 테스트하려면 한번에 여러 API Mock을 만들어야 하는 부담이 있다.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;리펙토링 이후:&lt;/em&gt; getNodes는 NodeJS의 API를 단순히 이용할 뿐이므로. 테스트하지 않아도 된다. 하나의 메서드에 섞여있던 테스트 포인트가 &lt;code class=&quot;language-text&quot;&gt;deleteIfMatched&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;deleteNodes&lt;/code&gt;로 나뉘었다. 그리고 각 메서드를 테스트하기 위한 Mock제공이 상대적으로 덜 부담스럽다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;확장성&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;리펙토링 이전:&lt;/em&gt; &lt;code class=&quot;language-text&quot;&gt;copyNodes&lt;/code&gt;를 추가해야 한다면 리펙토링 이전은 주요 로직을 복사하고 요구사항에 맞게 수정해야 한다. 이 경우 전체 코드량이 2배가 되므로 테스트 커버리지가 감소한다.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;리펙토링 이후:&lt;/em&gt; 비슷한 레벨의 &lt;code class=&quot;language-text&quot;&gt;copyIfMatched&lt;/code&gt; 함수와 &lt;code class=&quot;language-text&quot;&gt;copyNodes&lt;/code&gt;만 추가 구현하면 된다. 테스트 커버리지를 상대적으로 적게 감소시키며 코드를 확장할 수 있게 된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;... 작성중입니다 ...&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Windows에서 VS Code vim플러그인 자동 한영전환]]></title><description><![CDATA[CapsLock과 Control키 바꾸기 처음에는 게임과 영화를 보기 위한 용도로 데스크탑을 조립했는데 이제는 개발도구로 사용하고 있다. Window는 터미널을 사용할 때의 제약이 많아 개발할때는 꺼렸는데 wsl…]]></description><link>https://johnny-mh.github.io/post/Windows에서-VS-Code-vim플러그인-자동-한영전환</link><guid isPermaLink="false">https://johnny-mh.github.io/post/Windows에서-VS-Code-vim플러그인-자동-한영전환</guid><content:encoded>&lt;h2 id=&quot;capslock과-control키-바꾸기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#capslock%EA%B3%BC-control%ED%82%A4-%EB%B0%94%EA%BE%B8%EA%B8%B0&quot; aria-label=&quot;capslock과 control키 바꾸기 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;CapsLock과 Control키 바꾸기&lt;/h2&gt;
+&lt;p&gt;처음에는 게임과 영화를 보기 위한 용도로 데스크탑을 조립했는데 이제는 개발도구로 사용하고 있다. Window는 터미널을 사용할 때의 제약이 많아 개발할때는 꺼렸는데 wsl의 등장으로 지금은 현업에서도 큰 불편 없이 사용할 수 있는 정도가 되었다.&lt;/p&gt;
+&lt;p&gt;특히 vscode의 wsl 플러그인을 사용하면 wsl의 리눅스 파일시스템에 있는 프로젝트들을 마치 호스트의 파일시스템에 있는 것 처럼 사용할 수 있어서 집에서는 이제 맥북으로 개발하지 않을 것 같다. 다만 몇 가지 불편한 부분이 있었다.&lt;/p&gt;
+&lt;p&gt;첫번째는 &lt;code class=&quot;language-text&quot;&gt;Capslock&lt;/code&gt;키와 &lt;code class=&quot;language-text&quot;&gt;Control&lt;/code&gt;키의 위치였다. 해피해킹 키보드에 익숙해져 &lt;code class=&quot;language-text&quot;&gt;Control&lt;/code&gt;대신 &lt;code class=&quot;language-text&quot;&gt;Capslock&lt;/code&gt;을 마구 눌러댔다. 윈도우에서 이를 해결할 수 있는 방법은 두가지가 있다. 첫번째로 레지스트리를 수정하는 방법인데. 대부분의 프로그램에서는 잘 동작하지만 특정 게임들 (몬스터 헌터, 토탈워 삼국)에서는 &lt;code class=&quot;language-text&quot;&gt;Control&lt;/code&gt;키를 아예 누를 수 없는 상태가 되어 버린다.&lt;/p&gt;
+&lt;p&gt;두 번째는 &lt;a href=&quot;https://www.autohotkey.com/&quot;&gt;AutoHotKey&lt;/a&gt;를 사용하는 것이다. 이 방법으로 지금까지 만족스럽게 사용하고 있다. 사이트에서 프로그램을 설치하고 바탕화면에 우클릭 후 &lt;strong&gt;&apos;새로 만들기&apos;&lt;/strong&gt; &gt; &lt;strong&gt;&apos;AutoHotkey Script&apos;&lt;/strong&gt;를 선택한 후 생성된 파일에 아래 내용을 붙여 넣고 저장한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;; CapsLock, Control 전환
+CapsLock::Ctrl
+Ctrl::CapsLock&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;다음 해당 파일을 우클릭하여 &lt;strong&gt;&apos;Run Script&apos;&lt;/strong&gt;로 실행한다. 시스템 트레이 아이콘에 &apos;H&apos;아이콘이 나타나면 된 것이다. 그럼 이제 &lt;code class=&quot;language-text&quot;&gt;Capslock&lt;/code&gt;과 &lt;code class=&quot;language-text&quot;&gt;Control&lt;/code&gt;이 바뀌었을 것이다. 이 동작은 언제까지나 스크립트가 실행되어 있는 상태만 유효하다.&lt;/p&gt;
+&lt;h2 id=&quot;수정모드를-빠져나갈-때-영문으로-전환하기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%88%98%EC%A0%95%EB%AA%A8%EB%93%9C%EB%A5%BC-%EB%B9%A0%EC%A0%B8%EB%82%98%EA%B0%88-%EB%95%8C-%EC%98%81%EB%AC%B8%EC%9C%BC%EB%A1%9C-%EC%A0%84%ED%99%98%ED%95%98%EA%B8%B0&quot; aria-label=&quot;수정모드를 빠져나갈 때 영문으로 전환하기 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;수정모드를 빠져나갈 때 영문으로 전환하기&lt;/h2&gt;
+&lt;p&gt;이전에 Spacemacs를 사용할 땐 에디터 내장 언어 입력기가 존재하여 수정모드를 빠져나갈 때 자동으로 영문으로 바꿔 주었는데. 이 기능이 정말 편리했다. VSCODE를 사용한 뒤로는 그 기능을 쓸 수 없어 &lt;code class=&quot;language-text&quot;&gt;Esc&lt;/code&gt;로 수정모드를 빠져나온 후 항상 언어 전환 키를 눌러줘야만 했다.&lt;/p&gt;
+&lt;p&gt;이 문제를 해결하기 위한 &lt;a href=&quot;https://github.com/daipeihust/im-select&quot;&gt;설정&lt;/a&gt;이 있긴 하지만 이게 IME입력기를 쓰는 환경에서는 잘 동작하지 않는다. 이 문제도 AutoHotKey를 이용해 해결할 수 있었다. 위에서 했던 방법과 마찬가지로 아래 스크립트를 쓰면 된다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;; vscode에서 vim insert 모드 종료시 한글이면 영문으로 전환
+#IfWinActive, ahk_exe Code.exe
+Escape::
+	if (ImeCheck(&amp;quot;A&amp;quot;) = 1)
+		Send {vk15sc138}
+	Send {Escape}
+Return
+#IfWinActive
+
+; 키보드 언어 상태 확인 1이면 한글 0이면 영문
+ImeCheck(WinTitle) {
+	WinGet,hWnd,ID,%WinTitle%
+	Return SendImeControl(ImmGetDefaultIMEWnd(hWnd),0x005,&amp;quot;&amp;quot;)
+}
+SendImeControl(DefaultIMEWnd, wParam, lParam) {
+	DetectSave := A_DetectHiddenWindows
+	DetectHiddenWindows,ON
+	SendMessage 0x283, wParam,lParam,,ahk_id %DefaultIMEWnd%
+	if (DetectSave &amp;lt;&amp;gt; A_DetectHiddenWindows)
+		DetectHiddenWindows,%DetectSave%
+	return ErrorLevel
+}
+ImmGetDefaultIMEWnd(hWnd) {
+	return DllCall(&amp;quot;imm32\ImmGetDefaultIMEWnd&amp;quot;, Uint,hWnd, Uint)
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;그럼 이제 매 부팅시마다 위의 스크립트들이 자동실행만 되면 된다. 방법은 스크립트 파일 우클릭 후 &lt;strong&gt;&apos;Compile Script&apos;&lt;/strong&gt;를 선택한다. 그럼 같은 경로에 exe파일이 생겼을 것이다. 이제 Window의 시작 버튼에 우클릭 후 &lt;strong&gt;&apos;실행&apos;&lt;/strong&gt; 을 열고 거기에 &lt;code class=&quot;language-text&quot;&gt;shell:startup&lt;/code&gt;을 입력하고 &lt;strong&gt;&apos;열기&apos;&lt;/strong&gt; 를 누른다.&lt;/p&gt;
+&lt;p&gt;그럼 폴더가 하나 뜨는데 여기에 exe파일들을 넣으면 된다. 참고로 위의 두 스크립트를 하나의 파일에 넣어도 된다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Angular의 RouteReuseStrategy]]></title><description><![CDATA[🚀 RouteReuseStrategy Angular는 라우팅 시점마다 RoutingModule에 제공된 Routes 중 이전 페이지와 다음 페이지에 해당하는 Route…]]></description><link>https://johnny-mh.github.io/post/angular의-routerreusestrategy</link><guid isPermaLink="false">https://johnny-mh.github.io/post/angular의-routerreusestrategy</guid><content:encoded>&lt;h1 id=&quot;-routereusestrategy&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#-routereusestrategy&quot; aria-label=&quot; routereusestrategy permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;🚀 RouteReuseStrategy&lt;/h1&gt;
+&lt;p&gt;Angular는 라우팅 시점마다 RoutingModule에 제공된 Routes 중 이전 페이지와 다음 페이지에 해당하는 Route 객체를 찾아 서로 비교하여 변경이 있을 때만 컴포넌트를 교체한다.&lt;/p&gt;
+&lt;p&gt;동일한 Route 간 이동 시. 같은 컴포넌트가 렌더링 되며 이뤄지는 API 호출은 중복으로 판단하는 것으로 보인다. 가이드 문서에는 없지만, 이 동작은 개발자가 커스터마이징 할 수 있다.&lt;/p&gt;
+&lt;p&gt;예를 들면 상세에서 목록으로 뒤로 가기로 이동했을 때는 원래 Route 설정이 달라 컴포넌트를 새로 만들어야 하지만 목록에서 상세로 진입 시점에 목록 컴포넌트 상태를 캐시 했다가 뒤로 가기 시점에 복원하여 API 호출을 줄일 수 있다.&lt;/p&gt;
+&lt;p&gt;이 &lt;a href=&quot;https://itnext.io/cache-components-with-angular-routereusestrategy-3e4c8b174d5f&quot;&gt;RouterReuseStrategy API 상세 설명&lt;/a&gt;을 간략히 설명하면 아래와 같다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;RouteReuseStrategy&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;/**
+   * 현재 이동에 컴포넌트 재사용 &apos;여부&apos;를 확인한다
+   * false반환 시 재사용없이 컴포넌트를 새로 만들고
+   * true를 반환하면 아래 4개의 메서드를 상황별로 호출하여 캐시 및 복원한다
+   * (캐시, 복원 로직은 직접 구현해야 한다)
+   */&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;shouldReuseRoute&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    future&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ActivatedRouteSnapshot&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    curr&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ActivatedRouteSnapshot
+  &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;boolean&lt;/span&gt;
+
+  &lt;span class=&quot;token comment&quot;&gt;/**
+   * 페이지를 빠져나갈 때 현재 컴포넌트 캐시 &apos;여부&apos;를 반환한다
+   * false 반환 시 캐시 안해도 되는것으로 판단
+   * true 반환 시 아래 store메서드를 호출한다
+   */&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;shouldDetach&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;route&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ActivatedRouteSnapshot&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;boolean&lt;/span&gt;
+
+  &lt;span class=&quot;token comment&quot;&gt;/**
+   * 페이지 빠져나가기 전 상태를 캐시한다
+   * 캐시를 위해서 두 번째 인자인 DetachedRouteHandle을 어딘가에 저장하면 된다
+   */&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;store&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    route&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ActivatedRouteSnapshot&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    handle&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; DetachedRouteHandle &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt;
+
+  &lt;span class=&quot;token comment&quot;&gt;/**
+   * 페이지 진입 시점에 복원 &apos;여부&apos;를 반환한다
+   * false 반환 시 복원 안해도 되는것으로 판단
+   * true 반환 시 아래 retrieve메서드를 호출한다
+   */&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;shouldAttach&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;route&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ActivatedRouteSnapshot&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;boolean&lt;/span&gt;
+
+  &lt;span class=&quot;token comment&quot;&gt;/**
+   * 페이지 진입 시 캐시된 데이터를 복원한다
+   * 위에서 구현한 store 메서드 호출 시점에 어딘가에 저장했던 캐시를 반환하면 된다
+   */&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;retrieve&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;route&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ActivatedRouteSnapshot&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; DetachedRouteHandle &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;위의 인터페이스를 상속받아 최상위 NgModule에 Providing 해 주면 된다.&lt;/p&gt;
+&lt;p&gt;Angular의 &lt;a href=&quot;https://github.com/angular/angular/blob/5bc39f8c8d5238a9be9bd968cf18ea4b738bd6be/packages/router/src/route_reuse_strategy.ts#L65&quot;&gt;DefaultRouteReuseStrategy&lt;/a&gt;는 &lt;a href=&quot;https://angular.io/api/router/Route&quot;&gt;RouteConfig&lt;/a&gt;가 같을 때 shouldReuseRoute의 실행 결과를 true로 반환하고 있지만. 각 메서드에서 캐시 여부(shouldDetach), 복원 여부(shouldAttach) 모두 false를 반환하고 있어 아무 일도 일어나지 않는다.&lt;/p&gt;
+&lt;h1 id=&quot;routerlink가-동작하지-않아요&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#routerlink%EA%B0%80-%EB%8F%99%EC%9E%91%ED%95%98%EC%A7%80-%EC%95%8A%EC%95%84%EC%9A%94&quot; aria-label=&quot;routerlink가 동작하지 않아요 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;RouterLink가 동작하지 않아요&lt;/h1&gt;
+&lt;p&gt;Angular는 앞서 설명한 대로 라우팅 전, 후의 Route 객체를 비교하여 다를 때만 컴포넌트를 교체한다. 따라서 같은 Route 객체 간 이동이라면 컴포넌트가 교체되지 않는다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; routes &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    path&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;detail/:id&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    component&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; DetailComponent&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;위의 라우팅 설정에서 아래 컴포넌트의 링크 클릭해서 &lt;code class=&quot;language-text&quot;&gt;&amp;#39;/detail/3&amp;#39;&lt;/code&gt;에서 &lt;code class=&quot;language-text&quot;&gt;&amp;#39;/detail/12&amp;#39;&lt;/code&gt;로 이동했다면 같은 Route객체(정확히는 같은 ActivatedRouteSnapshot)를 비교한다.&lt;/p&gt;
+&lt;p&gt;따라서 컴포넌트가 교체되지 않아 &lt;code class=&quot;language-text&quot;&gt;ngOnInit&lt;/code&gt; 을 비롯한 라이프사이클 메서드들이 실행되지 않는다. 만약 &lt;code class=&quot;language-text&quot;&gt;ngOnInit&lt;/code&gt;에서 &lt;code class=&quot;language-text&quot;&gt;id&lt;/code&gt;를 받아 API를 호출해 상세 데이터를 보여주도록 개발했다면 문제가 될 수 있다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;@&lt;span class=&quot;token function&quot;&gt;Component&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  selector&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;app-detail&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  template&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;
+    &amp;lt;h1&gt;detail component&amp;lt;/h1&gt;
+    &amp;lt;a routerLink=&quot;/detail/12&quot;&gt;go to &apos;/detail/12&apos;&amp;lt;/a&gt;
+    &amp;lt;div&gt;{{ content }}&amp;lt;/div&gt;
+  &lt;/span&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;DetailComponent&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  content &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;&apos;&lt;/span&gt;
+
+  &lt;span class=&quot;token comment&quot;&gt;// &apos;/detail/12&apos;로 이동했을 때는 호출되지 않아 3번 데이터를 계속 보여준다&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;ngOnInit&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;http
+      &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;/detail/&lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;activatedRoute&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;snapshot&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;params&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;id&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;subscribe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;content &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; o&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;아래 데모를 통해 문제를 확인해 볼 수 있다.&lt;/p&gt;
+&lt;div class=&quot;aspect-ratio&quot;&gt;
+  &lt;iframe src=&quot;https://stackblitz.com/edit/angular-routerlink-notwork?ctl=1&amp;embed=1&amp;file=src/app/detail/detail.component.css&amp;hideExplorer=1&amp;view=preview&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;p&gt;이런 경우 &lt;code class=&quot;language-text&quot;&gt;ngOnInit&lt;/code&gt;이 재실행되지 않아도 갱신되도록 스트림을 이용하여 수정하는 것이 일반적이지만. RouteReuseStrategy를 이용하여 Route 객체 비교를 커스터마이징 할 수 있고. 강제로 컴포넌트를 교체하도록 할 수 있다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;CustomRouteReuseStrategy&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;RouteReuseStrategy&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;shouldDetach&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;route&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ActivatedRouteSnapshot&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;token function&quot;&gt;store&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;route&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ActivatedRouteSnapshot&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; detachedTree&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; DetachedRouteHandle&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;token function&quot;&gt;shouldAttach&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;route&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ActivatedRouteSnapshot&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;token function&quot;&gt;retrieve&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;route&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ActivatedRouteSnapshot&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;token function&quot;&gt;shouldReuseRoute&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;token parameter&quot;&gt;future&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ActivatedRouteSnapshot&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    curr&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ActivatedRouteSnapshot&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;futureUrl&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; currUrl&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;future&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; curr&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt;
+      o&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;url&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;seg&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; seg&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;path&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;/&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;/**
+     * Route비교 시 둘 다 &apos;detail&apos;을 포함한 path라면 컴포넌트를
+     * 재사용하지 않도록 false를 반환한다.
+     */&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;futureUrl&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;includes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;detail&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; currUrl&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;includes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;detail&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; future&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;routeConfig &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; curr&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;routeConfig
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;아래는 위 &lt;code class=&quot;language-text&quot;&gt;CustomRouteReuseStrategy&lt;/code&gt;를 이용한 강제 컴포넌트 교체의 예제이다.&lt;/p&gt;
+&lt;div class=&quot;aspect-ratio&quot;&gt;
+  &lt;iframe src=&quot;https://stackblitz.com/edit/angular-routerlink-notwork-refactor?ctl=1&amp;embed=1&amp;file=src/app/custom-route-reuse-strategy.ts&amp;hideExplorer=1&amp;view=preview&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;h1 id=&quot;shouldreuseroute는-여러-번-호출된다&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#shouldreuseroute%EB%8A%94-%EC%97%AC%EB%9F%AC-%EB%B2%88-%ED%98%B8%EC%B6%9C%EB%90%9C%EB%8B%A4&quot; aria-label=&quot;shouldreuseroute는 여러 번 호출된다 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;shouldReuseRoute는 여러 번 호출된다&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;👀 Angular v8 버전 기준으로 작성했으나 v9 에서도 비슷하게 동작한다&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Angular의 &lt;a href=&quot;https://angular.io/api/router/Route&quot;&gt;RouteConfig&lt;/a&gt;는 재귀적으로 선언할 수 있게 되어있다. 그래서 &lt;code class=&quot;language-text&quot;&gt;shouldReuseRoute&lt;/code&gt;의 &lt;code class=&quot;language-text&quot;&gt;future&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;curr&lt;/code&gt;파라미터는 path에 대한 정보를 트리 구조로 담고 있다. 자세한 내용은 예제를 통해 파악해 보자.&lt;/p&gt;
+&lt;p&gt;먼저 앱의 라우팅 설정이 아래처럼 선언되어 있다고 가정한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// app-routing.module.ts&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; routes &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; path&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;list&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; component&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ListComponent &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; path&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;detail/:id&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; component&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; DetailComponent &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    path&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;delivery&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token function-variable function&quot;&gt;loadChildren&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;./delivery/delivery.module&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;mod&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; mod&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;DeliveryModule&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// delivery-routing.module.ts&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; routes &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; path&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;detail/:id&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; component&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; DeliveryDetailComponent &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;아래 &lt;code class=&quot;language-text&quot;&gt;RouteReuseStrategy&lt;/code&gt;는 각 호출 단계에서 url과 해당 &lt;code class=&quot;language-text&quot;&gt;Route&lt;/code&gt;와 연결된 컴포넌트 이름을 출력한다. 이 strategy를 사용하여 위의 Route 설정에서 발생할 수 있는 이동들에 대한 호출 로그를 분석해 보자.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;CustomRouteReuseStrategy&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;RouteReuseStrategy&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;shouldReuseRoute&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;token parameter&quot;&gt;future&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ActivatedRouteSnapshot&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    curr&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ActivatedRouteSnapshot&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// 분석을 위해 파라미터를 로깅함&lt;/span&gt;
+    &lt;span class=&quot;token builtin&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;[future]\n&lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getInfo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;future&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;\n\n[curr]:\n&lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getInfo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;curr&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;\n\n----------&lt;/span&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; future&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;routeConfig &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; curr&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;routeConfig
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;1. 앱 진입&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;[future]
+  → &amp;#39;&amp;#39; / null
+[curr]:
+  → &amp;#39;&amp;#39; / null
+----------&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;앱 진입 시점에 한번 호출된다. 큰 의미는 없다&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;2. &apos;&apos; 에서 &apos;list&apos;로 이동하는 경우&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;[future]
+  → &amp;#39;&amp;#39; / AppComponent
+  → &amp;#39;list&amp;#39; / ListComponent
+[curr]:
+  → &amp;#39;&amp;#39; / null
+----------&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;future&lt;/code&gt;를 보면 &lt;code class=&quot;language-text&quot;&gt;&amp;#39;&amp;#39;&lt;/code&gt;는 AppComponent, &lt;code class=&quot;language-text&quot;&gt;&amp;#39;list&amp;#39;&lt;/code&gt;는 ListComponent에 제공되는 것을 알 수 있다.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;3. &apos;list&apos;에서 &apos;detail/2&apos;로 이동하는 경우&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;[future]
+  → &amp;#39;&amp;#39; / AppComponent
+  → &amp;#39;detail/2&amp;#39; / DetailComponent
+[curr]:
+  → &amp;#39;&amp;#39; / AppComponent
+  → &amp;#39;list&amp;#39; / ListComponent
+----------
+[future]
+  → &amp;#39;list&amp;#39; / ListComponent
+[curr]:
+  → &amp;#39;detail/2&amp;#39; / DetailComponent
+----------&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;shoudReuseRoute&lt;/code&gt;가 두 번 호출되고 있다.&lt;/li&gt;
+&lt;li&gt;이상한 점이 있는데 두 번째 호출에서는 &lt;code class=&quot;language-text&quot;&gt;future&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;curr&lt;/code&gt;값이 뒤바뀌었다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;future&lt;/code&gt;를 보면 &lt;code class=&quot;language-text&quot;&gt;AppComponent&lt;/code&gt;에는 &lt;code class=&quot;language-text&quot;&gt;:id&lt;/code&gt;에 해당하는 문자열이 없다. 라우팅 설정 자체도 그러한데. &lt;code class=&quot;language-text&quot;&gt;AppComponent&lt;/code&gt;가 DI 받는 &lt;code class=&quot;language-text&quot;&gt;ActivatedRouteSnapshot&lt;/code&gt;에서는 &lt;code class=&quot;language-text&quot;&gt;id&lt;/code&gt;를 가져올 수 없는 이유이기도 하다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;4. &apos;detail/2&apos;에서 &apos;delivery/detail/4&apos;로 이동하는 경우&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;[future]
+  → &amp;#39;&amp;#39; / AppComponent
+  → &amp;#39;delivery&amp;#39; / null
+  → &amp;#39;detail/4&amp;#39; / DeliveryDetailComponent
+[curr]:
+  → &amp;#39;&amp;#39; / AppComponent
+  → &amp;#39;detail/2&amp;#39; / DetailComponent
+----------
+[future]
+  → &amp;#39;detail/2&amp;#39; / DetailComponent
+[curr]:
+  → &amp;#39;delivery&amp;#39; / null
+  → &amp;#39;detail/4&amp;#39; / DeliveryDetailComponent
+----------&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;3번처럼 두 번째 호출의 &lt;code class=&quot;language-text&quot;&gt;future&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;curr&lt;/code&gt;값이 뒤바뀌어 있다. &lt;a href=&quot;https://github.com/angular/angular/issues/16192&quot;&gt;관련 PR&lt;/a&gt;이 있는데 아직 별다른 업데이트가 없다.&lt;/li&gt;
+&lt;li&gt;첫 shouldReuseRoute의 호출에서 &lt;code class=&quot;language-text&quot;&gt;future&lt;/code&gt;파라미터를 보면&lt;code class=&quot;language-text&quot;&gt;loadChildren&lt;/code&gt;을 사용한 &lt;code class=&quot;language-text&quot;&gt;Route&lt;/code&gt;에는 컴포넌트가 없다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;두 번씩 호출되는 이유는 어디에도 나와 있지 않지만. &lt;a href=&quot;https://github.com/angular/angular/blob/3e51a1998304ab6a15e5bea6bc66e7a8c636a8ad/packages/router/src/create_router_state.ts&quot;&gt;관련 코드&lt;/a&gt;를 볼 때 두 번씩 호출하더라도 컴포넌트에 올바른 라우팅 상태를 줄 수 있기 때문에 따로 정리하지 않은 것으로 보인다. 따라서 구현 할 때 주의가 필요하다.&lt;/p&gt;
+&lt;h1 id=&quot;상품상세-목록-간-컴포넌트-캐싱-예제&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%83%81%ED%92%88%EC%83%81%EC%84%B8-%EB%AA%A9%EB%A1%9D-%EA%B0%84-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EC%BA%90%EC%8B%B1-%EC%98%88%EC%A0%9C&quot; aria-label=&quot;상품상세 목록 간 컴포넌트 캐싱 예제 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;상품상세, 목록 간 컴포넌트 캐싱 예제&lt;/h1&gt;
+&lt;p&gt;상세, 목록 페이지의 경우 상세에서 뒤로가기 시 이전에 보고 있던 목록과 스크롤을 유지하면 페이지 탐색 사용성을 크게 개선할 수 있다. 특히 전자상거래 서비스의 경우 매출과 직결되는 부분이기도 하다.&lt;/p&gt;
+&lt;p&gt;캐싱을 위해 일반적으로 bfcache에 의존하거나. 상세 진입 전의 앱 상태를 persist로 저장했다가 복원하는 방법을 사용하는데. 두 방법은 코드베이스 외적인 부분에 의존하기 때문에 관리가 어렵고 사이드이펙트가 있을 수 있다.&lt;/p&gt;
+&lt;p&gt;RouteReuseStrategy를 이용한 방법은 캐싱이 필요한 구간에 부분적으로 적용해야 하지만 구현이 코드베이스 안에 있으므로 앞서 언급한 문제에서 자유롭다. 가능한 이 방법을 도입하는 것이 좋아 보인다.&lt;/p&gt;
+&lt;div class=&quot;aspect-ratio&quot;&gt;
+  &lt;iframe src=&quot;https://stackblitz.com/edit/angular-list-detail-reuse-example?ctl=1&amp;embed=1&amp;file=src/app/api.service.ts&amp;hideExplorer=1&amp;view=preview&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;p&gt;위 데모는 상품목록 상세 예제이다. 원래라면 상세에서 뒤로 가기로 목록으로 돌아왔을 때 컴포넌트가 교체어 버리므로 화면이 깜빡이며 1번째 페이지부터 새로 그리고. 스크롤 위치도 잃어버린다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;CustomRouteReuseStrategy&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;RouteReuseStrategy&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; cache &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; DetachedRouteHandle&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+  &lt;span class=&quot;token function&quot;&gt;shouldDetach&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;route&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ActivatedRouteSnapshot&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// 목록에서 빠져나갈 때 true반환하여 store를 호출한다&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getPath&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;route&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;startsWith&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;list&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;token function&quot;&gt;store&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;route&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ActivatedRouteSnapshot&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; detachedTree&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; DetachedRouteHandle&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// 컴포넌트 상태 캐시&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;cache&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getPath&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;route&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; detachedTree&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;token function&quot;&gt;shouldAttach&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;route&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ActivatedRouteSnapshot&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; path &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;getPath&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;route&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;// 목록 재진입 시 캐시가 있다면 true반환하여 retrieve를 호출한다&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;path&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;startsWith&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;list&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;cache&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;has&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;path&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;token function&quot;&gt;retrieve&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;route&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ActivatedRouteSnapshot&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// 컴포넌트 상태 복원&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;cache&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getPath&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;route&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;token function&quot;&gt;shouldReuseRoute&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;token parameter&quot;&gt;future&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ActivatedRouteSnapshot&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    curr&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ActivatedRouteSnapshot&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; future&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;routeConfig &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; curr&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;routeConfig
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;하지만 본문에서 설명한 RouteReuseStrategy를 상속한 커스텀 클래스를 구현하면 캐시된 컨텍스트를 복원하기 때문에 상품목록 컴포넌트가 깜빡이지 않고 곧바로 렌더링 되는 것을 볼 수 있다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Ghost S1 조립컴퓨터 수리]]></title><description><![CDATA[어렸을 때 PC게임을 좋아했다. 100만원 남짓이었던 첫 월급으로 게임용 PC를 구입하고. 상상도 못했던 크라이시스를 돌렸을 때의 감격이 아직도 기억난다. 얼마 전 정말 오랜만에 최신 PC…]]></description><link>https://johnny-mh.github.io/post/Ghost-S1-조립컴퓨터-수리</link><guid isPermaLink="false">https://johnny-mh.github.io/post/Ghost-S1-조립컴퓨터-수리</guid><content:encoded>&lt;p&gt;&lt;figure class=&quot;gatsby-resp-image-figure&quot; style=&quot;&quot;&gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 1024px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/488756e5f87aabb39bc2f8a269957d7b/72e01/R0000467.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 66.76923076923077%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAQFA//EABYBAQEBAAAAAAAAAAAAAAAAAAIAAf/aAAwDAQACEAMQAAABwam0QnREs//EABoQAAIDAQEAAAAAAAAAAAAAAAEDAAIREiH/2gAIAQEAAQUCET6wmd5EZ0yxFv/EABYRAQEBAAAAAAAAAAAAAAAAAAABEf/aAAgBAwEBPwGsf//EABYRAQEBAAAAAAAAAAAAAAAAAAABEf/aAAgBAgEBPwGNf//EABkQAAIDAQAAAAAAAAAAAAAAAAABEBEhYf/aAAgBAQAGPwJHYWFpaUf/xAAZEAADAQEBAAAAAAAAAAAAAAAAAREhMUH/2gAIAQEAAT8haQnOktSkKmmQ9l69pWom66N9cP/aAAwDAQACAAMAAAAQIz//xAAVEQEBAAAAAAAAAAAAAAAAAAAQMf/aAAgBAwEBPxCh/8QAFREBAQAAAAAAAAAAAAAAAAAAAQD/2gAIAQIBAT8QDN//xAAbEAEBAQEAAwEAAAAAAAAAAAABEQAxIUFRof/aAAgBAQABPxB65Lce8yl9KueEQg4EwaXkE5vUDEunzmAlAD8N/9k=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Louqe Ghost S1과 Synology DS216j&quot;
+        title=&quot;Louqe Ghost S1과 Synology DS216j&quot;
+        src=&quot;/static/488756e5f87aabb39bc2f8a269957d7b/72e01/R0000467.jpg&quot;
+        srcset=&quot;/static/488756e5f87aabb39bc2f8a269957d7b/c989d/R0000467.jpg 325w,
+/static/488756e5f87aabb39bc2f8a269957d7b/6aca1/R0000467.jpg 650w,
+/static/488756e5f87aabb39bc2f8a269957d7b/72e01/R0000467.jpg 1024w&quot;
+        sizes=&quot;(max-width: 1024px) 100vw, 1024px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&quot;gatsby-resp-image-figcaption&quot;&gt;Louqe Ghost S1과 Synology DS216j&lt;/figcaption&gt;
+  &lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;어렸을 때 PC게임을 좋아했다. 100만원 남짓이었던 첫 월급으로 게임용 PC를 구입하고. 상상도 못했던 &lt;a href=&quot;https://www.ea.com/games/crysis/crysis?isLocalized=true&quot;&gt;크라이시스&lt;/a&gt;를 돌렸을 때의 감격이 아직도 기억난다.&lt;/p&gt;
+&lt;p&gt;얼마 전 정말 오랜만에 최신 PC게임을 무리없이 할 수 있는 컴퓨터를 조립했다. 사실은 웹 서핑중에 &lt;a href=&quot;http://www.louqe.com/&quot;&gt;Ghost S1&lt;/a&gt;이라는 작고 매우 이쁜 케이스를 발견하고는 한달 정도 고민하다가 부품까지 같이 주문했다.&lt;/p&gt;
+&lt;p&gt;조립하고 잘 사용하다가. 얼마 후 Google Chrome을 실행하는 과정에서 블루스크린이 뜨더니 재부팅되며 윈도우 진입이 불가한 상태가 되었다. 😢&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;매 부팅시마다 BIOS에서 M.2 SSD가 인식이 되었다 안되었다 했고. 인식이 되더라도 설치 파티션 선택 과정에서 0.0MB 로 디스크가 인식되었다가. 선택해서 설치하려 하면 설치할 수 없다는 경고 메시지가 출력되고 진행이 불가했다.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;결국 SSD(삼성 970 Evo Plus 500GB), 메인보드(GIGABYTE Z390 I AORUS PRO WIFI) 를 모두 A/S 보냈다. 그런데 기간이 너무 길어져 그냥 SSD, 메인보드를 구입하고 교환한 제품을 중고로 팔았다.&lt;/p&gt;
+&lt;p&gt;그런데 새로 구입한 조합에서도 윈도우 설치 1%일 때 0xC0000005 오류가 발생하며 설치를 할 수 없었다. 슬슬 스트레스를 받기 시작했다. 🤬&lt;/p&gt;
+&lt;p&gt;찾다 보니 RAM 오류라는 말이 있어. A/S센터에 연락해 보니. 그럴 확률이 높다는 대답을 들었고. RAM도 A/S를 보냈다. 그리고 또 귀찮아서 중간에 RAM을 새로 구입했다 (삼성 16GB RAM 두장) 그런데 동일한 현상이 발생했다.&lt;/p&gt;
+&lt;p&gt;수리를 시작한 지 2주가 지나 알게 된 사실인데. 설치를 위해 만든 USB자체에 문제가 있었나보다. USB를 새로 구입해 설치를 진행하니 별 문제 없이 설치가 되었다.&lt;/p&gt;</content:encoded></item></channel></rss>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://johnny-mh.github.io/sitemap.xml
+Host: https://johnny-mh.github.io

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url> <loc>https://johnny-mh.github.io/post/frontend-개발을-위한-jenkins설치</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://johnny-mh.github.io/post/좋은-코드를-위한-생각들</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://johnny-mh.github.io/post/Windows에서-VS-Code-vim플러그인-자동-한영전환</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://johnny-mh.github.io/post/angular의-routerreusestrategy</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://johnny-mh.github.io/post/Ghost-S1-조립컴퓨터-수리</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://johnny-mh.github.io/post</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://johnny-mh.github.io/post/category/angular</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://johnny-mh.github.io/post/category/development</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://johnny-mh.github.io/post/category/일상</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://johnny-mh.github.io/post/tag/angular</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://johnny-mh.github.io/post/tag/autohotkey</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://johnny-mh.github.io/post/tag/ghost s1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://johnny-mh.github.io/post/tag/jenkins</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://johnny-mh.github.io/post/tag/refactoring</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://johnny-mh.github.io/post/tag/routereusestrategy</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://johnny-mh.github.io/post/tag/vscode</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://johnny-mh.github.io/about/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://johnny-mh.github.io/archives</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://johnny-mh.github.io/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+</urlset>
