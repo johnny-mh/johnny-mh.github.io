@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[7],{KqCf:function(t,e,a){"use strict";a.r(e);var n=a("tiKl"),r=a("ERkP"),l=a.n(r),o=a("L12J");e.default=function(t){var e=t.data.markdownRemark,a=e.html,r=e.frontmatter.title;return l.a.createElement(o.a,null,l.a.createElement(n.c,{title:r}),l.a.createElement("div",{className:"markdown-content"+("about"===r?" about":""),dangerouslySetInnerHTML:{__html:a}}))}}}]);
+//# sourceMappingURL=component---src-templates-page-jsx-5ab35e9dc21b9c1b58b5.js.map
