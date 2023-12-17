@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /about
+Disallow: /about/
+Disallow: /archives
+Disallow: /archives/
+Disallow: /post/category/
+Disallow: /post/tag/
+Allow: /
+Sitemap: https://johnny-mh.github.io/sitemap-index.xml
+Host: johnny-mh.github.io
