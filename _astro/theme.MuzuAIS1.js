@@ -1,0 +1,1 @@
+const t=()=>{if(typeof localStorage>"u")return{preferred:"light",theme:"auto"};const e=localStorage.getItem("theme");return{preferred:matchMedia("(prefers-color-scheme: light)").matches?"light":"dark",theme:e==="dark"||e==="light"?e:"auto"}};export{t as l};
