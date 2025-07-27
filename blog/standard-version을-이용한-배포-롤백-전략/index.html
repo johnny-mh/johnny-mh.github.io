@@ -1,0 +1,234 @@
+<!DOCTYPE html><html lang="ko" data-astro-cid-esqdxlhz> <head><meta charset="utf-8"><meta content="ie=edge" http-equiv="x-ua-compatible"><meta content="initial-scale=1, maximum-scale=5, width=device-width, viewport-fit=cover" name="viewport"><meta content="er9zvCmECxtt0KP_BjDZ4WplZsNT5ApeDBK4wYD7aI0" name="google-site-verification"><meta content="aef0a8e4429c4f7c5f7e3b52074dc2d968716069" name="naver-site-verification"><meta content="Astro v5.12.3" name="generator"><title>JOHNNY DEV</title><link rel="canonical" href="https://johnny-mh.github.io/blog/standard-version%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%B0%B0%ED%8F%AC-%EB%A1%A4%EB%B0%B1-%EC%A0%84%EB%9E%B5/"><meta name="description" content="Developer who want to write good codes"><meta name="robots" content="index, follow"><meta property="og:title" content="standard-version을 이용한 배포, 롤백 전략"><meta property="og:type" content="article"><meta property="og:image" content="/blog/standard-version%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%B0%B0%ED%8F%AC-%EB%A1%A4%EB%B0%B1-%EC%A0%84%EB%9E%B5//og-image.png"><meta property="og:url" content="https://johnny-mh.github.io/blog/standard-version%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%B0%B0%ED%8F%AC-%EB%A1%A4%EB%B0%B1-%EC%A0%84%EB%9E%B5/"><meta property="og:image:url" content="/blog/standard-version%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%B0%B0%ED%8F%AC-%EB%A1%A4%EB%B0%B1-%EC%A0%84%EB%9E%B5//og-image.png"><meta property="og:image:alt" content="standard-version을 이용한 배포, 롤백 전략"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect"><link href="/favicon.png" rel="icon" type="image/png"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="swap"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.D98dxaWf.js"></script><script src="https://www.googletagmanager.com/gtag/js?id=G-R9PQNBWGC9" type="text/partytown"></script> <script type="text/partytown">
+  window.dataLayer = window.dataLayer || []
+  function gtag() {
+    // eslint-disable-next-line prefer-rest-params
+    dataLayer.push(arguments)
+  }
+  gtag('js', new Date())
+  gtag('config', 'G-R9PQNBWGC9')
+</script><script>
+      document.addEventListener('astro:page-load', () => {
+        if (navigator.userAgent.indexOf('Win') > -1) {
+          document.documentElement.classList.add('win')
+        }
+      })
+    </script><style>._glow[data-astro-cid-erfvtfza]:after{opacity:var(--glow-opacity);background:var(--glow-bg);background-size:200% 200%;filter:blur(var(--glow-blur));animation:steam var(--glow-duration) linear infinite;z-index:-1;position:absolute;inset:0;display:none;height:100%;width:100%;--tw-scale-x: 1.05;--tw-scale-y: 1.05;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-radius:.5rem;transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:1s;--tw-content: "";content:var(--tw-content)}._glow[data-astro-cid-erfvtfza]:is(.dark *):after{display:block}@keyframes steam{0%{background-position:0% 50%}50%{background-position:100% 50%}to{background-position:0% 50%}}
+</style>
+<link rel="stylesheet" href="/_astro/about.BA5pFy7Y.css">
+<style>._blog_content span.highlighted{background:#65758529;margin:0 -16px;padding:0 16px;width:calc(100% + 32px);display:inline-block}
+</style><script>!(function(w,p,f,c){if(!window.crossOriginIsolated && !navigator.serviceWorker) return;c=w[p]=Object.assign(w[p]||{},{"lib":"/~partytown/","debug":false});c[f]=(c[f]||[]).concat(["dataLayer.push"])})(window,'partytown','forward');/* Partytown 0.11.0 - MIT QwikDev */
+const t={preserveBehavior:!1},e=e=>{if("string"==typeof e)return[e,t];const[n,r=t]=e;return[n,{...t,...r}]},n=Object.freeze((t=>{const e=new Set;let n=[];do{Object.getOwnPropertyNames(n).forEach((t=>{"function"==typeof n[t]&&e.add(t)}))}while((n=Object.getPrototypeOf(n))!==Object.prototype);return Array.from(e)})());!function(t,r,o,i,a,s,c,l,d,p,u=t,f){function h(){f||(f=1,"/"==(c=(s.lib||"/~partytown/")+(s.debug?"debug/":""))[0]&&(d=r.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t})):(l=setTimeout(v,(null==s?void 0:s.fallbackTimeout)||1e4),r.addEventListener("pt0",w),a?y(1):o.serviceWorker?o.serviceWorker.register(c+(s.swPath||"partytown-sw.js"),{scope:c}).then((function(t){t.active?y():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&y()}))}),console.error):v())))}function y(e){p=r.createElement(e?"script":"iframe"),t._pttab=Date.now(),e||(p.style.display="block",p.style.width="0",p.style.height="0",p.style.border="0",p.style.visibility="hidden",p.setAttribute("aria-hidden",!0)),p.src=c+"partytown-"+(e?"atomics.js?v=0.11.0":"sandbox-sw.html?"+t._pttab),r.querySelector(s.sandboxParent||"body").appendChild(p)}function v(n,o){for(w(),i==t&&(s.forward||[]).map((function(n){const[r]=e(n);delete t[r.split(".")[0]]})),n=0;n<d.length;n++)(o=r.createElement("script")).innerHTML=d[n].innerHTML,o.nonce=s.nonce,r.head.appendChild(o);p&&p.parentNode.removeChild(p)}function w(){clearTimeout(l)}s=t.partytown||{},i==t&&(s.forward||[]).map((function(r){const[o,{preserveBehavior:i}]=e(r);u=t,o.split(".").map((function(e,r,o){var a;u=u[o[r]]=r+1<o.length?u[o[r]]||(a=o[r+1],n.includes(a)?[]:{}):(()=>{let e=null;if(i){const{methodOrProperty:n,thisObject:r}=((t,e)=>{let n=t;for(let t=0;t<e.length-1;t+=1)n=n[e[t]];return{thisObject:n,methodOrProperty:e.length>0?n[e[e.length-1]]:void 0}})(t,o);"function"==typeof n&&(e=(...t)=>n.apply(r,...t))}return function(){let n;return e&&(n=e(arguments)),(t._ptf=t._ptf||[]).push(o,arguments),n}})()}))})),"complete"==r.readyState?h():(t.addEventListener("DOMContentLoaded",h),t.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated);;(e=>{e.addEventListener("astro:before-swap",e=>{let r=document.body.querySelector("iframe[src*='/~partytown/']");if(r)e.newDocument.body.append(r)})})(document);</script></head> <body class="overflow-x-hidden" data-astro-cid-esqdxlhz> <header class="fixed left-0 right-0 top-0 z-30 h-20 px-3 transition-all ease-out [&.scroll]:h-12 [&.scroll]:backdrop-blur-xl" data-header data-astro-cid-3ef6ksr2> <div class="container flex h-full place-content-between place-items-center" data-astro-cid-3ef6ksr2> <a aria-label="Go to Home" class="logo" href="/blog" data-astro-cid-3ef6ksr2> <svg width="135" height="38" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 135 38"><rect width="44" height="20" x="91" fill="#F5DA55" rx="2"/><path fill="#000" d="M5.04 18.02a5.16 5.16 0 0 1-3.68-1.28A4.8 4.8 0 0 1 0 13.09v-1.32h2.38v1.32c0 .82.22 1.48.66 1.98.45.48 1.1.72 1.95.72.83 0 1.43-.24 1.83-.72.4-.49.6-1.15.6-1.98V4.46h-2.7V2.31h6.78v2.15H9.79v8.63c0 1.6-.42 2.82-1.25 3.67a4.7 4.7 0 0 1-3.5 1.26Zm14.67 0c-1.9 0-3.4-.53-4.5-1.59-1.12-1.07-1.68-2.6-1.68-4.62v-3.6c0-2.02.56-3.55 1.67-4.6A6.24 6.24 0 0 1 19.71 2c1.9 0 3.4.54 4.51 1.6 1.13 1.06 1.7 2.6 1.7 4.6v3.61c0 2.01-.57 3.55-1.7 4.62a6.29 6.29 0 0 1-4.5 1.59Zm0-2.14c1.22 0 2.16-.35 2.82-1.05.66-.72.99-1.7.99-2.93V8.12a4 4 0 0 0-1-2.9c-.65-.73-1.6-1.09-2.8-1.09-1.2 0-2.13.36-2.8 1.08a4.02 4.02 0 0 0-1.02 2.9v3.79c0 1.23.34 2.2 1.02 2.93.67.7 1.6 1.05 2.8 1.05Zm9.24 1.83V2.3h2.37v6.6h6.47V2.3h2.38v15.4h-2.38v-6.65h-6.47v6.65h-2.37Zm14.65 0V2.3h4.58l4.18 13.81h.35V2.31h2.36v15.4h-4.58L46.31 3.87h-.35v13.84H43.6Zm14.9 0V2.3h4.57l4.18 13.81h.36V2.31h2.35v15.4h-4.58L61.2 3.87h-.35v13.84H58.5Zm18.87 0v-5.59l-5.34-9.81h2.68l3.7 6.97h.33l3.7-6.97h2.68l-5.35 9.81v5.59h-2.4Z"/><path fill="#000" d="M93.12 17.7v-2.1h2.07V4.42h-2.07V2.31h6.16c2.05 0 3.62.52 4.7 1.56 1.1 1.04 1.66 2.61 1.66 4.7v2.89c0 2.1-.55 3.67-1.65 4.7-1.09 1.03-2.66 1.55-4.71 1.55h-6.16Zm4.46-2.15h1.72c1.34 0 2.33-.34 2.97-1.01.65-.67.97-1.68.97-3.01V8.49c0-1.35-.32-2.35-.97-3.01-.64-.66-1.63-1-2.97-1h-1.72v11.07Zm10.96 2.16V2.3h9.7v2.15h-7.32V8.9h6.7v2.15h-6.7v4.51h7.43v2.16h-9.8Zm15.66 0-4.3-15.4h2.47l3.74 13.9h.29l3.71-13.9h2.47l-4.27 15.4h-4.11Z"/><path fill="#000" d="M.96 34.02v-8.4h5.08v.9H1.97v2.83H5.7v.91H1.97v3.76H.96Zm6.72 0v-8.4h3.4c.52 0 .97.09 1.36.27a2.06 2.06 0 0 1 1.27 1.96v.13a2 2 0 0 1-.39 1.3c-.26.33-.58.54-.94.66v.16a1 1 0 0 1 .71.3c.2.17.29.44.29.8v2.82h-1v-2.7c0-.24-.06-.43-.2-.56-.13-.12-.32-.19-.59-.19H8.7v3.45H7.68Zm1-4.36h2.3c.55 0 .98-.13 1.27-.4.3-.27.46-.64.46-1.12v-.09c0-.48-.15-.85-.45-1.11-.3-.28-.72-.41-1.28-.41h-2.3v3.13Zm9.86 4.52c-1 0-1.8-.28-2.4-.86-.6-.58-.89-1.43-.89-2.54v-1.92c0-1.12.3-1.96.89-2.54a3.3 3.3 0 0 1 2.4-.87c1 0 1.8.29 2.4.87.6.58.9 1.42.9 2.54v1.92c0 1.1-.3 1.96-.9 2.54-.6.58-1.4.86-2.4.86Zm0-.9c.73 0 1.3-.21 1.7-.64.4-.44.6-1.05.6-1.83v-1.99c0-.78-.2-1.38-.6-1.81-.4-.44-.97-.66-1.7-.66-.72 0-1.28.22-1.68.66-.4.43-.6 1.03-.6 1.81v2c0 .77.2 1.38.6 1.82.4.43.96.64 1.68.64Zm5.22.74v-8.4h1.95l2.93 7.76h.16v-7.76h1v8.4h-1.96l-2.92-7.78h-.17v7.78h-1Zm10.27 0v-7.5h-2.7v-.9h6.4v.9h-2.7v7.5h-1Zm5.23 0v-8.4h5.17v.9h-4.16v2.82h3.83v.9h-3.83v2.86h4.22v.92h-5.23Zm7 0v-8.4h1.96l2.93 7.76h.15v-7.76h1v8.4h-1.96l-2.91-7.78h-.17v7.78h-1Zm7.82 0v-.9h1.17v-6.6h-1.17v-.9h3.27c1.1 0 1.96.28 2.56.84.6.56.91 1.42.91 2.58v1.56c0 1.16-.3 2.03-.91 2.59-.6.55-1.45.83-2.56.83h-3.27Zm2.18-.92h1.1c.8 0 1.42-.2 1.84-.6.42-.4.62-1.02.62-1.86V29c0-.86-.2-1.48-.62-1.87-.42-.4-1.03-.59-1.85-.59h-1.09v6.56Zm9.34.92v-.9h1.17v-6.6H65.6v-.9h3.27c1.1 0 1.96.28 2.56.84.6.56.9 1.42.9 2.58v1.56c0 1.16-.3 2.03-.9 2.59-.6.55-1.45.83-2.56.83H65.6Zm2.18-.92h1.1c.8 0 1.42-.2 1.84-.6.42-.4.62-1.02.62-1.86V29c0-.86-.2-1.48-.62-1.87-.42-.4-1.03-.59-1.85-.59h-1.1v6.56Zm6.4.92v-8.4h5.18v.9H75.2v2.82h3.82v.9H75.2v2.86h4.22v.92h-5.23Zm8.88 0-2.53-8.4h1.04l2.3 7.78h.15l2.3-7.78h1.04l-2.53 8.4h-1.77Zm5.8 0v-8.4h5.17v.9h-4.16v2.82h3.83v.9h-3.83v2.86h4.22v.92h-5.23Zm7 0v-8.4h1v7.48h4.26v.92h-5.26Zm9.6.16c-1 0-1.8-.28-2.4-.86-.59-.58-.88-1.43-.88-2.54v-1.92c0-1.12.3-1.96.89-2.54a3.3 3.3 0 0 1 2.4-.87c1 0 1.8.29 2.4.87.6.58.9 1.42.9 2.54v1.92c0 1.1-.3 1.96-.9 2.54-.6.58-1.4.86-2.4.86Zm0-.9c.73 0 1.3-.21 1.7-.64.4-.44.6-1.05.6-1.83v-1.99c0-.78-.2-1.38-.6-1.81-.4-.44-.97-.66-1.7-.66-.71 0-1.27.22-1.67.66-.4.43-.6 1.03-.6 1.81v2c0 .77.2 1.38.6 1.82.4.43.96.64 1.68.64Zm5.23.74v-8.4h3.21c.5 0 .95.1 1.34.3.4.19.72.46.95.82.23.36.35.8.35 1.31v.16a2.27 2.27 0 0 1-1.3 2.14c-.4.19-.85.28-1.34.28h-2.2v3.39h-1.02Zm1-4.3h2.1c.54 0 .96-.13 1.27-.4.32-.27.47-.65.47-1.14v-.12c0-.48-.15-.86-.47-1.12-.3-.28-.72-.41-1.27-.41h-2.1v3.19Zm6.44 4.3v-8.4h5.17v.9h-4.16v2.82h3.83v.9h-3.83v2.86h4.22v.92h-5.23Zm7 0v-8.4h3.4c.52 0 .98.09 1.37.27a2.06 2.06 0 0 1 1.27 1.96v.13a2 2 0 0 1-.4 1.3c-.26.33-.57.54-.93.66v.16a1 1 0 0 1 .7.3c.2.17.3.44.3.8v2.82h-1v-2.7a.77.77 0 0 0-.2-.56c-.13-.12-.33-.19-.6-.19h-2.9v3.45h-1Zm1.01-4.36h2.3c.55 0 .97-.13 1.27-.4.3-.27.45-.64.45-1.12v-.09c0-.48-.15-.85-.44-1.11-.3-.28-.73-.41-1.29-.41h-2.29v3.13Z"/></svg>
+ </a> <nav class="flex h-8 items-stretch font-sg text-sm text-th-text" data-astro-cid-3ef6ksr2> <a class="relative flex items-center px-3 data-[active=true]:font-semibold" data-active="true" href="/blog" data-astro-cid-3ef6ksr2>Blog</a> <a class="relative flex items-center px-3 data-[active=true]:font-semibold" data-active="false" href="/about" data-astro-cid-3ef6ksr2>About</a> <custom-theme-switcher data-astro-cid-dz5h74bc="true"> <button aria-label="auto" aria-live="polite" class="relative flex h-8 w-8 place-content-center place-items-center rounded-sm" title="Toggles light & dark" type="button" data-astro-cid-dz5h74bc> <svg width="1em" height="1em" viewBox="0 0 24 24" data-light="true" data-astro-cid-dz5h74bc="true" data-icon="octicon:sun-24">  <symbol id="ai:octicon:sun-24"><path fill="currentColor" d="M12 19a7 7 0 1 1 0-14a7 7 0 0 1 0 14m0-1.5a5.5 5.5 0 1 0 0-11a5.5 5.5 0 1 0 0 11m-5.657.157a.75.75 0 0 1 0 1.06l-1.768 1.768a.749.749 0 0 1-1.275-.326a.75.75 0 0 1 .215-.734l1.767-1.768a.75.75 0 0 1 1.061 0M3.515 3.515a.75.75 0 0 1 1.06 0l1.768 1.768a.749.749 0 0 1-.326 1.275a.75.75 0 0 1-.734-.215L3.515 4.575a.75.75 0 0 1 0-1.06M12 0a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0V.75A.75.75 0 0 1 12 0M4 12a.75.75 0 0 1-.75.75H.75a.75.75 0 0 1 0-1.5h2.5A.75.75 0 0 1 4 12m8 8a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-2.5A.75.75 0 0 1 12 20m12-8a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h2.5A.75.75 0 0 1 24 12m-6.343 5.657a.75.75 0 0 1 1.06 0l1.768 1.768a.75.75 0 0 1-.018 1.042a.75.75 0 0 1-1.042.018l-1.768-1.767a.75.75 0 0 1 0-1.061m2.828-14.142a.75.75 0 0 1 0 1.06l-1.768 1.768a.75.75 0 0 1-1.042-.018a.75.75 0 0 1-.018-1.042l1.767-1.768a.75.75 0 0 1 1.061 0"/></symbol><use  xlink:href="#ai:octicon:sun-24"></use>  </svg> <svg width="1em" height="1em" viewBox="0 0 24 24" data-dark="true" data-astro-cid-dz5h74bc="true" data-icon="octicon:moon-24">  <symbol id="ai:octicon:moon-24"><path fill="currentColor" d="m14.768 3.96l-.002-.005a9 9 0 0 0-.218-.779c-.13-.394.21-.8.602-.67q.435.144.855.328l.01.005A10.002 10.002 0 0 1 12 22a10 10 0 0 1-9.162-5.985l-.004-.01a10 10 0 0 1-.329-.855c-.13-.392.277-.732.67-.602q.386.126.78.218l.004.002A9 9 0 0 0 14.999 6a9 9 0 0 0-.231-2.04M16.5 6c0 5.799-4.701 10.5-10.5 10.5q-.64 0-1.26-.075A8.5 8.5 0 1 0 16.425 4.74q.075.62.075 1.259Z"/></symbol><use  xlink:href="#ai:octicon:moon-24"></use>  </svg> <svg width="1em" height="1em" viewBox="0 0 24 24" data-auto="true" data-astro-cid-dz5h74bc="true" data-icon="octicon:devices-24">  <symbol id="ai:octicon:devices-24"><path fill="currentColor" d="M1 3.75C1 2.784 1.784 2 2.75 2h18.5c.966 0 1.75.784 1.75 1.75v4a.75.75 0 0 1-1.5 0v-4a.25.25 0 0 0-.25-.25H2.75a.25.25 0 0 0-.25.25v11.5c0 .138.112.25.25.25h9a.75.75 0 0 1 0 1.5h-1.287c-.126 1.266-.564 2.445-1.223 3.5h2.51a.75.75 0 0 1 0 1.5h-4a.75.75 0 0 1-.565-1.243c.964-1.105 1.598-2.382 1.769-3.757H2.75A1.75 1.75 0 0 1 1 15.25z"/><path fill="currentColor" d="M14 11.75c0-.967.783-1.75 1.75-1.75h5.5c.966 0 1.75.783 1.75 1.75v8.5A1.75 1.75 0 0 1 21.25 22h-5.5A1.75 1.75 0 0 1 14 20.25Zm1.75-.25a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h5.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25Z"/></symbol><use  xlink:href="#ai:octicon:devices-24"></use>  </svg> </button> </custom-theme-switcher> <script>
+  // for avoid FOUC
+  const loadTheme = () => {
+    if (typeof localStorage === 'undefined') {
+      return { preferred: 'light', theme: 'auto' }
+    }
+
+    const value = localStorage.getItem('theme')
+
+    return {
+      preferred: matchMedia('(prefers-color-scheme: light)').matches
+        ? 'light'
+        : 'dark',
+      theme: value === 'dark' || value === 'light' ? value : 'auto',
+    }
+  }
+
+  const { preferred, theme } = loadTheme()
+  const {
+    documentElement: { classList },
+  } = document
+
+  if (theme === 'auto') {
+    classList.add('auto')
+  } else {
+    classList.remove('auto')
+  }
+
+  const actual = theme === 'auto' ? preferred : theme
+
+  if (actual === 'dark') {
+    classList.add('dark')
+  } else {
+    classList.remove('dark')
+  }
+</script> <script type="module" src="/_astro/ThemeSwitcher.astro_astro_type_script_index_0_lang.Dg6F2ten.js"></script>  </nav> </div> </header> <script type="module">function r(){const l=document.querySelector("header[data-header]");if(!l)return;let e="";window.addEventListener("scroll",()=>{if(window.scrollY>0){e!=="scroll"&&(e="scroll",l?.classList.add("scroll"));return}e!==""&&(e="",l?.classList.remove("scroll"))},{passive:!0})}r();document.addEventListener("astro:after-swap",r);</script>  <main class="relative z-10" data-astro-cid-esqdxlhz> <div class="px-3 transition-colors" data-astro-cid-esqdxlhz> <div class="container relative pt-20" data-astro-cid-esqdxlhz>  <div class="py-8 text-th-text"> <div class="relative mb-10"> <button class="absolute -top-8 flex h-4 items-center gap-1 font-sg text-sm text-th-text-secondary" data-back type="button"> <svg width="1em" height="1em" viewBox="0 0 24 24" data-icon="octicon:arrow-left-24">  <symbol id="ai:octicon:arrow-left-24"><path fill="currentColor" d="M10.78 19.03a.75.75 0 0 1-1.06 0l-6.25-6.25a.75.75 0 0 1 0-1.06l6.25-6.25a.749.749 0 0 1 1.275.326a.75.75 0 0 1-.215.734L5.81 11.5h14.44a.75.75 0 0 1 0 1.5H5.81l4.97 4.97a.75.75 0 0 1 0 1.06"/></symbol><use  xlink:href="#ai:octicon:arrow-left-24"></use>  </svg> Back to List
+</button> <h1 class="mb-4"> <span class="text-balance text-3xl font-semibold transition-all"> standard-version을 이용한 배포, 롤백 전략 </span> </h1> <div class="mb-2"> <time class="font-sg text-sm text-th-text-secondary">2020-06-25</time> </div> <div class="flex items-center gap-1"> <span class="rounded-full bg-th-bg-highlight/60 px-2 py-1 font-sg text-xs text-th-highlight transition-transform data-[emphasis]:scale-125 data-[emphasis]:contrast-200 dark:bg-th-bg-highlight/10" data-tag="standard-version">#standard-version</span><span class="rounded-full bg-th-bg-highlight/60 px-2 py-1 font-sg text-xs text-th-highlight transition-transform data-[emphasis]:scale-125 data-[emphasis]:contrast-200 dark:bg-th-bg-highlight/10" data-tag="deploy strategy">#deploy strategy</span> </div> </div> <input class="hidden" data-frontmatter type="hidden" value="{&#34;title&#34;:&#34;standard-version을 이용한 배포, 롤백 전략&#34;,&#34;description&#34;:&#34;standard-version을 사용하여 서비스에 자동 버저닝, 배포, 롤백 시스템을 적용하는 방법에 대해 설명합니다&#34;,&#34;categories&#34;:[&#34;Development&#34;],&#34;tags&#34;:[&#34;standard-version&#34;,&#34;deploy strategy&#34;],&#34;publishedAt&#34;:&#34;2020-06-25T20:00+09:00&#34;,&#34;readingTime&#34;:873000,&#34;summary&#34;:&#34;lerna에는 커밋 메시지를 읽어 자동으로 새로운 버전과 CHANGELOG를 작성하고 git 태그를 작성해 주는 기능(이하 버전 자동화)도 포함되어 있는데. 이 기능을 활용하면 운영에 큰 도움이 된다.이 기능을 사용하려면 —conventional-commits 인자를 &#34;}">  <div class="_blog_content container prose prose-stone mb-20 max-w-none break-keep px-1 dark:prose-invert prose-headings:font-semibold prose-h1:mt-20 prose-a:relative prose-a:no-underline prose-a:after:absolute prose-a:after:bottom-0 prose-a:after:left-0 prose-a:after:right-0 prose-a:after:h-[1px] prose-a:after:bg-th-text/80 prose-a:after:content-['']"> <h1 id="standard-version-소개">standard-version 소개</h1>
+<p>lerna에는 커밋 메시지를 읽어 자동으로 새로운 버전과 CHANGELOG를 작성하고 git 태그를 작성해 주는 기능(이하 버전 자동화)도 포함되어 있는데. 이 기능을 활용하면 운영에 큰 도움이 된다.</p>
+<p>이 기능을 사용하려면 <strong>—conventional-commits</strong> 인자를 전달해야 한다. 이름에서 알 수 있듯 이 기능을 사용하려면 커밋 메시지들을 <a href="https://www.conventionalcommits.org/ko/v1.0.0/">Conventional Commit</a>컨벤션에 맞춰 작성해야 한다.</p>
+<p>lerna말고도 같은 기능을 제공하는 도구가 몇개 있는데. 그 중 <a href="https://github.com/conventional-changelog/standard-version">standard-version</a>은 단일 리포지토리에 버전 자동화를 제공하는 도구이다.</p>
+<p>이 도구는 태생 자체가 버전 자동화라서 lerna보다 <strong>직관적이고. 다루기 쉽고. 조금 더 다양한 기능들을 제공</strong>한다. 만들어 내는 태그의 커밋 메시지 포멧을 변경하거나 changelog를 뽑아 API를 호출하는 등 여러가지로 응용할 수 있다.</p>
+<p>이 글에서는 최근에 이 <strong>standard-version</strong>을 이용해 사내 서비스 배포와 롤백 시스템을 구축했던 경험을 정리한다.</p>
+<h1 id="서비스를-위한-버전-자동화">서비스를 위한 버전 자동화</h1>
+<p>지난 글 <a href="/post/%EC%95%B1%EA%B3%BC-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EA%B4%80%EB%A6%AC%EC%97%90-Monorepo">모노레포 도입 검토</a> 단계에서는 lerna를 완전히 적용하며 자동 버저닝을 서비스에서도 사용할 수 있을 것이라 예상했다.</p>
+<p>하지만 <strong>서비스들의 커밋이 섞여 각 담당자들이 라이브러리 수정 코드만을 보고 사이드 이펙트를 예측할 수 있을 지 확실하지 않다</strong>는 문제로 진행하지 않기로 했고. 서비스는 다른 방법을 찾아야만 했다.</p>
+<figure><img src="/_astro/side-effect.wJ0eN_Vv_2oVHSw.webp" alt="서비스 사이드이펙트 문제" loading="lazy" decoding="async" fetchpriority="auto" width="850" height="400"><figcaption>서비스 사이드이펙트 문제</figcaption></figure>
+<p>그 때 <strong>Conventional Commit</strong> 사이트에 소개된 툴 중에 <strong>standard-version</strong>을 도입하여 현재 문제 없이 운영하고 있다.</p>
+<p>부끄러운 이야기지만 도입 전 약 5년 동안이나 프론트 코드의 롤백은 수동으로 할 수밖에 없었다. 대부분의 배포 후 사이드이펙트는 서버API의 문제였기 때문에 크게 필요성을 느끼지 못했던 부분도 있다.</p>
+<p>하지만 FE개발파트가 커지고 사내 모든 서비스를 담당하게 되면서 시스템의 필요성이 생겨 지금에라도 도입하게 되었다.</p>
+<h1 id="새로-도입한-배포-프로세스">새로 도입한 배포 프로세스</h1>
+<blockquote>
+<p>먼저 그림으로 보고 각 단계에서 하는 일들을 아래에서 설명한다</p>
+</blockquote>
+<figure><img src="/_astro/deploy-strategy.Dtp7EMUc_ZmgYzT.webp" alt="배포 프로세스" loading="lazy" decoding="async" fetchpriority="auto" width="960" height="520"><figcaption>배포 프로세스</figcaption></figure>
+<h2 id="1-기능-개발">1. 기능 개발</h2>
+<p>커밋 메시지는 <a href="https://www.conventionalcommits.org/ko/v1.0.0/">Conventional Commit</a>을 준수해야 한다. 작성이 어렵다면 도움을 주는 <a href="https://github.com/commitizen/cz-cli">commitizen</a>을 사용하면 좋다. 만약 cli에 익숙하지 않다면 <a href="https://github.com/commitizen/cz-cli#adapters">어댑터</a>를 사용하여 원하는 도구에서도 commitizen을 이용할 수 있다.</p>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#9399B2;font-style:italic"># 커밋 메시지 작성을 대화형으로 도와주는 도구 설치</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">npm</span><span style="color:#A6E3A1"> install</span><span style="color:#A6E3A1"> -g</span><span style="color:#A6E3A1"> commitizen</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9399B2;font-style:italic"># 프로젝트를 commitizen friendly 하게 만들어야 한다</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">commitizen</span><span style="color:#A6E3A1"> init</span><span style="color:#A6E3A1"> cz-conventional-changelog</span><span style="color:#A6E3A1"> --save-dev</span><span style="color:#A6E3A1"> --save-exact</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9399B2;font-style:italic"># 설치하고 나면 아래 명령으로 커밋 메시지를 대화형 도구로 작성할 수 있다</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">git</span><span style="color:#A6E3A1"> cz</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">Select</span><span style="color:#A6E3A1"> the</span><span style="color:#A6E3A1"> type</span><span style="color:#A6E3A1"> of</span><span style="color:#A6E3A1"> change</span><span style="color:#A6E3A1"> that</span><span style="color:#A6E3A1"> you&#39;re commiting: (use arrow keys)</span></span>
+<span class="line"><span style="color:#A6E3A1">&gt; feat:     A new feature</span></span>
+<span class="line"><span style="color:#A6E3A1">  fix:      A bug fix</span></span>
+<span class="line"><span style="color:#A6E3A1">  docs:     Documentation only changes</span></span>
+<span class="line"><span style="color:#A6E3A1">  styles:   Changes that do not effect the meaning of the code</span></span>
+<span class="line"><span style="color:#A6E3A1">            (white-space, formatting, missing semi-colons, etc)</span></span>
+<span class="line"><span style="color:#A6E3A1">  refactor: A code change that neither fixes a bug or add a feature</span></span>
+<span class="line"><span style="color:#A6E3A1">  perf:     A code change that improves performance</span></span>
+<span class="line"></span></code></pre>
+<p>커밋 전에 커밋 메시지들이 컨벤션에 맞게 작성되었는지 검사해 주면 좋다. <a href="https://github.com/conventional-changelog/commitlint">commitlint</a>와 <a href="https://github.com/typicode/husky">husky</a>를 이용한다.</p>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#9399B2;font-style:italic"># 커밋 시 커밋 메시지들을 검사하기 위한 도구 설치</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">npm</span><span style="color:#A6E3A1"> install</span><span style="color:#A6E3A1"> -D</span><span style="color:#A6E3A1"> commitlint</span><span style="color:#A6E3A1"> husky</span></span></code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4;overflow-x:auto" tabindex="0" data-language="json"><code><span class="line"><span style="color:#9399B2;font-style:italic">// package.json 에 커밋할 때 메시지들을 검사하도록 수정</span></span>
+<span class="line"><span style="color:#9399B2">{</span></span>
+<span class="line"><span style="color:#9399B2">  &quot;</span><span style="color:#89B4FA">husky</span><span style="color:#9399B2">&quot;</span><span style="color:#9399B2">:</span><span style="color:#9399B2"> {</span></span>
+<span class="line"><span style="color:#9399B2">    &quot;</span><span style="color:#89B4FA">hooks</span><span style="color:#9399B2">&quot;</span><span style="color:#9399B2">:</span><span style="color:#9399B2"> {</span></span>
+<span class="line"><span style="color:#9399B2">      &quot;</span><span style="color:#89B4FA">commit-msg</span><span style="color:#9399B2">&quot;</span><span style="color:#9399B2">:</span><span style="color:#A6E3A1"> &quot;commitlint -E HUSKY_GIT_PARAMS&quot;</span></span>
+<span class="line"><span style="color:#9399B2">    }</span></span>
+<span class="line"><span style="color:#9399B2">  }</span></span>
+<span class="line"><span style="color:#9399B2">}</span></span></code></pre>
+<h2 id="2-ci-pr-check">2. CI PR Check</h2>
+<p>Pull Request를 만들어 코드리뷰를 한다면 PR Check 기능을 이용해 커밋 메시지를 검사해 준다. 실수로 잘못된 커밋 메시지의 커밋이 푸시될 수 있기 때문이다. PR Check을 하지 않는다면 이 단계는 건너뛰고 다음 빌드 과정에서 하면 된다.</p>
+<figure><img src="/_astro/pr-build.CiUSv7a0_Z8lDR8.webp" alt="대부분의 유명 오픈소스 프로젝트는 모두 PR Check에서 이 검사를 한다" loading="lazy" decoding="async" fetchpriority="auto" width="1820" height="832"><figcaption>대부분의 유명 오픈소스 프로젝트는 모두 PR Check에서 이 검사를 한다</figcaption></figure>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#9399B2;font-style:italic"># 커밋 메시지들이 컨벤션에 맞게 작성되었는지 검사한다</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">git</span><span style="color:#A6E3A1"> log</span><span style="color:#A6E3A1"> -1</span><span style="color:#A6E3A1"> --pretty=format:&quot;%s&quot;</span><span style="color:#94E2D5"> |</span><span style="color:#89B4FA;font-style:italic"> npx</span><span style="color:#A6E3A1"> commitlint</span></span></code></pre>
+<h2 id="3-ci-빌드-설정">3. CI 빌드 설정</h2>
+<blockquote>
+<p>전 단계를 건너뛰었다면 이 단계에서 커밋 메시지를 검사하도록 해 준다.</p>
+</blockquote>
+<p>배포 빌드에서는 특정 커밋 메시지엔 빌드가 돌지 않도록 설정해야 한다. 위의 그림에서 <strong>B-1</strong>커밋은 개발 장비에서 배포를 위해 <strong>standard-version</strong>명령을 실행하여 package.json의 버전 범핑과 CHANGELOG.md의 수정사항 커밋이 추가된 경우인데 이때 빌드는 무의미하다.</p>
+<p>JENKINS기준으로는 <strong>Git Plugin</strong> &gt; <strong>Polling ignores commits with certain messages</strong> 항목을 추가하고 값은 <code>(?s).*chore\(release\).*</code>로 설정하면 된다. 비슷한 기능을 Git Actions, Travis나 Circie 에서도 지원하므로 똑같이 설정하면 된다.</p>
+<h2 id="4-cdn-업로드">4. CDN 업로드</h2>
+<p>CI가 만든 css, js, jpg, html등의 리소스 파일을 CDN에 업로드하도록 한다. 이 때 서비스가 여러개라면 겹치지 않도록 나누어야 한다. 또 테스트 서버가 여럿이라면 또 페이즈별로 겹치지 않도록 폴더를 나누어 주어야 할 것이다. 아래는 실제로 사용하고 있는 주소의 형태를 변형한 예제이다.</p>
+<blockquote>
+<p><strong>서비스 A 페이즈: beta</strong></p>
+<ol>
+<li>
+<p><code>https://mycdn.net/mycompany/service-a/beta/2b30274/</code></p>
+<p>위 경로에 빌드 결과물들을 업로드한다.</p>
+</li>
+<li>
+<p><code>https://mycdn.net/mycompany/service-a/beta/latest</code></p>
+<p>이 파일에는 1번의 url (최신 버전이 무엇인지)를 기록해 둔다</p>
+</li>
+</ol>
+<p><strong>서비스: B, 페이즈: real</strong></p>
+<ol>
+<li><code>https://mycdn.net/mycompany/service-b/real/2b30274/</code></li>
+<li><code>https://mycdn.net/mycompany/service-b/real/latest</code></li>
+</ol>
+</blockquote>
+<blockquote>
+<p>이 단계에서는 <strong>빌드 결과물을 어디에 그리고 얼마동안 보관해야 하는지</strong>에 대한 고민이 있었다. 나의 경우 사내 인프라로 CDN이 제공되고 있었고 용량이 무제한이라 CDN에 저장하기로 했고 오래된 빌드를 따로 삭제하지는 않았다. 다만 CDN은 위처럼 빌드 결과물의 경로를 신경써야 한다. 하지만 NPM을 사용한다면 압축 파일을 풀면 바로 결과물을 확인할 수 있기 때문에 이후 배포 과정의 스크립트를 더 단순하게 작성할 수 있다.</p>
+</blockquote>
+<h2 id="5-배포-및-버저닝">5. 배포 및 버저닝</h2>
+<h3 id="웹-서버에-리소스-배포하기">웹 서버에 리소스 배포하기</h3>
+<p>이 단계에서는 CDN으로부터 최신 버전의 index.html파일을 받아 웹서버에 배포한다. 최신버전은 전 단계의 url을 보면 알 수 있듯 <strong>서비스명/페이즈/latest</strong> 규칙이다. 배포 스크립트는 각 환경에 맞게 작성하면 된다.</p>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#9399B2;font-style:italic"># CDN에 업로드 한 latest파일의 내용에는 최신버전 패키지의 주소가 적혀 있다</span></span>
+<span class="line"><span style="color:#CDD6F4">PACKAGE_DIR</span><span style="color:#94E2D5">=</span><span style="color:#9399B2">$(</span><span style="color:#89B4FA;font-style:italic">curl</span><span style="color:#A6E3A1"> https://mycdn.net/mycompany/</span><span style="color:#CDD6F4">$SERVICE</span><span style="color:#A6E3A1">/</span><span style="color:#CDD6F4">$PHASE</span><span style="color:#A6E3A1">/latest</span><span style="color:#9399B2">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9399B2;font-style:italic"># 그러므로 latest파일의 내용(최신버전 index.html이 있는 CDN의 폴더 경로)</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic"># 에 index.html을 붙이면 배포 대상이 된다</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">curl</span><span style="color:#A6E3A1"> -o</span><span style="color:#A6E3A1"> index.html</span><span style="color:#CDD6F4"> $PACKAGE_DIR</span><span style="color:#A6E3A1">/index.html</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9399B2;font-style:italic"># 최신 index.html을 웹 서버에 배포한다</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">curl</span><span style="color:#A6E3A1"> -T</span><span style="color:#A6E3A1"> index.html</span><span style="color:#A6E3A1"> -u</span><span style="color:#A6E3A1"> userid:passswd</span><span style="color:#A6E3A1"> ftp://10.10.1.55/www/publish</span></span></code></pre>
+<p>위의 파일을 만들어 두고 <code>SERVICE=service-a PHASE=beta sh deploy.sh</code> 로 실행하면 배포할 수 있다.</p>
+<p>혹시 index.html만을 배포하는 이유를 궁금해할 수 있을 듯 한데. 내용을 보면 이해할 수 있을 것이다.</p>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4;overflow-x:auto" tabindex="0" data-language="html"><code><span class="line"><span style="color:#CBA6F7">&lt;!DOCTYPE</span><span style="color:#F9E2AF"> html</span><span style="color:#CBA6F7">&gt;</span></span>
+<span class="line"><span style="color:#94E2D5">&lt;</span><span style="color:#89B4FA">html</span><span style="color:#94E2D5">&gt;</span></span>
+<span class="line"><span style="color:#94E2D5">  &lt;</span><span style="color:#89B4FA">head</span><span style="color:#94E2D5">&gt;</span></span>
+<span class="line"><span style="color:#94E2D5">    &lt;</span><span style="color:#89B4FA">title</span><span style="color:#94E2D5">&gt;</span><span style="color:#CDD6F4">Service A App</span><span style="color:#94E2D5">&lt;/</span><span style="color:#89B4FA">title</span><span style="color:#94E2D5">&gt;</span></span>
+<span class="line"><span style="color:#94E2D5">  &lt;/</span><span style="color:#89B4FA">head</span><span style="color:#94E2D5">&gt;</span></span>
+<span class="line"><span style="color:#94E2D5">  &lt;</span><span style="color:#89B4FA">body</span><span style="color:#94E2D5">&gt;</span></span>
+<span class="line"><span style="color:#94E2D5">    &lt;</span><span style="color:#89B4FA">app-root</span><span style="color:#94E2D5">&gt;&lt;/</span><span style="color:#89B4FA">app-root</span><span style="color:#94E2D5">&gt;</span></span>
+<span class="line"><span style="color:#94E2D5">    &lt;</span><span style="color:#89B4FA">script</span><span style="color:#F9E2AF"> src</span><span style="color:#94E2D5">=</span><span style="color:#A6E3A1">{import(</span><span style="color:#CDD6F4">&quot;../../../https://mycdn.net/mycompany/service-a/real/2b30274/main.js&quot;)}</span><span style="color:#94E2D5">&gt;</span><span style="color:#CDD6F4">&lt;</span><span style="color:#94E2D5">/</span><span style="color:#89B4FA">script</span><span style="color:#94E2D5">&gt;</span></span>
+<span class="line"><span style="color:#94E2D5">    &lt;</span><span style="color:#89B4FA">script</span><span style="color:#F9E2AF"> src</span><span style="color:#94E2D5">=</span><span style="color:#A6E3A1">{import(</span><span style="color:#CDD6F4">&quot;../../../https://mycdn.net/mycompany/service-a/real/2b30274/polyfill.js&quot;)}</span><span style="color:#94E2D5">&gt;</span><span style="color:#CDD6F4">&lt;</span><span style="color:#94E2D5">/</span><span style="color:#89B4FA">script</span><span style="color:#94E2D5">&gt;</span></span>
+<span class="line"><span style="color:#94E2D5">    &lt;</span><span style="color:#89B4FA">script</span><span style="color:#F9E2AF"> src</span><span style="color:#94E2D5">=</span><span style="color:#A6E3A1">{import(</span><span style="color:#CDD6F4">&quot;../../../https://mycdn.net/mycompany/service-a/real/2b30274/vendor.js&quot;)}</span><span style="color:#94E2D5">&gt;</span><span style="color:#CDD6F4">&lt;</span><span style="color:#94E2D5">/</span><span style="color:#89B4FA">script</span><span style="color:#94E2D5">&gt;</span></span>
+<span class="line"><span style="color:#94E2D5">    &lt;</span><span style="color:#89B4FA">script</span><span style="color:#F9E2AF"> src</span><span style="color:#94E2D5">=</span><span style="color:#A6E3A1">{import(</span><span style="color:#CDD6F4">&quot;../../../https://mycdn.net/mycompany/service-a/real/2b30274/common.js&quot;)}</span><span style="color:#94E2D5">&gt;</span><span style="color:#CDD6F4">&lt;</span><span style="color:#94E2D5">/</span><span style="color:#89B4FA">script</span><span style="color:#94E2D5">&gt;</span></span>
+<span class="line"><span style="color:#94E2D5">  &lt;/</span><span style="color:#89B4FA">body</span><span style="color:#94E2D5">&gt;</span></span>
+<span class="line"><span style="color:#94E2D5">&lt;/</span><span style="color:#89B4FA">html</span><span style="color:#94E2D5">&gt;</span></span></code></pre>
+<p>angular는 빌드할 때 —deploy-url인자를 전달하면 만들어내는 index.html에 위와 같이 script src들과 내부에서 쓰는 css의 url에 prefix(예제에서는 <code>https://mycdn.net/mycompany/service-a/real/2b30274/</code>) 를 붙여 준다.</p>
+<p>따라서 index.html만 배포해도 된다. 만약 상대경로로 포함하는 방식이라면 관련 파일을 모두 업로드하도록 스크립트를 작성하면 된다.</p>
+<h3 id="real-페이즈-배포-후-버저닝">real 페이즈 배포 후 버저닝</h3>
+<blockquote>
+<p>⚠️ 이 과정은 테스트 서버들이 아닌 real 페이즈 배포 직후에만 실행한다. 이유는 develop, master에서 자동 버저닝을 수행하면 중복된 태그를 생성할 수 있기 때문이다.</p>
+</blockquote>
+<blockquote>
+<p><strong>—prerelease</strong> 인자를 사용하면 <strong>v1.3.1-alpha.0</strong> 형태의 태그를 만들 수 있다. 테스트 서버 브랜치에서는 배포시 이 인자를 사용하면 리얼 브랜치와 태그가 겹치는 것을 예방할 수 있을 것으로 보이지만 필요한 부분이 아니라 추가 검토는 하지 않았다.</p>
+</blockquote>
+<p>만약 real에 배포했다면 버저닝을 할 차례이다. 이는 뒤에서 설명할 롤백을 위해 꼭 필요한 과정으로 <strong>standard-version</strong>을 이용할 것이다.</p>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#9399B2;font-style:italic"># 버저닝은 배포할 브랜치에서 수행해야만 한다</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">git</span><span style="color:#A6E3A1"> checkout</span><span style="color:#A6E3A1"> master</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">git</span><span style="color:#A6E3A1"> pull</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">npx</span><span style="color:#A6E3A1"> git-branch-is</span><span style="color:#A6E3A1"> master</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9399B2;font-style:italic"># 자동 버저닝</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">standard-version</span><span style="color:#F5C2E7"> \</span></span>
+<span class="line"><span style="color:#A6E3A1">  --release-as=minor</span><span style="color:#F5C2E7"> \</span></span>
+<span class="line"><span style="color:#A6E3A1">  --releaseCommitMessageFormat=&quot;chore(release): {{currentTag}}\n[[</span><span style="color:#CDD6F4">$deployUrl</span><span style="color:#A6E3A1">]]&quot;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9399B2;font-style:italic"># package.json, CHANGELOG.md파일의 수정사항과 새 태그를 함께 푸시한다</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">git</span><span style="color:#A6E3A1"> push</span><span style="color:#A6E3A1"> origin</span><span style="color:#A6E3A1"> HEAD</span><span style="color:#A6E3A1"> --follow-tags</span><span style="color:#A6E3A1"> --no-verify</span></span></code></pre>
+<p><strong>release-as</strong> 인자는 혹시 모를 핫픽스를 위함이다. 서비스의 배포는 minor이상을 올려야 patch로 긴급 배포를 할 수 있게 된다. 어제 1.1.0 을 배포하고 오늘 1.2.0 을 배포했는데. 1.1.0 기준으로 핫픽스를 배포해야 한다면 1.1.0 에서 브랜치를 따고 1.1.1로 배포하면 된다.</p>
+<p><strong>releaseCommitMessageFormat</strong>인자로 기본값 뒤에 개행과 **[[$deployUrl]]**를 붙여 주었다. 이는 롤백을 위해 필요한 부분인데 이어지는 섹션에서 설명한다.</p>
+<h1 id="롤백-프로세스">롤백 프로세스</h1>
+<figure><img src="/_astro/rollback-strategy.B6dGmbGO_Zo5GEx.webp" alt="롤백 프로세스" loading="lazy" decoding="async" fetchpriority="auto" width="960" height="465"><figcaption>롤백 프로세스</figcaption></figure>
+<p>real배포를 하면 태그가 쌓일 것이다 아래 명령으로 조회할 수 있다. v1.3.0로 롤백을 원한다고 가정해 보자.</p>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#89B4FA;font-style:italic">g</span><span style="color:#A6E3A1"> tag</span><span style="color:#A6E3A1"> --sort=-committerdate</span><span style="color:#A6E3A1"> -l</span><span style="color:#A6E3A1"> &quot;v*&quot;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">v1.3.1</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">v1.3.0</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">v1.2.5</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">v1.2.4</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">v1.2.3</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">v1.2.2</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">v1.2.1</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">v1.2.0</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">v1.0.0</span></span>
+<span class="line"><span style="color:#9399B2">(</span><span style="color:#89B4FA;font-style:italic">END</span><span style="color:#9399B2">)</span></span></code></pre>
+<p>v1.3.1의 태그 커밋 메시지에는 배포 단계에서 넣어주었던 **[[$deployUrl]]**이 기록되어 있을 것이다.</p>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#89B4FA;font-style:italic">git</span><span style="color:#A6E3A1"> tag</span><span style="color:#A6E3A1"> -l</span><span style="color:#A6E3A1"> --format=&#39;%(contents)&#39;</span><span style="color:#A6E3A1"> v1.3.1</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">v1.3.1</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9399B2">[[</span><span style="color:#CDD6F4">https://mycdn.com/myapp/eff782/</span><span style="color:#9399B2">]]</span></span></code></pre>
+<p><strong>deployUrl</strong>은 index.html을 포함한 빌드 결과물들이 있는 CDN폴더 주소이다. url을 추출해 index.html을 붙여준 파일을 다운로드 하여 배포하면 롤백이 완료된다.</p>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#CDD6F4">CONTENT</span><span style="color:#94E2D5">=</span><span style="color:#9399B2">$(</span><span style="color:#89B4FA;font-style:italic">git</span><span style="color:#A6E3A1"> tag</span><span style="color:#A6E3A1"> -l</span><span style="color:#A6E3A1"> --format=&#39;%(contents)&#39;</span><span style="color:#A6E3A1"> v1.3.1</span><span style="color:#9399B2">)</span></span>
+<span class="line"><span style="color:#CDD6F4">DEPLOY_URL</span><span style="color:#94E2D5">=</span><span style="color:#9399B2">$(</span><span style="color:#89B4FA;font-style:italic">node</span><span style="color:#A6E3A1"> -p</span><span style="color:#A6E3A1"> &quot;&#39;</span><span style="color:#CDD6F4">$CONTENT</span><span style="color:#A6E3A1">&#39;.match(/\[\[\d\]\/])[1]&quot;</span><span style="color:#9399B2">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">curl</span><span style="color:#A6E3A1"> -o</span><span style="color:#A6E3A1"> index.html</span><span style="color:#CDD6F4"> $DEPLOY_URL</span><span style="color:#A6E3A1">/index.html</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">curl</span><span style="color:#A6E3A1"> -T</span><span style="color:#A6E3A1"> index.html</span><span style="color:#A6E3A1"> -u</span><span style="color:#A6E3A1"> userid:passswd</span><span style="color:#A6E3A1"> ftp://10.10.1.55/www/publish</span></span></code></pre>
+<h1 id="요약-및-기타-고려사항">요약 및 기타 고려사항</h1>
+<p>일단 내용을 짧게 요약하자면 다음과 같다.</p>
+<ul>
+<li>리얼 배포 시점에 <strong>standard-version</strong>으로 버전 자동화를 적용한다</li>
+<li>버전 자동화 중에 추가로 CDN에 업로드 된 빌드 결과물의 주소를 태그에 기록한다</li>
+<li>롤백할 땐 원하는 태그의 메시지를 읽어 특정 포멧으로 기록된 CDN주소의 결과물을 배포하면 된다</li>
+</ul>
+<p>이번 개선 작업에서 하지 못한 작업들도 있다. 빠른 시일 내에 추가 적용하려고 한다.</p>
+<ul>
+<li><strong>standard-version</strong>은 changelog 훅도 제공하고 있어 배포 시점에 이메일로 변경사항을 공유하는 등의 작업이 가능할 것으로 보인다.</li>
+</ul>
+<p>글에서 소개한 배포 및 롤백 프로세스의 경우 쉘 스크립트를 작성하고 이를 package.json에 등록해 사용하는 편이 좋겠다.</p>
+<p>사내에서는 배포 및 롤백 스크립트 포함된 태스크 러너를 nodejs기반 cli로 만들어 사용하고 있다. 기회가 된다면 관련해서도 글을 쓸 예정이다.</p>
+<p>혹시 내용관련 궁금한 사항이 있다면 <a href="mailto:romz1212@gmail.com">이메일</a>을 보내 주기 바란다.</p> </div> <custom-comment></custom-comment> <script type="module" src="/_astro/Comment.astro_astro_type_script_index_0_lang.Bysty2LL.js"></script> </div>  </div> </div> </main> <footer class="relative z-10"> <div class="container flex justify-between gap-10 border-t border-t-th-border px-3 py-8 font-sg text-sm text-th-text"> <div class="flex-none">&#169; 2025 - JOHNNYDEV</div> <div class="flex w-60 justify-between gap-2"> <div class="flex flex-col gap-1 md:w-1/2"> <a href="/blog">Blog</a> <a href="/about">About</a> </div> <div class="flex flex-col gap-1 md:w-1/2"> <a aria-label="Go to github profile page" href="https://github.com/johnny-mh" rel="noopener noreferrer" target="_blank">
+Github
+</a> <a aria-label="Send E-Mail to Johnny" href="mailto://romz1212@gmail.com">
+Mail
+</a> <a aria-label="RSS" href="/rss.xml" rel="noopener noreferrer" target="_blank">RSS</a> </div> </div> </div> </footer> <canvas class="pointer-events-none fixed left-0 top-0 z-0 h-screen w-screen opacity-0 transition-opacity duration-1000 data-[initialized]:opacity-100" data-bg-effect data-astro-transition-persist="bgEffect"></canvas> <script type="module" src="/_astro/BackgroundEffect.astro_astro_type_script_index_0_lang.DLCmX1Mn.js"></script> </body></html> <script type="module">t();document.addEventListener("astro:after-swap",t);function t(){document.querySelector("button[data-back]")?.addEventListener("click",()=>{history.back()})}</script> 

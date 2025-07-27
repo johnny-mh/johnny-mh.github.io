@@ -1,0 +1,167 @@
+<!DOCTYPE html><html lang="ko" data-astro-cid-esqdxlhz> <head><meta charset="utf-8"><meta content="ie=edge" http-equiv="x-ua-compatible"><meta content="initial-scale=1, maximum-scale=5, width=device-width, viewport-fit=cover" name="viewport"><meta content="er9zvCmECxtt0KP_BjDZ4WplZsNT5ApeDBK4wYD7aI0" name="google-site-verification"><meta content="aef0a8e4429c4f7c5f7e3b52074dc2d968716069" name="naver-site-verification"><meta content="Astro v5.12.3" name="generator"><title>JOHNNY DEV</title><link rel="canonical" href="https://johnny-mh.github.io/blog/gatsby-to-astro/"><meta name="description" content="Developer who want to write good codes"><meta name="robots" content="index, follow"><meta property="og:title" content="웹 성능 관점에서 본 Astro"><meta property="og:type" content="article"><meta property="og:image" content="/blog/gatsby-to-astro//og-image.png"><meta property="og:url" content="https://johnny-mh.github.io/blog/gatsby-to-astro/"><meta property="og:image:url" content="/blog/gatsby-to-astro//og-image.png"><meta property="og:image:alt" content="웹 성능 관점에서 본 Astro"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect"><link href="/favicon.png" rel="icon" type="image/png"><link as="image" href="/_astro/cover.DXq4vSBT_RegSX.webp" rel="preload"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="swap"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.D98dxaWf.js"></script><script src="https://www.googletagmanager.com/gtag/js?id=G-R9PQNBWGC9" type="text/partytown"></script> <script type="text/partytown">
+  window.dataLayer = window.dataLayer || []
+  function gtag() {
+    // eslint-disable-next-line prefer-rest-params
+    dataLayer.push(arguments)
+  }
+  gtag('js', new Date())
+  gtag('config', 'G-R9PQNBWGC9')
+</script><script>
+      document.addEventListener('astro:page-load', () => {
+        if (navigator.userAgent.indexOf('Win') > -1) {
+          document.documentElement.classList.add('win')
+        }
+      })
+    </script><style>._glow[data-astro-cid-erfvtfza]:after{opacity:var(--glow-opacity);background:var(--glow-bg);background-size:200% 200%;filter:blur(var(--glow-blur));animation:steam var(--glow-duration) linear infinite;z-index:-1;position:absolute;inset:0;display:none;height:100%;width:100%;--tw-scale-x: 1.05;--tw-scale-y: 1.05;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-radius:.5rem;transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:1s;--tw-content: "";content:var(--tw-content)}._glow[data-astro-cid-erfvtfza]:is(.dark *):after{display:block}@keyframes steam{0%{background-position:0% 50%}50%{background-position:100% 50%}to{background-position:0% 50%}}
+</style>
+<link rel="stylesheet" href="/_astro/about.BA5pFy7Y.css">
+<style>._blog_content span.highlighted{background:#65758529;margin:0 -16px;padding:0 16px;width:calc(100% + 32px);display:inline-block}
+</style><script>!(function(w,p,f,c){if(!window.crossOriginIsolated && !navigator.serviceWorker) return;c=w[p]=Object.assign(w[p]||{},{"lib":"/~partytown/","debug":false});c[f]=(c[f]||[]).concat(["dataLayer.push"])})(window,'partytown','forward');/* Partytown 0.11.0 - MIT QwikDev */
+const t={preserveBehavior:!1},e=e=>{if("string"==typeof e)return[e,t];const[n,r=t]=e;return[n,{...t,...r}]},n=Object.freeze((t=>{const e=new Set;let n=[];do{Object.getOwnPropertyNames(n).forEach((t=>{"function"==typeof n[t]&&e.add(t)}))}while((n=Object.getPrototypeOf(n))!==Object.prototype);return Array.from(e)})());!function(t,r,o,i,a,s,c,l,d,p,u=t,f){function h(){f||(f=1,"/"==(c=(s.lib||"/~partytown/")+(s.debug?"debug/":""))[0]&&(d=r.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t})):(l=setTimeout(v,(null==s?void 0:s.fallbackTimeout)||1e4),r.addEventListener("pt0",w),a?y(1):o.serviceWorker?o.serviceWorker.register(c+(s.swPath||"partytown-sw.js"),{scope:c}).then((function(t){t.active?y():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&y()}))}),console.error):v())))}function y(e){p=r.createElement(e?"script":"iframe"),t._pttab=Date.now(),e||(p.style.display="block",p.style.width="0",p.style.height="0",p.style.border="0",p.style.visibility="hidden",p.setAttribute("aria-hidden",!0)),p.src=c+"partytown-"+(e?"atomics.js?v=0.11.0":"sandbox-sw.html?"+t._pttab),r.querySelector(s.sandboxParent||"body").appendChild(p)}function v(n,o){for(w(),i==t&&(s.forward||[]).map((function(n){const[r]=e(n);delete t[r.split(".")[0]]})),n=0;n<d.length;n++)(o=r.createElement("script")).innerHTML=d[n].innerHTML,o.nonce=s.nonce,r.head.appendChild(o);p&&p.parentNode.removeChild(p)}function w(){clearTimeout(l)}s=t.partytown||{},i==t&&(s.forward||[]).map((function(r){const[o,{preserveBehavior:i}]=e(r);u=t,o.split(".").map((function(e,r,o){var a;u=u[o[r]]=r+1<o.length?u[o[r]]||(a=o[r+1],n.includes(a)?[]:{}):(()=>{let e=null;if(i){const{methodOrProperty:n,thisObject:r}=((t,e)=>{let n=t;for(let t=0;t<e.length-1;t+=1)n=n[e[t]];return{thisObject:n,methodOrProperty:e.length>0?n[e[e.length-1]]:void 0}})(t,o);"function"==typeof n&&(e=(...t)=>n.apply(r,...t))}return function(){let n;return e&&(n=e(arguments)),(t._ptf=t._ptf||[]).push(o,arguments),n}})()}))})),"complete"==r.readyState?h():(t.addEventListener("DOMContentLoaded",h),t.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated);;(e=>{e.addEventListener("astro:before-swap",e=>{let r=document.body.querySelector("iframe[src*='/~partytown/']");if(r)e.newDocument.body.append(r)})})(document);</script><style>[data-astro-transition-scope="astro-4rjx6ynf-1"] { view-transition-name: post-image-gatsby-to-astro; }@layer astro { ::view-transition-old(post-image-gatsby-to-astro) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(post-image-gatsby-to-astro) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(post-image-gatsby-to-astro) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(post-image-gatsby-to-astro) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-4rjx6ynf-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-4rjx6ynf-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-4rjx6ynf-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-4rjx6ynf-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-4rjx6ynf-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-4rjx6ynf-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-4rjx6ynf-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-4rjx6ynf-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="overflow-x-hidden" data-astro-cid-esqdxlhz> <header class="fixed left-0 right-0 top-0 z-30 h-20 px-3 transition-all ease-out [&.scroll]:h-12 [&.scroll]:backdrop-blur-xl" data-header data-astro-cid-3ef6ksr2> <div class="container flex h-full place-content-between place-items-center" data-astro-cid-3ef6ksr2> <a aria-label="Go to Home" class="logo" href="/blog" data-astro-cid-3ef6ksr2> <svg width="135" height="38" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 135 38"><rect width="44" height="20" x="91" fill="#F5DA55" rx="2"/><path fill="#000" d="M5.04 18.02a5.16 5.16 0 0 1-3.68-1.28A4.8 4.8 0 0 1 0 13.09v-1.32h2.38v1.32c0 .82.22 1.48.66 1.98.45.48 1.1.72 1.95.72.83 0 1.43-.24 1.83-.72.4-.49.6-1.15.6-1.98V4.46h-2.7V2.31h6.78v2.15H9.79v8.63c0 1.6-.42 2.82-1.25 3.67a4.7 4.7 0 0 1-3.5 1.26Zm14.67 0c-1.9 0-3.4-.53-4.5-1.59-1.12-1.07-1.68-2.6-1.68-4.62v-3.6c0-2.02.56-3.55 1.67-4.6A6.24 6.24 0 0 1 19.71 2c1.9 0 3.4.54 4.51 1.6 1.13 1.06 1.7 2.6 1.7 4.6v3.61c0 2.01-.57 3.55-1.7 4.62a6.29 6.29 0 0 1-4.5 1.59Zm0-2.14c1.22 0 2.16-.35 2.82-1.05.66-.72.99-1.7.99-2.93V8.12a4 4 0 0 0-1-2.9c-.65-.73-1.6-1.09-2.8-1.09-1.2 0-2.13.36-2.8 1.08a4.02 4.02 0 0 0-1.02 2.9v3.79c0 1.23.34 2.2 1.02 2.93.67.7 1.6 1.05 2.8 1.05Zm9.24 1.83V2.3h2.37v6.6h6.47V2.3h2.38v15.4h-2.38v-6.65h-6.47v6.65h-2.37Zm14.65 0V2.3h4.58l4.18 13.81h.35V2.31h2.36v15.4h-4.58L46.31 3.87h-.35v13.84H43.6Zm14.9 0V2.3h4.57l4.18 13.81h.36V2.31h2.35v15.4h-4.58L61.2 3.87h-.35v13.84H58.5Zm18.87 0v-5.59l-5.34-9.81h2.68l3.7 6.97h.33l3.7-6.97h2.68l-5.35 9.81v5.59h-2.4Z"/><path fill="#000" d="M93.12 17.7v-2.1h2.07V4.42h-2.07V2.31h6.16c2.05 0 3.62.52 4.7 1.56 1.1 1.04 1.66 2.61 1.66 4.7v2.89c0 2.1-.55 3.67-1.65 4.7-1.09 1.03-2.66 1.55-4.71 1.55h-6.16Zm4.46-2.15h1.72c1.34 0 2.33-.34 2.97-1.01.65-.67.97-1.68.97-3.01V8.49c0-1.35-.32-2.35-.97-3.01-.64-.66-1.63-1-2.97-1h-1.72v11.07Zm10.96 2.16V2.3h9.7v2.15h-7.32V8.9h6.7v2.15h-6.7v4.51h7.43v2.16h-9.8Zm15.66 0-4.3-15.4h2.47l3.74 13.9h.29l3.71-13.9h2.47l-4.27 15.4h-4.11Z"/><path fill="#000" d="M.96 34.02v-8.4h5.08v.9H1.97v2.83H5.7v.91H1.97v3.76H.96Zm6.72 0v-8.4h3.4c.52 0 .97.09 1.36.27a2.06 2.06 0 0 1 1.27 1.96v.13a2 2 0 0 1-.39 1.3c-.26.33-.58.54-.94.66v.16a1 1 0 0 1 .71.3c.2.17.29.44.29.8v2.82h-1v-2.7c0-.24-.06-.43-.2-.56-.13-.12-.32-.19-.59-.19H8.7v3.45H7.68Zm1-4.36h2.3c.55 0 .98-.13 1.27-.4.3-.27.46-.64.46-1.12v-.09c0-.48-.15-.85-.45-1.11-.3-.28-.72-.41-1.28-.41h-2.3v3.13Zm9.86 4.52c-1 0-1.8-.28-2.4-.86-.6-.58-.89-1.43-.89-2.54v-1.92c0-1.12.3-1.96.89-2.54a3.3 3.3 0 0 1 2.4-.87c1 0 1.8.29 2.4.87.6.58.9 1.42.9 2.54v1.92c0 1.1-.3 1.96-.9 2.54-.6.58-1.4.86-2.4.86Zm0-.9c.73 0 1.3-.21 1.7-.64.4-.44.6-1.05.6-1.83v-1.99c0-.78-.2-1.38-.6-1.81-.4-.44-.97-.66-1.7-.66-.72 0-1.28.22-1.68.66-.4.43-.6 1.03-.6 1.81v2c0 .77.2 1.38.6 1.82.4.43.96.64 1.68.64Zm5.22.74v-8.4h1.95l2.93 7.76h.16v-7.76h1v8.4h-1.96l-2.92-7.78h-.17v7.78h-1Zm10.27 0v-7.5h-2.7v-.9h6.4v.9h-2.7v7.5h-1Zm5.23 0v-8.4h5.17v.9h-4.16v2.82h3.83v.9h-3.83v2.86h4.22v.92h-5.23Zm7 0v-8.4h1.96l2.93 7.76h.15v-7.76h1v8.4h-1.96l-2.91-7.78h-.17v7.78h-1Zm7.82 0v-.9h1.17v-6.6h-1.17v-.9h3.27c1.1 0 1.96.28 2.56.84.6.56.91 1.42.91 2.58v1.56c0 1.16-.3 2.03-.91 2.59-.6.55-1.45.83-2.56.83h-3.27Zm2.18-.92h1.1c.8 0 1.42-.2 1.84-.6.42-.4.62-1.02.62-1.86V29c0-.86-.2-1.48-.62-1.87-.42-.4-1.03-.59-1.85-.59h-1.09v6.56Zm9.34.92v-.9h1.17v-6.6H65.6v-.9h3.27c1.1 0 1.96.28 2.56.84.6.56.9 1.42.9 2.58v1.56c0 1.16-.3 2.03-.9 2.59-.6.55-1.45.83-2.56.83H65.6Zm2.18-.92h1.1c.8 0 1.42-.2 1.84-.6.42-.4.62-1.02.62-1.86V29c0-.86-.2-1.48-.62-1.87-.42-.4-1.03-.59-1.85-.59h-1.1v6.56Zm6.4.92v-8.4h5.18v.9H75.2v2.82h3.82v.9H75.2v2.86h4.22v.92h-5.23Zm8.88 0-2.53-8.4h1.04l2.3 7.78h.15l2.3-7.78h1.04l-2.53 8.4h-1.77Zm5.8 0v-8.4h5.17v.9h-4.16v2.82h3.83v.9h-3.83v2.86h4.22v.92h-5.23Zm7 0v-8.4h1v7.48h4.26v.92h-5.26Zm9.6.16c-1 0-1.8-.28-2.4-.86-.59-.58-.88-1.43-.88-2.54v-1.92c0-1.12.3-1.96.89-2.54a3.3 3.3 0 0 1 2.4-.87c1 0 1.8.29 2.4.87.6.58.9 1.42.9 2.54v1.92c0 1.1-.3 1.96-.9 2.54-.6.58-1.4.86-2.4.86Zm0-.9c.73 0 1.3-.21 1.7-.64.4-.44.6-1.05.6-1.83v-1.99c0-.78-.2-1.38-.6-1.81-.4-.44-.97-.66-1.7-.66-.71 0-1.27.22-1.67.66-.4.43-.6 1.03-.6 1.81v2c0 .77.2 1.38.6 1.82.4.43.96.64 1.68.64Zm5.23.74v-8.4h3.21c.5 0 .95.1 1.34.3.4.19.72.46.95.82.23.36.35.8.35 1.31v.16a2.27 2.27 0 0 1-1.3 2.14c-.4.19-.85.28-1.34.28h-2.2v3.39h-1.02Zm1-4.3h2.1c.54 0 .96-.13 1.27-.4.32-.27.47-.65.47-1.14v-.12c0-.48-.15-.86-.47-1.12-.3-.28-.72-.41-1.27-.41h-2.1v3.19Zm6.44 4.3v-8.4h5.17v.9h-4.16v2.82h3.83v.9h-3.83v2.86h4.22v.92h-5.23Zm7 0v-8.4h3.4c.52 0 .98.09 1.37.27a2.06 2.06 0 0 1 1.27 1.96v.13a2 2 0 0 1-.4 1.3c-.26.33-.57.54-.93.66v.16a1 1 0 0 1 .7.3c.2.17.3.44.3.8v2.82h-1v-2.7a.77.77 0 0 0-.2-.56c-.13-.12-.33-.19-.6-.19h-2.9v3.45h-1Zm1.01-4.36h2.3c.55 0 .97-.13 1.27-.4.3-.27.45-.64.45-1.12v-.09c0-.48-.15-.85-.44-1.11-.3-.28-.73-.41-1.29-.41h-2.29v3.13Z"/></svg>
+ </a> <nav class="flex h-8 items-stretch font-sg text-sm text-th-text" data-astro-cid-3ef6ksr2> <a class="relative flex items-center px-3 data-[active=true]:font-semibold" data-active="true" href="/blog" data-astro-cid-3ef6ksr2>Blog</a> <a class="relative flex items-center px-3 data-[active=true]:font-semibold" data-active="false" href="/about" data-astro-cid-3ef6ksr2>About</a> <custom-theme-switcher data-astro-cid-dz5h74bc="true"> <button aria-label="auto" aria-live="polite" class="relative flex h-8 w-8 place-content-center place-items-center rounded-sm" title="Toggles light & dark" type="button" data-astro-cid-dz5h74bc> <svg width="1em" height="1em" viewBox="0 0 24 24" data-light="true" data-astro-cid-dz5h74bc="true" data-icon="octicon:sun-24">  <symbol id="ai:octicon:sun-24"><path fill="currentColor" d="M12 19a7 7 0 1 1 0-14a7 7 0 0 1 0 14m0-1.5a5.5 5.5 0 1 0 0-11a5.5 5.5 0 1 0 0 11m-5.657.157a.75.75 0 0 1 0 1.06l-1.768 1.768a.749.749 0 0 1-1.275-.326a.75.75 0 0 1 .215-.734l1.767-1.768a.75.75 0 0 1 1.061 0M3.515 3.515a.75.75 0 0 1 1.06 0l1.768 1.768a.749.749 0 0 1-.326 1.275a.75.75 0 0 1-.734-.215L3.515 4.575a.75.75 0 0 1 0-1.06M12 0a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0V.75A.75.75 0 0 1 12 0M4 12a.75.75 0 0 1-.75.75H.75a.75.75 0 0 1 0-1.5h2.5A.75.75 0 0 1 4 12m8 8a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-2.5A.75.75 0 0 1 12 20m12-8a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h2.5A.75.75 0 0 1 24 12m-6.343 5.657a.75.75 0 0 1 1.06 0l1.768 1.768a.75.75 0 0 1-.018 1.042a.75.75 0 0 1-1.042.018l-1.768-1.767a.75.75 0 0 1 0-1.061m2.828-14.142a.75.75 0 0 1 0 1.06l-1.768 1.768a.75.75 0 0 1-1.042-.018a.75.75 0 0 1-.018-1.042l1.767-1.768a.75.75 0 0 1 1.061 0"/></symbol><use  xlink:href="#ai:octicon:sun-24"></use>  </svg> <svg width="1em" height="1em" viewBox="0 0 24 24" data-dark="true" data-astro-cid-dz5h74bc="true" data-icon="octicon:moon-24">  <symbol id="ai:octicon:moon-24"><path fill="currentColor" d="m14.768 3.96l-.002-.005a9 9 0 0 0-.218-.779c-.13-.394.21-.8.602-.67q.435.144.855.328l.01.005A10.002 10.002 0 0 1 12 22a10 10 0 0 1-9.162-5.985l-.004-.01a10 10 0 0 1-.329-.855c-.13-.392.277-.732.67-.602q.386.126.78.218l.004.002A9 9 0 0 0 14.999 6a9 9 0 0 0-.231-2.04M16.5 6c0 5.799-4.701 10.5-10.5 10.5q-.64 0-1.26-.075A8.5 8.5 0 1 0 16.425 4.74q.075.62.075 1.259Z"/></symbol><use  xlink:href="#ai:octicon:moon-24"></use>  </svg> <svg width="1em" height="1em" viewBox="0 0 24 24" data-auto="true" data-astro-cid-dz5h74bc="true" data-icon="octicon:devices-24">  <symbol id="ai:octicon:devices-24"><path fill="currentColor" d="M1 3.75C1 2.784 1.784 2 2.75 2h18.5c.966 0 1.75.784 1.75 1.75v4a.75.75 0 0 1-1.5 0v-4a.25.25 0 0 0-.25-.25H2.75a.25.25 0 0 0-.25.25v11.5c0 .138.112.25.25.25h9a.75.75 0 0 1 0 1.5h-1.287c-.126 1.266-.564 2.445-1.223 3.5h2.51a.75.75 0 0 1 0 1.5h-4a.75.75 0 0 1-.565-1.243c.964-1.105 1.598-2.382 1.769-3.757H2.75A1.75 1.75 0 0 1 1 15.25z"/><path fill="currentColor" d="M14 11.75c0-.967.783-1.75 1.75-1.75h5.5c.966 0 1.75.783 1.75 1.75v8.5A1.75 1.75 0 0 1 21.25 22h-5.5A1.75 1.75 0 0 1 14 20.25Zm1.75-.25a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h5.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25Z"/></symbol><use  xlink:href="#ai:octicon:devices-24"></use>  </svg> </button> </custom-theme-switcher> <script>
+  // for avoid FOUC
+  const loadTheme = () => {
+    if (typeof localStorage === 'undefined') {
+      return { preferred: 'light', theme: 'auto' }
+    }
+
+    const value = localStorage.getItem('theme')
+
+    return {
+      preferred: matchMedia('(prefers-color-scheme: light)').matches
+        ? 'light'
+        : 'dark',
+      theme: value === 'dark' || value === 'light' ? value : 'auto',
+    }
+  }
+
+  const { preferred, theme } = loadTheme()
+  const {
+    documentElement: { classList },
+  } = document
+
+  if (theme === 'auto') {
+    classList.add('auto')
+  } else {
+    classList.remove('auto')
+  }
+
+  const actual = theme === 'auto' ? preferred : theme
+
+  if (actual === 'dark') {
+    classList.add('dark')
+  } else {
+    classList.remove('dark')
+  }
+</script> <script type="module" src="/_astro/ThemeSwitcher.astro_astro_type_script_index_0_lang.Dg6F2ten.js"></script>  </nav> </div> </header> <script type="module">function r(){const l=document.querySelector("header[data-header]");if(!l)return;let e="";window.addEventListener("scroll",()=>{if(window.scrollY>0){e!=="scroll"&&(e="scroll",l?.classList.add("scroll"));return}e!==""&&(e="",l?.classList.remove("scroll"))},{passive:!0})}r();document.addEventListener("astro:after-swap",r);</script>  <main class="relative z-10" data-astro-cid-esqdxlhz> <div class="px-3 transition-colors" data-astro-cid-esqdxlhz> <div class="container relative pt-20" data-astro-cid-esqdxlhz>  <div class="py-8 text-th-text"> <div class="relative mb-10"> <button class="absolute -top-8 flex h-4 items-center gap-1 font-sg text-sm text-th-text-secondary" data-back type="button"> <svg width="1em" height="1em" viewBox="0 0 24 24" data-icon="octicon:arrow-left-24">  <symbol id="ai:octicon:arrow-left-24"><path fill="currentColor" d="M10.78 19.03a.75.75 0 0 1-1.06 0l-6.25-6.25a.75.75 0 0 1 0-1.06l6.25-6.25a.749.749 0 0 1 1.275.326a.75.75 0 0 1-.215.734L5.81 11.5h14.44a.75.75 0 0 1 0 1.5H5.81l4.97 4.97a.75.75 0 0 1 0 1.06"/></symbol><use  xlink:href="#ai:octicon:arrow-left-24"></use>  </svg> Back to List
+</button> <h1 class="mb-4"> <span class="text-balance text-3xl font-semibold transition-all"> 웹 성능 관점에서 본 Astro </span> </h1> <div class="mb-2"> <time class="font-sg text-sm text-th-text-secondary">2023-03-19</time> </div> <div class="flex items-center gap-1"> <span class="rounded-full bg-th-bg-highlight/60 px-2 py-1 font-sg text-xs text-th-highlight transition-transform data-[emphasis]:scale-125 data-[emphasis]:contrast-200 dark:bg-th-bg-highlight/10" data-tag="astro">#astro</span><span class="rounded-full bg-th-bg-highlight/60 px-2 py-1 font-sg text-xs text-th-highlight transition-transform data-[emphasis]:scale-125 data-[emphasis]:contrast-200 dark:bg-th-bg-highlight/10" data-tag="performance">#performance</span><span class="rounded-full bg-th-bg-highlight/60 px-2 py-1 font-sg text-xs text-th-highlight transition-transform data-[emphasis]:scale-125 data-[emphasis]:contrast-200 dark:bg-th-bg-highlight/10" data-tag="island architecture">#island architecture</span> </div> </div> <input class="hidden" data-frontmatter type="hidden" value="{&#34;title&#34;:&#34;웹 성능 관점에서 본 Astro&#34;,&#34;description&#34;:&#34;블로그를 Astro로 옮기며 느꼈던 장점들을 웹 성능 관점에서 정리해 본다&#34;,&#34;cover&#34;:&#34;../../assets/postImages/20230319/cover.png&#34;,&#34;coverAlt&#34;:&#34;Astro의 성능 측정 결과 (출처: 공식 사이트)&#34;,&#34;categories&#34;:[&#34;Framework&#34;],&#34;tags&#34;:[&#34;astro&#34;,&#34;performance&#34;,&#34;island architecture&#34;],&#34;publishedAt&#34;:&#34;2023-03-19T20:00+09:00&#34;,&#34;readingTime&#34;:759300,&#34;summary&#34;:&#34;XMLHttpRequest기반 RIA의 개발부터. Selective Hydration을 구현하고 있는 웹 기술의 변천사를 하나하나 돌이켜 보다 보면. 어떻게 이런 생각까지 할 수 있을까라는 생각으로 자연스럽게 흘러 가게 된다.웹 기술의 변화를 이끄는 조직은 수도 없겠지&#34;,&#34;coverColors&#34;:[&#34;#cccad2&#34;,&#34;#62b7be&#34;,&#34;#456eaf&#34;,&#34;#5f5f6a&#34;,&#34;#0e121b&#34;]}"> <div class="mb-10" data-astro-transition-scope="astro-4rjx6ynf-1"> <div class="relative mb-2 aspect-4/3 w-full drop-shadow-md transition-all after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:border after:border-white/10 dark:drop-shadow-none aspect-video"> <div class="_glow" style="--glow-bg:linear-gradient(45deg, #cccad2,#62b7be,#456eaf,#5f5f6a,#0e121b);--glow-blur:60px;--glow-duration:5s;--glow-opacity:0.5" data-astro-cid-erfvtfza></div>  <div class="relative h-full w-full overflow-hidden rounded-lg"> <img src="/_astro/cover.DXq4vSBT_RegSX.webp" alt="Astro의 성능 측정 결과 (출처: 공식 사이트)" fetchpriority="high" loading="eager" style="object-fit:cover" decoding="async" width="1080" height="607" class="h-full w-full rounded-lg transition-all duration-500 ease-out group-hover:scale-105 group-hover:brightness-110"> </div> </div> <div class="px-1 text-th-text-secondary">Astro의 성능 측정 결과 (출처: 공식 사이트)</div> </div> <div class="_blog_content container prose prose-stone mb-20 max-w-none break-keep px-1 dark:prose-invert prose-headings:font-semibold prose-h1:mt-20 prose-a:relative prose-a:no-underline prose-a:after:absolute prose-a:after:bottom-0 prose-a:after:left-0 prose-a:after:right-0 prose-a:after:h-[1px] prose-a:after:bg-th-text/80 prose-a:after:content-['']"> <h2 id="서론">서론</h2>
+<p>XMLHttpRequest기반 RIA의 개발부터. Selective Hydration을 구현하고 있는 웹 기술의 변천사를 하나하나 돌이켜 보다 보면. 어떻게 이런 생각까지 할 수 있을까라는 생각으로 자연스럽게 흘러 가게 된다.</p>
+<p>웹 기술의 변화를 이끄는 조직은 수도 없겠지만 가장 눈에 띄는 곳은 단연 facebook, vercel, shopify일 것이다. 이 곳의 협업을 통해 개선되는 react, nextjs 의 신기능 시연은 여가 시간에 한번이라도 더 컴퓨터 앞에 앉게 만드는 자극제가 되고 있다.</p>
+<p>소개된 기술 중 <a href="https://youtu.be/8dUpL8SCO1w?t=4174">Streaming Server Rendering with Suspense</a> 와 같은 기능들은 이 글을 쓰고 있는 2023년에도 아직 실험적 기능이라는 딱지를 달고 있고 완전하게 동작하지는 않고 있지만. (nextjs 13.2 에는 라우팅 단위로 비슷하게 구현될 수 있도록 업데이트 되었다)</p>
+<p>사실 Hydration 과정을 스트리밍하는 개념 자체는 react의 발표 전에도 존재했으며 오늘 글에서 소개할 Astro는 그런 개념 중 <a href="https://patterns-dev-kr.github.io/rendering-patterns/the-island-architecture/">Island Architecture</a>를 프레임워크 레벨에서 구현하고 있다.</p>
+<p><strong>용어가 생소할 수 있는데 내용을 보다 보면 익숙한 느낌이 들 것이다.</strong> 기본적인 개념 설명과 Gatsby로 개발했던 블로그를 Astro로 옮기며 생긴 변화들에 대해서 정리한다.</p>
+<h2 id="island-architecture">Island Architecture</h2>
+<p>preactjs의 개발자 Jason Miller가 쓴 <a href="https://jasonformat.com/islands-architecture/">Island Architecture에 대한 소개</a>를 보면 Etsy의 프론트엔드 엔지니어 <a href="https://twitter.com/ksylor">Katie Sylor-Miller</a> 와의 미팅 중에 관련된 개념에 대한 이야기를 처음 나눴다고 한다.</p>
+<figure><img src="/_astro/island-architecture.DV2hn7vO_Z1PLSdv.webp" alt="출처: Islands Architecture: Jason Miller" loading="lazy" decoding="async" fetchpriority="auto" width="895" height="764"><figcaption>출처: Islands Architecture: Jason Miller</figcaption></figure>
+<p>Island Architecture의 요점은 페이지 내에 동적인 영역에 대한 html은 서버가 렌더링하여 내려주고. 인터렉션을 위한 JS를 후속하여 내려받도록 해 <strong>점진적으로 페이지의 기능을 이용할 수 있도록 하는 것이다.</strong></p>
+<p>SSR이 SEO를 고려해 자주 구현되곤 하지만, SSR은 인터렉션에 관련된 JS가 다운로드되고 실행되기 전 까지 페이지가 동작하지 않는 부정적인 경험을 사용자에게 줄 수 있다. 일반적으로 개발되는 JS를 처리하기 위한 리소스 소모가 생각보다 많다고 한다.</p>
+<p>또한. 서버에서 렌더링해 내려주는 html에는 뉴스의 경우 본문이, 상품 페이지의 경우 상품 설명 등. 사용자 입장에서 필수적인 내용이 꼭 포함되어 있어야 한다는 내용을 포함하고 있다.</p>
+<p>react의 스트리밍 서버 렌더링 소개 영상이 2021년 발표되었으니. 이 개념은 알려진 것 보다 프론트엔드 엔지니어들 사이에서 훨씬 전에 논의되고 구현되어 왔던 것이다.</p>
+<p>따라서 <strong>Island Architecture는 어느 프레임웍 혹은 라이브러리를 지칭하는 용어가 아니라 디자인 패턴일 뿐이다.</strong> 해당 디자인 패턴을 구현하는 프레임웍이나 라이브러리는 많다. 그런데 Astro가 State Of JS 2022 기준으로는 가장 높은 Ratio를 기록하고 있다.</p>
+<figure><img src="/_astro/ratios_over_time.B6TXcGVP_1SY1lA.webp" alt="State Of JS 2022 Rendering Frameworks" loading="lazy" decoding="async" fetchpriority="auto" width="1500" height="866"><figcaption>State Of JS 2022 Rendering Frameworks</figcaption></figure>
+<h2 id="astro의-component-island">Astro의 Component Island</h2>
+<p>Astro는 기본적으로 모든 웹을 zero client-side JS으로 생성한다. Astro는 React, Preact, Svelte, Vue, SolidJS, AlpineJS, Lit 등으로 만든 UI컴포넌트들도 HTML을 만들긴 하지만 마찬가지로 JS를 걷어낸 상태로 렌더링한다.</p>
+<p>렌더링 된 HTML에는 placeholder혹은 slot역할을 하는 <code>&lt;astro-island /&gt;</code> 요소가 자리잡게 된다. 아래는 현재 블로그에서 preact로 구현된 Table Of Content (목차) 컴포넌트의 SSR결과 스크린샷이다. 보면 알겠지만 주요 컨텐츠를 포함하고 있다.</p>
+<figure><img src="/_astro/astro-island.BD2bmuZr_1sLmtU.webp" alt="preact로 개발된 TOC컴포넌트의 SSR 결과" loading="lazy" decoding="async" fetchpriority="auto" width="466" height="283"><figcaption>preact로 개발된 TOC컴포넌트의 SSR 결과</figcaption></figure>
+<p>Astro는 각 island에 대해 어느 순간에 어떻게 로드될 것인지에 대한 지시자를 사용할 수 있다. 이 블로그의 경우 뷰포트의 크기가 1388px 이상일 때에만 우측에 TOC를 노출하고 있는데 따라서 아래와 같이 지시자를 추가하였다.</p>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4;overflow-x:auto" tabindex="0" data-language="tsx"><code><span class="line"><span style="color:#94E2D5">&lt;</span><span style="color:#F5C2E7">Layout</span><span style="color:#94E2D5">&gt;</span></span>
+<span class="line"><span style="color:#94E2D5">  &lt;</span><span style="color:#89B4FA">div</span><span style="color:#F9E2AF"> class</span><span style="color:#94E2D5">=</span><span style="color:#A6E3A1">&quot;wrapper&quot;</span><span style="color:#94E2D5">&gt;</span></span>
+<span class="line"><span style="color:#94E2D5">    &lt;</span><span style="color:#89B4FA">div</span><span style="color:#F9E2AF"> class</span><span style="color:#94E2D5">=</span><span style="color:#A6E3A1">&quot;content&quot;</span><span style="color:#94E2D5">&gt;</span><span style="color:#9399B2">{</span><span style="color:#9399B2;font-style:italic">/* 본문 */</span><span style="color:#9399B2">}</span><span style="color:#94E2D5">&lt;/</span><span style="color:#89B4FA">div</span><span style="color:#94E2D5">&gt;</span></span>
+<span class="line highlighted"><span style="color:#94E2D5">    &lt;</span><span style="color:#F5C2E7">TOC</span><span style="color:#F9E2AF"> headings</span><span style="color:#94E2D5">=</span><span style="color:#9399B2">{</span><span style="color:#CDD6F4">headings</span><span style="color:#9399B2">}</span><span style="color:#F9E2AF"> </span><span class="highlighted-word"><span style="color:#F9E2AF">client</span><span style="color:#9399B2">:</span><span style="color:#F9E2AF">visible</span></span><span style="color:#94E2D5"> /&gt;</span></span>
+<span class="line"><span style="color:#94E2D5">  &lt;/</span><span style="color:#89B4FA">div</span><span style="color:#94E2D5">&gt;</span></span>
+<span class="line"><span style="color:#94E2D5">&lt;/</span><span style="color:#F5C2E7">Layout</span><span style="color:#94E2D5">&gt;</span></span></code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4;overflow-x:auto" tabindex="0" data-language="scss"><code><span class="line"><span style="color:#CBA6F7">@media</span><span style="color:#9399B2"> (</span><span style="color:#F9E2AF;font-style:italic">max-width</span><span style="color:#94E2D5">:</span><span style="color:#FAB387"> 1388</span><span style="color:#CBA6F7">px</span><span style="color:#9399B2">)</span><span style="color:#9399B2"> {</span></span>
+<span class="line"><span style="color:#9399B2">  .</span><span style="color:#F9E2AF">toc</span><span style="color:#9399B2"> {</span></span>
+<span class="line highlighted"><span style="color:#89B4FA">    display</span><span style="color:#94E2D5">:</span><span style="color:#CDD6F4"> none</span><span style="color:#9399B2">;</span></span>
+<span class="line"><span style="color:#9399B2">  }</span></span>
+<span class="line"><span style="color:#9399B2">}</span></span></code></pre>
+<p>미디어쿼리를 통해 뷰포트가 작으면 <code>&lt;TOC /&gt;</code>가 노출되지 않고. 조건에 해당될 경우 <code>client:visible</code> 지시자를 통해 화면에 노출될 때에만 컴포넌트에 필요한 JS를 동적으로 로드하여 Hydration하게 된다.</p>
+<figure><img src="/_astro/network.CLUbBT6s_1h184y.webp" alt="동적으로 로드된 JS들. react 런타임마저도 동적으로 로드되고 있다." loading="lazy" decoding="async" fetchpriority="auto" width="937" height="205"><figcaption>동적으로 로드된 JS들. react 런타임마저도 동적으로 로드되고 있다.</figcaption></figure>
+<p>이런 <a href="https://docs.astro.build/en/reference/directives-reference/#client-directives">클라이언트 지시자</a>들은 위에서 소개한 뷰포트 노출 여부 뿐만 아니라 브라우저 활성화 상태, 미디어 쿼리 등 다양하게 지원하고 있으므로 적절하게 잘 사용하는 것 만으로도 브라우저의 FCP를 위해 열심히 일하고 있는 메인 스레드를 방해하지 않을 수 있다.</p>
+<p>필요한 곳에 직접 구현해 적용해야 했던 과거와 달리 엄청 간편해진 셈이다.</p>
+<h2 id="zero-client-side-js">Zero Client-Side JS</h2>
+<p><strong>어떤 기술을 사용하던 결국 모던 웹 앱 개발에서 TTI(인터렉티브가 가능해지기까지의 시간)를 개선하는 것은 JS를 얼만큼 줄이느냐의 싸움으로 귀결된다.</strong> <a href="https://medium.com/dev-channel/a-netflix-web-performance-case-study-c0bcde26a9d9">Netflix가 서비스를 Vanilla JS로 전환하고 TTI가 50% 감소했다</a>는 사례를 보면 JS가 차지하는 비중이 작지 않다는 것을 알 수 있다.</p>
+<p>아무런 내용 없이 <code>create-react-app</code>과 <code>react-router-dom</code>만을 사용한 앱의 번들 크기는 gzipped기준 약 70kB 정도가 된다. history를 응용해 인앱 라우팅을 구현하는 코드만으로도 번들 크기가 꽤 늘어나는 것을 볼 수 있다.</p>
+<figure><img src="/_astro/blog-lighthouse.N4Mr4sXd_ZpoXWb.webp" alt="astro로 옮긴 후 측정한 결과. 이전에도 좋았지만 훨씬 좋아졌다." loading="lazy" decoding="async" fetchpriority="auto" width="689" height="423"><figcaption>astro로 옮긴 후 측정한 결과. 이전에도 좋았지만 훨씬 좋아졌다.</figcaption></figure>
+<p>이는 Astro로 개발한 이 블로그의 홈에서 이미지와 GA를 제외한 초기 사이즈 (약 30KB)대비 57.14%나 안 좋은 수치이다. (이 블로그 뿐만 아니라 Astro공식 홈페이지의 Showcase에 있는 사이트들은 모두 매우 작은 크기를 자랑하고 있다)</p>
+<p>Astro가 용량이 작을 수 있는 건. 초기 설계 단에서 신경을 쓴것도 영향이 있겠지만 단지.. 이런 코드들이 없기 때문이다. <a href="https://docs.astro.build/en/core-concepts/routing/#navigating-between-pages">Astro Routing API문서</a>를 확인해 보면 알겠지만 기본적으로 SPA를 위한 js가 포함되어 있지 않다. 페이지 이동은 <code>&lt;a href=&quot;..&quot; /&gt;</code>를 사용한 전통적인 리다이렉트에 의존하고 있다.</p>
+<p>또 Astro에서는 위에서 소개한 서드파티 컴포넌트 라이브러리 없이 Astro로 컴포넌트를 만들 경우에 대해서는. DOM에 이벤트를 붙이기 위해 <code>document.querySelector</code>와 <code>addEventListener</code>를 사용해야 한다.</p>
+<p>그럼 이벤트 제거는 어떻게 하나? 안해도 된다. 왜냐면 <code>&lt;a href=&quot;..&quot; /&gt;</code>로 페이지 자체가 이동되어 버리기 때문이다. (물론 이런 경우가 필요하면 위에서 언급한 react, preact, solidjs 등을 사용하면 된다)</p>
+<p>페이지 로드 후 실행되는 코드들에 대해 트랜스파일은 해 주지만 별도 추가 코드가 포함되어 있지는 않다. 말 그대로 <strong>Zero Client-Side JS</strong>에 가까운 셈이다.</p>
+<h2 id="astro를-도입해야-하나-말아야-하나">Astro를 도입해야 하나 말아야 하나?</h2>
+<p>gatsby 공식 스타터 중 <a href="https://www.gatsbyjs.com/starters/gatsbyjs/gatsby-starter-blog"><code>gatsby-starter-blog</code></a> 데모는 내용이 별로 많지 않음에도 웹 폰트 제외 초기 JS의 크기만 100kB이다.</p>
+<p>이 블로그도 이전에 gatsby로 개발했었는데. <strong>블로그 본질적인 기능</strong>만을 남긴다고 했을 때 불필요한 JS가 너무 많았다. 스타터 템플릿이 그런데 예전 gatsby버전은 더 했을 것이다.</p>
+<p>글을 보여주는 기능 외 다른 리소스들은 아무리 사용자 경험을 개선한다는 목적이라고 해도 꼼꼼히 따져본다면 결국 불필요한 리소스가 되고 만다. 이는 앱을 기획할 때 부터 앱의 성격에 따라 전략을 달리하는것이 올바르다 할 수 있다.</p>
+<p>현재까지 Astro를 포함 Island Architecture를 구현한 프로젝트들은 모두 적은 TTI를 강점으로 내새우고 있고 이는 정적 컨텐츠 위주의 사이트에서 극대화된다. <strong>JS를 최소화하기 용이하도록 만들어졌기 때문이다.</strong></p>
+<p>반면에 대시보드 앱과 같이 인터렉션이 필요한 UI가 많은 상황에서는 페이지 로드와 동시에 모든 JS를 받게 될 확률이 높을 것이다. 이렇게 되면 Astro의 모든 장점을 극대화하기가 어려워진다. 이럴 땐 핸들러 단위로 JS를 쪼개주는 <a href="https://qwik.builder.io/">qwik</a>을 고려해보는 것이 좋겠다.</p>
+<h2 id="결론">결론</h2>
+<p>아래는 위의 내용을 바탕으로 정리해본 생각들과 장점 및 단점이다</p>
+<p><strong>장점</strong></p>
+<ul>
+<li>정적 컨텐츠 위주의 사이트에서 JS를 최소하하여 TTI를 크게 개선할 수 있다 (페이지 로드 속도가 드라마틱하게 빨라진다)</li>
+<li>react, preact, solidjs, lit 등 기존에 만들어진 컴포넌트를 그대로 쓸 수 있다</li>
+<li>Island 별로 지시자를 통해 Hydration을 적절히 컨트롤할 수 있다</li>
+</ul>
+<p><strong>단점</strong></p>
+<ul>
+<li>동적 컨텐츠 위주의 사이트에서는 초기에 모든 JS를 로드해야 할 가능성이 높아 장점이 퇴색된다</li>
+<li>커뮤니티가 아직 많이 활성화되지 않았다</li>
+</ul>
+<p>티저 사이트, 블로그, 포트폴리오 사이트에는 무조건 쓰는 것이 좋겠다.</p>
+<blockquote>
+<p>참고</p>
+<ul>
+<li><a href="https://jasonformat.com/islands-architecture/">Islands Architecture</a></li>
+<li><a href="https://patterns-dev-kr.github.io/rendering-patterns/the-island-architecture/">The Island Architecture</a></li>
+</ul>
+</blockquote> </div> <custom-comment></custom-comment> <script type="module" src="/_astro/Comment.astro_astro_type_script_index_0_lang.Bysty2LL.js"></script> </div>  </div> </div> </main> <footer class="relative z-10"> <div class="container flex justify-between gap-10 border-t border-t-th-border px-3 py-8 font-sg text-sm text-th-text"> <div class="flex-none">&#169; 2025 - JOHNNYDEV</div> <div class="flex w-60 justify-between gap-2"> <div class="flex flex-col gap-1 md:w-1/2"> <a href="/blog">Blog</a> <a href="/about">About</a> </div> <div class="flex flex-col gap-1 md:w-1/2"> <a aria-label="Go to github profile page" href="https://github.com/johnny-mh" rel="noopener noreferrer" target="_blank">
+Github
+</a> <a aria-label="Send E-Mail to Johnny" href="mailto://romz1212@gmail.com">
+Mail
+</a> <a aria-label="RSS" href="/rss.xml" rel="noopener noreferrer" target="_blank">RSS</a> </div> </div> </div> </footer> <canvas class="pointer-events-none fixed left-0 top-0 z-0 h-screen w-screen opacity-0 transition-opacity duration-1000 data-[initialized]:opacity-100" data-bg-effect data-astro-transition-persist="bgEffect"></canvas> <script type="module" src="/_astro/BackgroundEffect.astro_astro_type_script_index_0_lang.DLCmX1Mn.js"></script> </body></html> <script type="module">t();document.addEventListener("astro:after-swap",t);function t(){document.querySelector("button[data-back]")?.addEventListener("click",()=>{history.back()})}</script> 
