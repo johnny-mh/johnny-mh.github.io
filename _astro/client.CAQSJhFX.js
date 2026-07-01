@@ -1,0 +1,1 @@
+import{t as e}from"./preload-helper.L5lOfJxi.js";var t=async n=>{let{init:r,options:i,url:a=`/fuse.json`}=n??{},[o,{index:s,list:c}]=await Promise.all([e(()=>import(`./fuse.D5pseSWw.js`),[]),t.index?Promise.resolve(t.index):fetch(a,r).then(e=>e.json()).then(e=>(t.index=e,e))]);return new o.default(c,i,o.default.parseIndex(s))};export{t as loadFuse};

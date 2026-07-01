@@ -1,0 +1,299 @@
+<!DOCTYPE html><html lang="ko" data-astro-cid-o2vbw2em><head><meta charset="utf-8"><meta content="ie=edge" http-equiv="x-ua-compatible"><meta content="initial-scale=1, maximum-scale=5, width=device-width, viewport-fit=cover" name="viewport"><meta content="er9zvCmECxtt0KP_BjDZ4WplZsNT5ApeDBK4wYD7aI0" name="google-site-verification"><meta content="aef0a8e4429c4f7c5f7e3b52074dc2d968716069" name="naver-site-verification"><meta content="Astro v7.0.3" name="generator"><title>JOHNNY DEV</title><link rel="canonical" href="https://johnny-mh.github.io/blog/angular%EC%9D%98-routereusestrategy/"><meta name="description" content="Developer who want to write good codes"><meta name="robots" content="index, follow"><meta property="og:title" content="Angular의 RouteReuseStrategy"><meta property="og:type" content="article"><meta property="og:image" content="/blog/angular%EC%9D%98-routereusestrategy//og-image.png"><meta property="og:url" content="https://johnny-mh.github.io/blog/angular%EC%9D%98-routereusestrategy/"><meta property="og:image:url" content="/blog/angular%EC%9D%98-routereusestrategy//og-image.png"><meta property="og:image:alt" content="Angular의 RouteReuseStrategy"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect"><link href="/favicon.png" rel="icon" type="image/png"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="swap"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.2i1RQzKf.js"></script><script src="https://www.googletagmanager.com/gtag/js?id=G-R9PQNBWGC9" type="text/partytown"></script><script type="text/partytown">
+  window.dataLayer = window.dataLayer || []
+  function gtag() {
+    // eslint-disable-next-line prefer-rest-params
+    dataLayer.push(arguments)
+  }
+  gtag('js', new Date())
+  gtag('config', 'G-R9PQNBWGC9')
+</script><script>
+      document.addEventListener('astro:page-load', () => {
+        if (navigator.userAgent.indexOf('Win') > -1) {
+          document.documentElement.classList.add('win')
+        }
+      })
+    </script><link rel="stylesheet" href="/_astro/Wrapper.BAKYfzYO.css"><style>._blog_content span.highlighted{background:#65758529;width:calc(100% + 32px);margin:0 -16px;padding:0 16px;display:inline-block}
+</style><script>!(function(w,p,f,c){if(!window.crossOriginIsolated && !navigator.serviceWorker) return;c=w[p]=Object.assign(w[p]||{},{"lib":"/~partytown/","debug":false});c[f]=(c[f]||[]).concat(["dataLayer.push"])})(window,'partytown','forward');/* Partytown 0.13.2 - MIT QwikDev */
+const t={preserveBehavior:!1},e=e=>{if("string"==typeof e)return[e,t];const[n,r=t]=e;return[n,{...t,...r}]},n=Object.freeze((t=>{const e=new Set;let n=[];do{Object.getOwnPropertyNames(n).forEach((t=>{"function"==typeof n[t]&&e.add(t)}))}while((n=Object.getPrototypeOf(n))!==Object.prototype);return Array.from(e)})());!function(t,r,o,i,a,s,c,l,d,p,u=t,f){function h(){f||(f=1,"/"==(c=(s.lib||"/~partytown/")+(s.debug?"debug/":""))[0]&&(d=r.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t})):(l=setTimeout(v,(null==s?void 0:s.fallbackTimeout)||1e4),r.addEventListener("pt0",w),a?y(1):o.serviceWorker?o.serviceWorker.register(c+(s.swPath||"partytown-sw.js"),{scope:c}).then((function(t){t.active?y():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&y()}))}),console.error):v())))}function y(e){p=r.createElement(e?"script":"iframe"),t._pttab=Date.now(),e||(p.style.display="block",p.style.width="0",p.style.height="0",p.style.border="0",p.style.visibility="hidden",p.setAttribute("aria-hidden",!0)),p.src=c+"partytown-"+(e?"atomics.js?v=0.13.2":"sandbox-sw.html?"+t._pttab),r.querySelector(s.sandboxParent||"body").appendChild(p)}function v(n,o){for(w(),i==t&&(s.forward||[]).map((function(n){const[r]=e(n);delete t[r.split(".")[0]]})),n=0;n<d.length;n++)(o=r.createElement("script")).innerHTML=d[n].innerHTML,o.nonce=s.nonce,r.head.appendChild(o);p&&p.parentNode.removeChild(p)}function w(){clearTimeout(l)}s=t.partytown||{},i==t&&(s.forward||[]).map((function(r){const[o,{preserveBehavior:i}]=e(r);u=t,o.split(".").map((function(e,r,o){var a;u=u[o[r]]=r+1<o.length?u[o[r]]||(a=o[r+1],n.includes(a)?[]:{}):(()=>{let e=null;if(i){const{methodOrProperty:n,thisObject:r}=((t,e)=>{let n=t;for(let t=0;t<e.length-1;t+=1)n=n[e[t]];return{thisObject:n,methodOrProperty:e.length>0?n[e[e.length-1]]:void 0}})(t,o);"function"==typeof n&&(e=(...t)=>n.apply(r,...t))}return function(){let n;return e&&(n=e(arguments)),(t._ptf=t._ptf||[]).push(o,arguments),n}})()}))})),"complete"==r.readyState?h():(t.addEventListener("DOMContentLoaded",h),t.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated);;(e=>{e.addEventListener("astro:before-swap",e=>{let r=document.body.querySelector("iframe[src*='/~partytown/']");if(r)e.newDocument.body.append(r)})})(document);</script></head><body class="overflow-x-hidden" data-astro-cid-o2vbw2em><header class="fixed left-0 right-0 top-0 z-30 h-20 px-3 transition-all ease-out [&amp;.scroll]:h-12 [&amp;.scroll]:backdrop-blur-xl" data-header><div class="mx-auto flex h-full w-full place-content-between place-items-center lg:max-w-[1000px]"><a aria-label="Go to Home" class="font-sg text-lg font-bold tracking-tight text-th-text transition-colors hover:text-yellow-400" href="/blog">JOHNNYDEV</a><nav class="flex h-8 items-stretch font-sg text-sm text-th-text"><a class="relative flex items-center px-3 data-[active=true]:font-semibold" data-active="true" href="/blog">Blog</a><a class="relative flex items-center px-3 data-[active=true]:font-semibold" data-active="false" href="/about">About</a><custom-theme-switcher data-astro-cid-ijxc6blt="true"><button aria-label="auto" aria-live="polite" class="relative flex h-8 w-8 place-content-center place-items-center rounded-sm" title="Toggles light &amp; dark" type="button" data-astro-cid-ijxc6blt><svg width="1em" height="1em" viewBox="0 0 24 24" data-light="true" data-astro-cid-ijxc6blt="true" data-icon="octicon:sun-24"><symbol id="ai:octicon:sun-24"><path fill="currentColor" d="M12 19a7 7 0 1 1 0-14a7 7 0 0 1 0 14m0-1.5a5.5 5.5 0 1 0 0-11a5.5 5.5 0 1 0 0 11m-5.657.157a.75.75 0 0 1 0 1.06l-1.768 1.768a.749.749 0 0 1-1.275-.326a.75.75 0 0 1 .215-.734l1.767-1.768a.75.75 0 0 1 1.061 0M3.515 3.515a.75.75 0 0 1 1.06 0l1.768 1.768a.749.749 0 0 1-.326 1.275a.75.75 0 0 1-.734-.215L3.515 4.575a.75.75 0 0 1 0-1.06M12 0a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0V.75A.75.75 0 0 1 12 0M4 12a.75.75 0 0 1-.75.75H.75a.75.75 0 0 1 0-1.5h2.5A.75.75 0 0 1 4 12m8 8a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-2.5A.75.75 0 0 1 12 20m12-8a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h2.5A.75.75 0 0 1 24 12m-6.343 5.657a.75.75 0 0 1 1.06 0l1.768 1.768a.75.75 0 0 1-.018 1.042a.75.75 0 0 1-1.042.018l-1.768-1.767a.75.75 0 0 1 0-1.061m2.828-14.142a.75.75 0 0 1 0 1.06l-1.768 1.768a.75.75 0 0 1-1.042-.018a.75.75 0 0 1-.018-1.042l1.767-1.768a.75.75 0 0 1 1.061 0"/></symbol><use xlink:href="#ai:octicon:sun-24"></use></svg><svg width="1em" height="1em" viewBox="0 0 24 24" data-dark="true" data-astro-cid-ijxc6blt="true" data-icon="octicon:moon-24"><symbol id="ai:octicon:moon-24"><path fill="currentColor" d="m14.768 3.96l-.002-.005a9 9 0 0 0-.218-.779c-.13-.394.21-.8.602-.67q.435.144.855.328l.01.005A10.002 10.002 0 0 1 12 22a10 10 0 0 1-9.162-5.985l-.004-.01a10 10 0 0 1-.329-.855c-.13-.392.277-.732.67-.602q.386.126.78.218l.004.002A9 9 0 0 0 14.999 6a9 9 0 0 0-.231-2.04M16.5 6c0 5.799-4.701 10.5-10.5 10.5q-.64 0-1.26-.075A8.5 8.5 0 1 0 16.425 4.74q.075.62.075 1.259Z"/></symbol><use xlink:href="#ai:octicon:moon-24"></use></svg><svg width="1em" height="1em" viewBox="0 0 24 24" data-auto="true" data-astro-cid-ijxc6blt="true" data-icon="octicon:devices-24"><symbol id="ai:octicon:devices-24"><path fill="currentColor" d="M1 3.75C1 2.784 1.784 2 2.75 2h18.5c.966 0 1.75.784 1.75 1.75v4a.75.75 0 0 1-1.5 0v-4a.25.25 0 0 0-.25-.25H2.75a.25.25 0 0 0-.25.25v11.5c0 .138.112.25.25.25h9a.75.75 0 0 1 0 1.5h-1.287c-.126 1.266-.564 2.445-1.223 3.5h2.51a.75.75 0 0 1 0 1.5h-4a.75.75 0 0 1-.565-1.243c.964-1.105 1.598-2.382 1.769-3.757H2.75A1.75 1.75 0 0 1 1 15.25z"/><path fill="currentColor" d="M14 11.75c0-.967.783-1.75 1.75-1.75h5.5c.966 0 1.75.783 1.75 1.75v8.5A1.75 1.75 0 0 1 21.25 22h-5.5A1.75 1.75 0 0 1 14 20.25Zm1.75-.25a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h5.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25Z"/></symbol><use xlink:href="#ai:octicon:devices-24"></use></svg></button></custom-theme-switcher><script>
+  // for avoid FOUC
+  const loadTheme = () => {
+    if (typeof localStorage === 'undefined') {
+      return { preferred: 'light', theme: 'auto' }
+    }
+
+    const value = localStorage.getItem('theme')
+
+    return {
+      preferred: matchMedia('(prefers-color-scheme: light)').matches
+        ? 'light'
+        : 'dark',
+      theme: value === 'dark' || value === 'light' ? value : 'auto',
+    }
+  }
+
+  const { preferred, theme } = loadTheme()
+  const {
+    documentElement: { classList },
+  } = document
+
+  if (theme === 'auto') {
+    classList.add('auto')
+  } else {
+    classList.remove('auto')
+  }
+
+  const actual = theme === 'auto' ? preferred : theme
+
+  if (actual === 'dark') {
+    classList.add('dark')
+  } else {
+    classList.remove('dark')
+  }
+</script><script type="module" src="/_astro/ThemeSwitcher.astro_astro_type_script_index_0_lang.C86OpmsO.js"></script></nav></div></header><script type="module">function e(){let e=document.querySelector(`header[data-header]`);if(!e)return;let t=``;window.addEventListener(`scroll`,()=>{if(window.scrollY>0){t!==`scroll`&&(t=`scroll`,e?.classList.add(`scroll`));return}t!==``&&(t=``,e?.classList.remove(`scroll`))},{passive:!0})}e(),document.addEventListener(`astro:after-swap`,e);</script><main class="relative z-10" data-astro-cid-o2vbw2em><div class="px-3 transition-colors" data-astro-cid-o2vbw2em><div class="relative mx-auto w-full pt-20 lg:max-w-[1000px]" data-astro-cid-o2vbw2em><div class="py-8 text-th-text"><div class="relative mb-10"><button class="absolute -top-8 flex h-4 items-center gap-1 font-sg text-sm text-th-text-secondary" data-back type="button"><svg width="1em" height="1em" viewBox="0 0 24 24" data-icon="octicon:arrow-left-24"><symbol id="ai:octicon:arrow-left-24"><path fill="currentColor" d="M10.78 19.03a.75.75 0 0 1-1.06 0l-6.25-6.25a.75.75 0 0 1 0-1.06l6.25-6.25a.749.749 0 0 1 1.275.326a.75.75 0 0 1-.215.734L5.81 11.5h14.44a.75.75 0 0 1 0 1.5H5.81l4.97 4.97a.75.75 0 0 1 0 1.06"/></symbol><use xlink:href="#ai:octicon:arrow-left-24"></use></svg> Back to List</button><h1 class="mb-4"><span class="text-balance text-3xl font-semibold transition-all">Angular의 RouteReuseStrategy</span></h1><div class="mb-2"><time class="font-sg text-sm text-th-text-secondary">2020-02-29</time></div><div class="flex items-center gap-1"><span class="rounded-full bg-th-bg-highlight/60 px-2 py-1 font-sg text-xs text-th-highlight transition-transform data-[emphasis]:scale-125 data-[emphasis]:contrast-200 dark:bg-th-bg-highlight/10" data-tag="angular">#angular</span><span class="rounded-full bg-th-bg-highlight/60 px-2 py-1 font-sg text-xs text-th-highlight transition-transform data-[emphasis]:scale-125 data-[emphasis]:contrast-200 dark:bg-th-bg-highlight/10" data-tag="routereusestrategy">#routereusestrategy</span></div></div><input class="hidden" data-frontmatter type="hidden" value="{&quot;title&quot;:&quot;Angular의 RouteReuseStrategy&quot;,&quot;description&quot;:&quot;Angular의 라우팅 동작을 커스터마이징 할 수 있는 RouteReuseStrategy를 설명합니다&quot;,&quot;categories&quot;:[&quot;Framework&quot;],&quot;tags&quot;:[&quot;angular&quot;,&quot;routereusestrategy&quot;],&quot;publishedAt&quot;:&quot;2020-02-29T20:00+09:00&quot;,&quot;updatedAt&quot;:&quot;2020-05-14T20:00+09:00&quot;,&quot;readingTime&quot;:703200,&quot;summary&quot;:&quot;Angular는 라우팅 시점마다 RoutingModule에 제공된 Routes 중 이전 페이지와 다음 페이지에 해당하는 Route 객체를 찾아 서로 비교하여 변경이 있을 때만 컴포넌트를 교체한다.동일한 Route 간 이동 시. 같은 컴포넌트가 렌더링 되며 이뤄지는 AP&quot;}"><div class="_blog_content prose prose-stone mb-20 w-full max-w-none break-keep px-1 dark:prose-invert prose-headings:font-semibold prose-h1:mt-20 prose-a:relative prose-a:no-underline prose-a:after:absolute prose-a:after:bottom-0 prose-a:after:left-0 prose-a:after:right-0 prose-a:after:h-[1px] prose-a:after:bg-th-text/80 prose-a:after:content-['']"><h1 id="-routereusestrategy">🚀 RouteReuseStrategy</h1>
+<p>Angular는 라우팅 시점마다 RoutingModule에 제공된 Routes 중 이전 페이지와 다음 페이지에 해당하는 Route 객체를 찾아 서로 비교하여 변경이 있을 때만 컴포넌트를 교체한다.</p>
+<p>동일한 Route 간 이동 시. 같은 컴포넌트가 렌더링 되며 이뤄지는 API 호출은 중복으로 판단하는 것으로 보인다. 가이드 문서에는 없지만, 이 동작은 개발자가 커스터마이징 할 수 있다.</p>
+<p>예를 들면 상세에서 목록으로 뒤로 가기로 이동했을 때는 원래 Route 설정이 달라 컴포넌트를 새로 만들어야 하지만 목록에서 상세로 진입 시점에 목록 컴포넌트 상태를 캐시 했다가 뒤로 가기 시점에 복원하여 API 호출을 줄일 수 있다.</p>
+<p>이 <a href="https://itnext.io/cache-components-with-angular-routereusestrategy-3e4c8b174d5f">RouterReuseStrategy API 상세 설명</a>을 간략히 설명하면 아래와 같다.</p>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4;overflow-x:auto" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#CBA6F7">export</span><span style="color:#CBA6F7"> abstract</span><span style="color:#CBA6F7"> class</span><span style="color:#F9E2AF;font-style:italic"> RouteReuseStrategy</span><span style="color:#9399B2"> {</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">  /**</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">   * 현재 이동에 컴포넌트 재사용 &#39;여부&#39;를 확인한다</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">   * false반환 시 재사용없이 컴포넌트를 새로 만들고</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">   * true를 반환하면 아래 4개의 메서드를 상황별로 호출하여 캐시 및 복원한다</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">   * (캐시, 복원 로직은 직접 구현해야 한다)</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">   */</span></span>
+<span class="line"><span style="color:#CBA6F7">  abstract</span><span style="color:#89B4FA;font-style:italic"> shouldReuseRoute</span><span style="color:#9399B2">(</span></span>
+<span class="line"><span style="color:#EBA0AC;font-style:italic">    future</span><span style="color:#94E2D5">:</span><span style="color:#F9E2AF;font-style:italic"> ActivatedRouteSnapshot</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#EBA0AC;font-style:italic">    curr</span><span style="color:#94E2D5">:</span><span style="color:#F9E2AF;font-style:italic"> ActivatedRouteSnapshot</span></span>
+<span class="line"><span style="color:#9399B2">  )</span><span style="color:#94E2D5">:</span><span style="color:#CBA6F7"> boolean</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">  /**</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">   * 페이지를 빠져나갈 때 현재 컴포넌트 캐시 &#39;여부&#39;를 반환한다</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">   * false 반환 시 캐시 안해도 되는것으로 판단</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">   * true 반환 시 아래 store메서드를 호출한다</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">   */</span></span>
+<span class="line"><span style="color:#CBA6F7">  abstract</span><span style="color:#89B4FA;font-style:italic"> shouldDetach</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">route</span><span style="color:#94E2D5">:</span><span style="color:#F9E2AF;font-style:italic"> ActivatedRouteSnapshot</span><span style="color:#9399B2">)</span><span style="color:#94E2D5">:</span><span style="color:#CBA6F7"> boolean</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">  /**</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">   * 페이지 빠져나가기 전 상태를 캐시한다</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">   * 캐시를 위해서 두 번째 인자인 DetachedRouteHandle을 어딘가에 저장하면 된다</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">   */</span></span>
+<span class="line"><span style="color:#CBA6F7">  abstract</span><span style="color:#89B4FA;font-style:italic"> store</span><span style="color:#9399B2">(</span></span>
+<span class="line"><span style="color:#EBA0AC;font-style:italic">    route</span><span style="color:#94E2D5">:</span><span style="color:#F9E2AF;font-style:italic"> ActivatedRouteSnapshot</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#EBA0AC;font-style:italic">    handle</span><span style="color:#94E2D5">:</span><span style="color:#F9E2AF;font-style:italic"> DetachedRouteHandle </span><span style="color:#94E2D5">|</span><span style="color:#CBA6F7;font-style:italic"> null</span></span>
+<span class="line"><span style="color:#9399B2">  )</span><span style="color:#94E2D5">:</span><span style="color:#CBA6F7"> void</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">  /**</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">   * 페이지 진입 시점에 복원 &#39;여부&#39;를 반환한다</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">   * false 반환 시 복원 안해도 되는것으로 판단</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">   * true 반환 시 아래 retrieve메서드를 호출한다</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">   */</span></span>
+<span class="line"><span style="color:#CBA6F7">  abstract</span><span style="color:#89B4FA;font-style:italic"> shouldAttach</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">route</span><span style="color:#94E2D5">:</span><span style="color:#F9E2AF;font-style:italic"> ActivatedRouteSnapshot</span><span style="color:#9399B2">)</span><span style="color:#94E2D5">:</span><span style="color:#CBA6F7"> boolean</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">  /**</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">   * 페이지 진입 시 캐시된 데이터를 복원한다</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">   * 위에서 구현한 store 메서드 호출 시점에 어딘가에 저장했던 캐시를 반환하면 된다</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">   */</span></span>
+<span class="line"><span style="color:#CBA6F7">  abstract</span><span style="color:#89B4FA;font-style:italic"> retrieve</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">route</span><span style="color:#94E2D5">:</span><span style="color:#F9E2AF;font-style:italic"> ActivatedRouteSnapshot</span><span style="color:#9399B2">)</span><span style="color:#94E2D5">:</span><span style="color:#F9E2AF;font-style:italic"> DetachedRouteHandle</span><span style="color:#94E2D5"> |</span><span style="color:#CBA6F7;font-style:italic"> null</span></span>
+<span class="line"><span style="color:#9399B2">}</span></span></code></pre>
+<p>위의 인터페이스를 상속받아 최상위 NgModule에 Providing 해 주면 된다.</p>
+<p>Angular의 <a href="https://github.com/angular/angular/blob/5bc39f8c8d5238a9be9bd968cf18ea4b738bd6be/packages/router/src/route_reuse_strategy.ts#L65">DefaultRouteReuseStrategy</a>는 <a href="https://angular.io/api/router/Route">RouteConfig</a>가 같을 때 shouldReuseRoute의 실행 결과를 true로 반환하고 있지만. 각 메서드에서 캐시 여부(shouldDetach), 복원 여부(shouldAttach) 모두 false를 반환하고 있어 아무 일도 일어나지 않는다.</p>
+<h1 id="routerlink가-동작하지-않아요">RouterLink가 동작하지 않아요</h1>
+<p>Angular는 앞서 설명한 대로 라우팅 전, 후의 Route 객체를 비교하여 다를 때만 컴포넌트를 교체한다. 따라서 같은 Route 객체 간 이동이라면 컴포넌트가 교체되지 않는다.</p>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4;overflow-x:auto" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#CBA6F7">const</span><span style="color:#CDD6F4"> routes </span><span style="color:#94E2D5">=</span><span style="color:#CDD6F4"> [</span></span>
+<span class="line"><span style="color:#9399B2">  {</span></span>
+<span class="line"><span style="color:#CDD6F4">    path</span><span style="color:#94E2D5">:</span><span style="color:#A6E3A1"> &#39;detail/:id&#39;</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#CDD6F4">    component</span><span style="color:#94E2D5">:</span><span style="color:#CDD6F4"> DetailComponent</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#9399B2">  },</span></span>
+<span class="line"><span style="color:#CDD6F4">]</span></span></code></pre>
+<p>위의 라우팅 설정에서 아래 컴포넌트의 링크 클릭해서 <code>&#39;/detail/3&#39;</code>에서 <code>&#39;/detail/12&#39;</code>로 이동했다면 같은 Route객체(정확히는 같은 ActivatedRouteSnapshot)를 비교한다.</p>
+<p>따라서 컴포넌트가 교체되지 않아 <code>ngOnInit</code> 을 비롯한 라이프사이클 메서드들이 실행되지 않는다. 만약 <code>ngOnInit</code>에서 <code>id</code>를 받아 API를 호출해 상세 데이터를 보여주도록 개발했다면 문제가 될 수 있다.</p>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4;overflow-x:auto" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#89B4FA;font-style:italic">@Component</span><span style="color:#FAB387">(</span><span style="color:#9399B2">{</span></span>
+<span class="line"><span style="color:#FAB387">  selector</span><span style="color:#94E2D5">:</span><span style="color:#A6E3A1"> &#39;app-detail&#39;</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#FAB387">  template</span><span style="color:#94E2D5">:</span><span style="color:#A6E3A1"> `</span></span>
+<span class="line"><span style="color:#A6E3A1">    &lt;h1&gt;detail component&lt;/h1&gt;</span></span>
+<span class="line"><span style="color:#A6E3A1">    &lt;a routerLink=&quot;/detail/12&quot;&gt;go to &#39;/detail/12&#39;&lt;/a&gt;</span></span>
+<span class="line"><span style="color:#A6E3A1">    &lt;div&gt;{{ content }}&lt;/div&gt;</span></span>
+<span class="line"><span style="color:#A6E3A1">  `</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#9399B2">}</span><span style="color:#FAB387">)</span></span>
+<span class="line"><span style="color:#CBA6F7">export</span><span style="color:#CBA6F7"> class</span><span style="color:#F9E2AF;font-style:italic"> DetailComponent</span><span style="color:#9399B2"> {</span></span>
+<span class="line"><span style="color:#CDD6F4">  content </span><span style="color:#94E2D5">=</span><span style="color:#A6E3A1"> &#39;&#39;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">  // &#39;/detail/12&#39;로 이동했을 때는 호출되지 않아 3번 데이터를 계속 보여준다</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">  ngOnInit</span><span style="color:#9399B2">()</span><span style="color:#9399B2"> {</span></span>
+<span class="line"><span style="color:#F38BA8">    this</span><span style="color:#94E2D5">.</span><span style="color:#CDD6F4">http</span></span>
+<span class="line"><span style="color:#94E2D5">      .</span><span style="color:#89B4FA;font-style:italic">get</span><span style="color:#CDD6F4">(</span><span style="color:#A6E3A1">`/detail/</span><span style="color:#9399B2">${</span><span style="color:#F38BA8">this</span><span style="color:#94E2D5">.</span><span style="color:#CDD6F4">activatedRoute</span><span style="color:#94E2D5">.</span><span style="color:#CDD6F4">snapshot</span><span style="color:#94E2D5">.</span><span style="color:#CDD6F4">params</span><span style="color:#94E2D5">.</span><span style="color:#CDD6F4">id</span><span style="color:#9399B2">}</span><span style="color:#A6E3A1">`</span><span style="color:#CDD6F4">)</span></span>
+<span class="line"><span style="color:#94E2D5">      .</span><span style="color:#89B4FA;font-style:italic">subscribe</span><span style="color:#CDD6F4">(</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">o</span><span style="color:#9399B2">)</span><span style="color:#94E2D5"> =&gt;</span><span style="color:#CDD6F4"> (</span><span style="color:#F38BA8">this</span><span style="color:#94E2D5">.</span><span style="color:#CDD6F4">content </span><span style="color:#94E2D5">=</span><span style="color:#CDD6F4"> o))</span></span>
+<span class="line"><span style="color:#9399B2">  }</span></span>
+<span class="line"><span style="color:#9399B2">}</span></span></code></pre>
+<p>아래 데모를 통해 문제를 확인해 볼 수 있다.</p>
+<div class="aspect-ratio"><iframe src="https://stackblitz.com/edit/angular-routerlink-notwork?ctl=1&amp;embed=1&amp;file=src/app/detail/detail.component.css&amp;hideExplorer=1&amp;view=preview"></iframe></div>
+<p>이런 경우 <code>ngOnInit</code>이 재실행되지 않아도 갱신되도록 스트림을 이용하여 수정하는 것이 일반적이지만. RouteReuseStrategy를 이용하여 Route 객체 비교를 커스터마이징 할 수 있고. 강제로 컴포넌트를 교체하도록 할 수 있다.</p>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4;overflow-x:auto" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#CBA6F7">export</span><span style="color:#CBA6F7"> class</span><span style="color:#F9E2AF;font-style:italic"> CustomRouteReuseStrategy</span><span style="color:#CBA6F7"> extends</span><span style="color:#F9E2AF;font-style:italic"> RouteReuseStrategy</span><span style="color:#9399B2"> {</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">  shouldDetach</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">route</span><span style="color:#94E2D5">:</span><span style="color:#F9E2AF;font-style:italic"> ActivatedRouteSnapshot</span><span style="color:#9399B2">)</span><span style="color:#9399B2"> {</span></span>
+<span class="line"><span style="color:#CBA6F7">    return</span><span style="color:#FAB387"> false</span></span>
+<span class="line"><span style="color:#9399B2">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">  store</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">route</span><span style="color:#94E2D5">:</span><span style="color:#F9E2AF;font-style:italic"> ActivatedRouteSnapshot</span><span style="color:#9399B2">,</span><span style="color:#EBA0AC;font-style:italic"> detachedTree</span><span style="color:#94E2D5">:</span><span style="color:#F9E2AF;font-style:italic"> DetachedRouteHandle</span><span style="color:#9399B2">)</span><span style="color:#9399B2"> {}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">  shouldAttach</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">route</span><span style="color:#94E2D5">:</span><span style="color:#F9E2AF;font-style:italic"> ActivatedRouteSnapshot</span><span style="color:#9399B2">)</span><span style="color:#9399B2"> {</span></span>
+<span class="line"><span style="color:#CBA6F7">    return</span><span style="color:#FAB387"> false</span></span>
+<span class="line"><span style="color:#9399B2">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">  retrieve</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">route</span><span style="color:#94E2D5">:</span><span style="color:#F9E2AF;font-style:italic"> ActivatedRouteSnapshot</span><span style="color:#9399B2">)</span><span style="color:#9399B2"> {</span></span>
+<span class="line"><span style="color:#CBA6F7">    return</span><span style="color:#CBA6F7"> null</span></span>
+<span class="line"><span style="color:#9399B2">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">  shouldReuseRoute</span><span style="color:#9399B2">(</span></span>
+<span class="line"><span style="color:#EBA0AC;font-style:italic">    future</span><span style="color:#94E2D5">:</span><span style="color:#F9E2AF;font-style:italic"> ActivatedRouteSnapshot</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#EBA0AC;font-style:italic">    curr</span><span style="color:#94E2D5">:</span><span style="color:#F9E2AF;font-style:italic"> ActivatedRouteSnapshot</span></span>
+<span class="line"><span style="color:#9399B2">  )</span><span style="color:#9399B2"> {</span></span>
+<span class="line"><span style="color:#CBA6F7">    const</span><span style="color:#9399B2"> [</span><span style="color:#CDD6F4">futureUrl</span><span style="color:#9399B2">,</span><span style="color:#CDD6F4"> currUrl</span><span style="color:#9399B2">]</span><span style="color:#94E2D5"> =</span><span style="color:#CDD6F4"> [future</span><span style="color:#9399B2">,</span><span style="color:#CDD6F4"> curr]</span><span style="color:#94E2D5">.</span><span style="color:#89B4FA;font-style:italic">map</span><span style="color:#CDD6F4">(</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">o</span><span style="color:#9399B2">)</span><span style="color:#94E2D5"> =&gt;</span></span>
+<span class="line"><span style="color:#CDD6F4">      o</span><span style="color:#94E2D5">.</span><span style="color:#CDD6F4">url</span><span style="color:#94E2D5">.</span><span style="color:#89B4FA;font-style:italic">map</span><span style="color:#CDD6F4">(</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">seg</span><span style="color:#9399B2">)</span><span style="color:#94E2D5"> =&gt;</span><span style="color:#CDD6F4"> seg</span><span style="color:#94E2D5">.</span><span style="color:#CDD6F4">path)</span><span style="color:#94E2D5">.</span><span style="color:#89B4FA;font-style:italic">join</span><span style="color:#CDD6F4">(</span><span style="color:#A6E3A1">&#39;/&#39;</span><span style="color:#CDD6F4">)</span></span>
+<span class="line"><span style="color:#CDD6F4">    )</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">    /**</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">     * Route비교 시 둘 다 &#39;detail&#39;을 포함한 path라면 컴포넌트를</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">     * 재사용하지 않도록 false를 반환한다.</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">     */</span></span>
+<span class="line"><span style="color:#CBA6F7">    if</span><span style="color:#CDD6F4"> (futureUrl</span><span style="color:#94E2D5">.</span><span style="color:#89B4FA;font-style:italic">includes</span><span style="color:#CDD6F4">(</span><span style="color:#A6E3A1">&#39;detail&#39;</span><span style="color:#CDD6F4">) </span><span style="color:#94E2D5">&amp;&amp;</span><span style="color:#CDD6F4"> currUrl</span><span style="color:#94E2D5">.</span><span style="color:#89B4FA;font-style:italic">includes</span><span style="color:#CDD6F4">(</span><span style="color:#A6E3A1">&#39;detail&#39;</span><span style="color:#CDD6F4">)) </span><span style="color:#9399B2">{</span></span>
+<span class="line"><span style="color:#CBA6F7">      return</span><span style="color:#FAB387"> false</span></span>
+<span class="line"><span style="color:#9399B2">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">    return</span><span style="color:#CDD6F4"> future</span><span style="color:#94E2D5">.</span><span style="color:#CDD6F4">routeConfig </span><span style="color:#94E2D5">===</span><span style="color:#CDD6F4"> curr</span><span style="color:#94E2D5">.</span><span style="color:#CDD6F4">routeConfig</span></span>
+<span class="line"><span style="color:#9399B2">  }</span></span>
+<span class="line"><span style="color:#9399B2">}</span></span></code></pre>
+<p>아래는 위 <code>CustomRouteReuseStrategy</code>를 이용한 강제 컴포넌트 교체의 예제이다.</p>
+<div class="aspect-ratio"><iframe src="https://stackblitz.com/edit/angular-routerlink-notwork-refactor?ctl=1&amp;embed=1&amp;file=src/app/custom-route-reuse-strategy.ts&amp;hideExplorer=1&amp;view=preview"></iframe></div>
+<h1 id="shouldreuseroute는-여러-번-호출된다">shouldReuseRoute는 여러 번 호출된다</h1>
+<blockquote>
+<p>👀 Angular v8 버전 기준으로 작성했으나 v9 에서도 비슷하게 동작한다</p>
+</blockquote>
+<p>Angular의 <a href="https://angular.io/api/router/Route">RouteConfig</a>는 재귀적으로 선언할 수 있게 되어있다. 그래서 <code>shouldReuseRoute</code>의 <code>future</code>, <code>curr</code>파라미터는 path에 대한 정보를 트리 구조로 담고 있다. 자세한 내용은 예제를 통해 파악해 보자.</p>
+<p>먼저 앱의 라우팅 설정이 아래처럼 선언되어 있다고 가정한다.</p>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4;overflow-x:auto" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#9399B2;font-style:italic">// app-routing.module.ts</span></span>
+<span class="line"><span style="color:#CBA6F7">const</span><span style="color:#CDD6F4"> routes </span><span style="color:#94E2D5">=</span><span style="color:#CDD6F4"> [</span></span>
+<span class="line"><span style="color:#9399B2">  {</span><span style="color:#CDD6F4"> path</span><span style="color:#94E2D5">:</span><span style="color:#A6E3A1"> &#39;list&#39;</span><span style="color:#9399B2">,</span><span style="color:#CDD6F4"> component</span><span style="color:#94E2D5">:</span><span style="color:#CDD6F4"> ListComponent </span><span style="color:#9399B2">},</span></span>
+<span class="line"><span style="color:#9399B2">  {</span><span style="color:#CDD6F4"> path</span><span style="color:#94E2D5">:</span><span style="color:#A6E3A1"> &#39;detail/:id&#39;</span><span style="color:#9399B2">,</span><span style="color:#CDD6F4"> component</span><span style="color:#94E2D5">:</span><span style="color:#CDD6F4"> DetailComponent </span><span style="color:#9399B2">},</span></span>
+<span class="line"><span style="color:#9399B2">  {</span></span>
+<span class="line"><span style="color:#CDD6F4">    path</span><span style="color:#94E2D5">:</span><span style="color:#A6E3A1"> &#39;delivery&#39;</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">    loadChildren</span><span style="color:#94E2D5">:</span><span style="color:#9399B2"> ()</span><span style="color:#94E2D5"> =&gt;</span></span>
+<span class="line"><span style="color:#94E2D5">      import</span><span style="color:#CDD6F4">(</span><span style="color:#A6E3A1">&quot;&#39;./delivery/delivery.module&#39;&quot;</span><span style="color:#CDD6F4">)</span><span style="color:#94E2D5">.</span><span style="color:#89B4FA;font-style:italic">then</span><span style="color:#CDD6F4">(</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">mod</span><span style="color:#9399B2">)</span><span style="color:#94E2D5"> =&gt;</span><span style="color:#CDD6F4"> mod</span><span style="color:#94E2D5">.</span><span style="color:#CDD6F4">DeliveryModule)</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#9399B2">  },</span></span>
+<span class="line"><span style="color:#CDD6F4">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">// delivery-routing.module.ts</span></span>
+<span class="line"><span style="color:#CBA6F7">const</span><span style="color:#CDD6F4"> routes </span><span style="color:#94E2D5">=</span><span style="color:#CDD6F4"> [</span><span style="color:#9399B2">{</span><span style="color:#CDD6F4"> path</span><span style="color:#94E2D5">:</span><span style="color:#A6E3A1"> &#39;detail/:id&#39;</span><span style="color:#9399B2">,</span><span style="color:#CDD6F4"> component</span><span style="color:#94E2D5">:</span><span style="color:#CDD6F4"> DeliveryDetailComponent </span><span style="color:#9399B2">}</span><span style="color:#CDD6F4">]</span></span></code></pre>
+<p>아래 <code>RouteReuseStrategy</code>는 각 호출 단계에서 url과 해당 <code>Route</code>와 연결된 컴포넌트 이름을 출력한다. 이 strategy를 사용하여 위의 Route 설정에서 발생할 수 있는 이동들에 대한 호출 로그를 분석해 보자.</p>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4;overflow-x:auto" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#CBA6F7">export</span><span style="color:#CBA6F7"> class</span><span style="color:#F9E2AF;font-style:italic"> CustomRouteReuseStrategy</span><span style="color:#CBA6F7"> implements</span><span style="color:#F9E2AF;font-style:italic"> RouteReuseStrategy</span><span style="color:#9399B2"> {</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">  shouldReuseRoute</span><span style="color:#9399B2">(</span></span>
+<span class="line"><span style="color:#EBA0AC;font-style:italic">    future</span><span style="color:#94E2D5">:</span><span style="color:#F9E2AF;font-style:italic"> ActivatedRouteSnapshot</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#EBA0AC;font-style:italic">    curr</span><span style="color:#94E2D5">:</span><span style="color:#F9E2AF;font-style:italic"> ActivatedRouteSnapshot</span></span>
+<span class="line"><span style="color:#9399B2">  )</span><span style="color:#9399B2"> {</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">    // 분석을 위해 파라미터를 로깅함</span></span>
+<span class="line"><span style="color:#CDD6F4">    console</span><span style="color:#94E2D5">.</span><span style="color:#89B4FA;font-style:italic">log</span><span style="color:#CDD6F4">(</span></span>
+<span class="line"><span style="color:#A6E3A1">      `[future]</span><span style="color:#F5C2E7">\n</span><span style="color:#9399B2">${</span><span style="color:#89B4FA;font-style:italic">getInfo</span><span style="color:#A6E3A1">(</span><span style="color:#CDD6F4">future</span><span style="color:#A6E3A1">)</span><span style="color:#9399B2">}</span><span style="color:#F5C2E7">\n\n</span><span style="color:#A6E3A1">[curr]:</span><span style="color:#F5C2E7">\n</span><span style="color:#9399B2">${</span><span style="color:#89B4FA;font-style:italic">getInfo</span><span style="color:#A6E3A1">(</span><span style="color:#CDD6F4">curr</span><span style="color:#A6E3A1">)</span><span style="color:#9399B2">}</span><span style="color:#F5C2E7">\n\n</span><span style="color:#A6E3A1">----------`</span></span>
+<span class="line"><span style="color:#CDD6F4">    )</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">    return</span><span style="color:#CDD6F4"> future</span><span style="color:#94E2D5">.</span><span style="color:#CDD6F4">routeConfig </span><span style="color:#94E2D5">===</span><span style="color:#CDD6F4"> curr</span><span style="color:#94E2D5">.</span><span style="color:#CDD6F4">routeConfig</span></span>
+<span class="line"><span style="color:#9399B2">  }</span></span>
+<span class="line"><span style="color:#9399B2">}</span></span></code></pre>
+<p><em>1. 앱 진입</em></p>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4;overflow-x:auto" tabindex="0" data-language="text"><code><span class="line"><span>[future]</span></span>
+<span class="line"><span>  → &#39;&#39; / null</span></span>
+<span class="line"><span>[curr]:</span></span>
+<span class="line"><span>  → &#39;&#39; / null</span></span>
+<span class="line"><span>----------</span></span></code></pre>
+<p>앱 진입 시점에 한번 호출된다. 큰 의미는 없다</p>
+<p><em>2. ” 에서 ‘list’로 이동하는 경우</em></p>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4;overflow-x:auto" tabindex="0" data-language="text"><code><span class="line"><span>[future]</span></span>
+<span class="line"><span>  → &#39;&#39; / AppComponent</span></span>
+<span class="line"><span>  → &#39;list&#39; / ListComponent</span></span>
+<span class="line"><span>[curr]:</span></span>
+<span class="line"><span>  → &#39;&#39; / null</span></span>
+<span class="line"><span>----------</span></span></code></pre>
+<p><code>future</code>를 보면 <code>&#39;&#39;</code>는 AppComponent, <code>&#39;list&#39;</code>는 ListComponent에 제공되는 것을 알 수 있다.</p>
+<p><em>3. ‘list’에서 ‘detail/2’로 이동하는 경우</em></p>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4;overflow-x:auto" tabindex="0" data-language="text"><code><span class="line"><span>[future]</span></span>
+<span class="line"><span>  → &#39;&#39; / AppComponent</span></span>
+<span class="line"><span>  → &#39;detail/2&#39; / DetailComponent</span></span>
+<span class="line"><span>[curr]:</span></span>
+<span class="line"><span>  → &#39;&#39; / AppComponent</span></span>
+<span class="line"><span>  → &#39;list&#39; / ListComponent</span></span>
+<span class="line"><span>----------</span></span>
+<span class="line"><span>[future]</span></span>
+<span class="line"><span>  → &#39;list&#39; / ListComponent</span></span>
+<span class="line"><span>[curr]:</span></span>
+<span class="line"><span>  → &#39;detail/2&#39; / DetailComponent</span></span>
+<span class="line"><span>----------</span></span></code></pre>
+<ul>
+<li><code>shoudReuseRoute</code>가 두 번 호출되고 있다.</li>
+<li>이상한 점이 있는데 두 번째 호출에서는 <code>future</code>, <code>curr</code>값이 뒤바뀌었다.</li>
+<li><code>future</code>를 보면 <code>AppComponent</code>에는 <code>:id</code>에 해당하는 문자열이 없다. 라우팅 설정 자체도 그러한데. <code>AppComponent</code>가 DI 받는 <code>ActivatedRouteSnapshot</code>에서는 <code>id</code>를 가져올 수 없는 이유이기도 하다.</li>
+</ul>
+<p><em>4. ‘detail/2’에서 ‘delivery/detail/4’로 이동하는 경우</em></p>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4;overflow-x:auto" tabindex="0" data-language="text"><code><span class="line"><span>[future]</span></span>
+<span class="line"><span>  → &#39;&#39; / AppComponent</span></span>
+<span class="line"><span>  → &#39;delivery&#39; / null</span></span>
+<span class="line"><span>  → &#39;detail/4&#39; / DeliveryDetailComponent</span></span>
+<span class="line"><span>[curr]:</span></span>
+<span class="line"><span>  → &#39;&#39; / AppComponent</span></span>
+<span class="line"><span>  → &#39;detail/2&#39; / DetailComponent</span></span>
+<span class="line"><span>----------</span></span>
+<span class="line"><span>[future]</span></span>
+<span class="line"><span>  → &#39;detail/2&#39; / DetailComponent</span></span>
+<span class="line"><span>[curr]:</span></span>
+<span class="line"><span>  → &#39;delivery&#39; / null</span></span>
+<span class="line"><span>  → &#39;detail/4&#39; / DeliveryDetailComponent</span></span>
+<span class="line"><span>----------</span></span></code></pre>
+<ul>
+<li>3번처럼 두 번째 호출의 <code>future</code>, <code>curr</code>값이 뒤바뀌어 있다. <a href="https://github.com/angular/angular/issues/16192">관련 PR</a>이 있는데 아직 별다른 업데이트가 없다.</li>
+<li>첫 shouldReuseRoute의 호출에서 <code>future</code>파라미터를 보면<code>loadChildren</code>을 사용한 <code>Route</code>에는 컴포넌트가 없다.</li>
+</ul>
+<p>두 번씩 호출되는 이유는 어디에도 나와 있지 않지만. <a href="https://github.com/angular/angular/blob/3e51a1998304ab6a15e5bea6bc66e7a8c636a8ad/packages/router/src/create_router_state.ts">관련 코드</a>를 볼 때 두 번씩 호출하더라도 컴포넌트에 올바른 라우팅 상태를 줄 수 있기 때문에 따로 정리하지 않은 것으로 보인다. 따라서 구현 할 때 주의가 필요하다.</p>
+<h1 id="상품상세-목록-간-컴포넌트-캐싱-예제">상품상세, 목록 간 컴포넌트 캐싱 예제</h1>
+<p>상세, 목록 페이지의 경우 상세에서 뒤로가기 시 이전에 보고 있던 목록과 스크롤을 유지하면 페이지 탐색 사용성을 크게 개선할 수 있다. 특히 전자상거래 서비스의 경우 매출과 직결되는 부분이기도 하다.</p>
+<p>캐싱을 위해 일반적으로 bfcache에 의존하거나. 상세 진입 전의 앱 상태를 persist로 저장했다가 복원하는 방법을 사용하는데. 두 방법은 코드베이스 외적인 부분에 의존하기 때문에 관리가 어렵고 사이드이펙트가 있을 수 있다.</p>
+<p>RouteReuseStrategy를 이용한 방법은 캐싱이 필요한 구간에 부분적으로 적용해야 하지만 구현이 코드베이스 안에 있으므로 앞서 언급한 문제에서 자유롭다. 가능한 이 방법을 도입하는 것이 좋아 보인다.</p>
+<div class="aspect-ratio"><iframe src="https://stackblitz.com/edit/angular-list-detail-reuse-example?ctl=1&amp;embed=1&amp;file=src/app/api.service.ts&amp;hideExplorer=1&amp;view=preview"></iframe></div>
+<p>위 데모는 상품목록 상세 예제이다. 원래라면 상세에서 뒤로 가기로 목록으로 돌아왔을 때 컴포넌트가 교체어 버리므로 화면이 깜빡이며 1번째 페이지부터 새로 그리고. 스크롤 위치도 잃어버린다.</p>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4;overflow-x:auto" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#CBA6F7">export</span><span style="color:#CBA6F7"> class</span><span style="color:#F9E2AF;font-style:italic"> CustomRouteReuseStrategy</span><span style="color:#CBA6F7"> extends</span><span style="color:#F9E2AF;font-style:italic"> RouteReuseStrategy</span><span style="color:#9399B2"> {</span></span>
+<span class="line"><span style="color:#CBA6F7">  private</span><span style="color:#CDD6F4"> cache </span><span style="color:#94E2D5">=</span><span style="color:#CBA6F7;font-weight:bold"> new</span><span style="color:#89B4FA;font-style:italic"> Map</span><span style="color:#89DCEB">&lt;</span><span style="color:#CBA6F7">string</span><span style="color:#9399B2">,</span><span style="color:#F9E2AF;font-style:italic"> DetachedRouteHandle</span><span style="color:#89DCEB">&gt;</span><span style="color:#CDD6F4">()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">  shouldDetach</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">route</span><span style="color:#94E2D5">:</span><span style="color:#F9E2AF;font-style:italic"> ActivatedRouteSnapshot</span><span style="color:#9399B2">)</span><span style="color:#9399B2"> {</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">    // 목록에서 빠져나갈 때 true반환하여 store를 호출한다</span></span>
+<span class="line"><span style="color:#CBA6F7">    if</span><span style="color:#CDD6F4"> (</span><span style="color:#89B4FA;font-style:italic">getPath</span><span style="color:#CDD6F4">(route)</span><span style="color:#94E2D5">.</span><span style="color:#89B4FA;font-style:italic">startsWith</span><span style="color:#CDD6F4">(</span><span style="color:#A6E3A1">&#39;list&#39;</span><span style="color:#CDD6F4">)) </span><span style="color:#9399B2">{</span></span>
+<span class="line"><span style="color:#CBA6F7">      return</span><span style="color:#FAB387"> true</span></span>
+<span class="line"><span style="color:#9399B2">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">    return</span><span style="color:#FAB387"> false</span></span>
+<span class="line"><span style="color:#9399B2">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">  store</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">route</span><span style="color:#94E2D5">:</span><span style="color:#F9E2AF;font-style:italic"> ActivatedRouteSnapshot</span><span style="color:#9399B2">,</span><span style="color:#EBA0AC;font-style:italic"> detachedTree</span><span style="color:#94E2D5">:</span><span style="color:#F9E2AF;font-style:italic"> DetachedRouteHandle</span><span style="color:#9399B2">)</span><span style="color:#9399B2"> {</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">    // 컴포넌트 상태 캐시</span></span>
+<span class="line"><span style="color:#F38BA8">    this</span><span style="color:#94E2D5">.</span><span style="color:#CDD6F4">cache</span><span style="color:#94E2D5">.</span><span style="color:#89B4FA;font-style:italic">set</span><span style="color:#CDD6F4">(</span><span style="color:#89B4FA;font-style:italic">getPath</span><span style="color:#CDD6F4">(route)</span><span style="color:#9399B2">,</span><span style="color:#CDD6F4"> detachedTree)</span></span>
+<span class="line"><span style="color:#9399B2">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">  shouldAttach</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">route</span><span style="color:#94E2D5">:</span><span style="color:#F9E2AF;font-style:italic"> ActivatedRouteSnapshot</span><span style="color:#9399B2">)</span><span style="color:#9399B2"> {</span></span>
+<span class="line"><span style="color:#CBA6F7">    const</span><span style="color:#CDD6F4"> path </span><span style="color:#94E2D5">=</span><span style="color:#89B4FA;font-style:italic"> getPath</span><span style="color:#CDD6F4">(route)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">    // 목록 재진입 시 캐시가 있다면 true반환하여 retrieve를 호출한다</span></span>
+<span class="line"><span style="color:#CBA6F7">    if</span><span style="color:#CDD6F4"> (path</span><span style="color:#94E2D5">.</span><span style="color:#89B4FA;font-style:italic">startsWith</span><span style="color:#CDD6F4">(</span><span style="color:#A6E3A1">&#39;list&#39;</span><span style="color:#CDD6F4">) </span><span style="color:#94E2D5">&amp;&amp;</span><span style="color:#F38BA8"> this</span><span style="color:#94E2D5">.</span><span style="color:#CDD6F4">cache</span><span style="color:#94E2D5">.</span><span style="color:#89B4FA;font-style:italic">has</span><span style="color:#CDD6F4">(path)) </span><span style="color:#9399B2">{</span></span>
+<span class="line"><span style="color:#CBA6F7">      return</span><span style="color:#FAB387"> true</span></span>
+<span class="line"><span style="color:#9399B2">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">    return</span><span style="color:#FAB387"> false</span></span>
+<span class="line"><span style="color:#9399B2">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">  retrieve</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">route</span><span style="color:#94E2D5">:</span><span style="color:#F9E2AF;font-style:italic"> ActivatedRouteSnapshot</span><span style="color:#9399B2">)</span><span style="color:#9399B2"> {</span></span>
+<span class="line"><span style="color:#9399B2;font-style:italic">    // 컴포넌트 상태 복원</span></span>
+<span class="line"><span style="color:#CBA6F7">    return</span><span style="color:#F38BA8"> this</span><span style="color:#94E2D5">.</span><span style="color:#CDD6F4">cache</span><span style="color:#94E2D5">.</span><span style="color:#89B4FA;font-style:italic">get</span><span style="color:#CDD6F4">(</span><span style="color:#89B4FA;font-style:italic">getPath</span><span style="color:#CDD6F4">(route))</span></span>
+<span class="line"><span style="color:#9399B2">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">  shouldReuseRoute</span><span style="color:#9399B2">(</span></span>
+<span class="line"><span style="color:#EBA0AC;font-style:italic">    future</span><span style="color:#94E2D5">:</span><span style="color:#F9E2AF;font-style:italic"> ActivatedRouteSnapshot</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#EBA0AC;font-style:italic">    curr</span><span style="color:#94E2D5">:</span><span style="color:#F9E2AF;font-style:italic"> ActivatedRouteSnapshot</span></span>
+<span class="line"><span style="color:#9399B2">  )</span><span style="color:#9399B2"> {</span></span>
+<span class="line"><span style="color:#CBA6F7">    return</span><span style="color:#CDD6F4"> future</span><span style="color:#94E2D5">.</span><span style="color:#CDD6F4">routeConfig </span><span style="color:#94E2D5">===</span><span style="color:#CDD6F4"> curr</span><span style="color:#94E2D5">.</span><span style="color:#CDD6F4">routeConfig</span></span>
+<span class="line"><span style="color:#9399B2">  }</span></span>
+<span class="line"><span style="color:#9399B2">}</span></span></code></pre>
+<p>하지만 본문에서 설명한 RouteReuseStrategy를 상속한 커스텀 클래스를 구현하면 캐시된 컨텍스트를 복원하기 때문에 상품목록 컴포넌트가 깜빡이지 않고 곧바로 렌더링 되는 것을 볼 수 있다.</p></div><custom-comment></custom-comment><script type="module" src="/_astro/Comment.astro_astro_type_script_index_0_lang.CACbyaZL.js"></script></div></div></div></main><footer class="relative z-10"><div class="mx-auto flex w-full justify-between gap-10 border-t border-t-th-border px-3 py-8 font-sg text-sm text-th-text lg:max-w-[1000px]"><div class="flex-none">&#169; 2026 - JOHNNYDEV</div><div class="flex w-60 justify-between gap-2"><div class="flex flex-col gap-1 md:w-1/2"><a href="/blog">Blog</a><a href="/about">About</a></div><div class="flex flex-col gap-1 md:w-1/2"><a aria-label="Go to github profile page" href="https://github.com/johnny-mh" rel="noopener noreferrer" target="_blank">Github</a><a aria-label="Send E-Mail to Johnny" href="mailto://romz1212@gmail.com">Mail</a><a aria-label="RSS" href="/rss.xml" rel="noopener noreferrer" target="_blank">RSS</a></div></div></div></footer><canvas data-astro-transition-persist="bgEffect" class="pointer-events-none fixed left-0 top-0 z-0 h-screen w-screen opacity-0 transition-opacity duration-1000 data-[initialized]:opacity-100" data-bg-effect></canvas><script type="module" src="/_astro/BackgroundEffect.astro_astro_type_script_index_0_lang.BXGQGcad.js"></script></body></html><script type="module">e(),document.addEventListener(`astro:after-swap`,e);function e(){document.querySelector(`button[data-back]`)?.addEventListener(`click`,()=>{history.back()})}</script>
